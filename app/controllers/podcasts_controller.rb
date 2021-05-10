@@ -20,6 +20,7 @@ class PodcastsController < ApplicationController
   end
 
   def show
+    @episodes = @podcast.episodes
   end
   
   def edit

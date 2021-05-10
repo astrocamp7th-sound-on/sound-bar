@@ -7,7 +7,7 @@
 <% end %>
 
 
-<%= simple_form_for(podcast) do |f| %>
+<%= simple_form_for podcast do |f| %>
   <%= f.input :name, label: "Podcast 節目名稱" %>
   <%= f.input :artist, label: "創作者名稱" %>
   <%= f.input :email, label: "Email" %>
@@ -20,7 +20,7 @@
   <%= f.input :copyright, label: "版權宣告Copyright" %>
   <%= f.input :explicit, label: "兒童不宜" %>
   <%= f.input :status, collection: ["草稿", "發布"], label: "狀態" %>
-  <%= f.button :submit, "新增" %>
+  <%= f.button :submit %>
 <% end %>
 <br>
 <%= link_to "返回節目列表", podcasts_path %>

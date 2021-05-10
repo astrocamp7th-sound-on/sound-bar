@@ -17,7 +17,7 @@
     <% @podcasts.each do |podcast| %>
       <tr>
         <td><%= podcast.genres %></td>
-        <td><%= link_to podcast.name, podcast_path(podcast) %></td>
+        <td><%= link_to podcast.name, podcast_path(podcast.id) %></td>
         <td><%= podcast.artist %></td>
         <td><%= podcast.language %></td>
         <td><%= podcast.slug %></td>
