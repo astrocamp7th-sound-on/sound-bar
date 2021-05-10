@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  audio: MyString
+  title: MyString
+  description: MyText
+  keyword: MyString
+  season: 1
+  episode: 1
+  explicit: false
+  status: MyString
+  podcast: one
+
+two:
+  audio: MyString
+  title: MyString
+  description: MyText
+  keyword: MyString
+  season: 1
+  episode: 1
+  explicit: false
+  status: MyString
+  podcast: two
