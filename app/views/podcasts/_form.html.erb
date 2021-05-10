@@ -1,0 +1,26 @@
+<% if podcast.errors.any? %>
+  <ul>
+    <% podcast.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+
+<%= simple_form_for(podcast) do |f| %>
+  <%= f.input :name, label: "Podcast 節目名稱" %>
+  <%= f.input :artist, label: "創作者名稱" %>
+  <%= f.input :email, label: "Email" %>
+  <%= f.input :language, collection: ["繁體中文", "简体中文", "粵語", "English", "日本語", "한국어"], label: "語言" %>
+  <%= f.input :slug, label: "好記短網址https://soundbar.tk/" %>
+  <%= f.input :genres, collection: ["Arts", "Business", "Comedy", "Education", "Fiction", "Health & Fitness", "History", "Kids & Family", "Leisure", "Music", "News", "Religion & Spirituality", "Science", "Society & Culture", "Sports", "TV & Film", "Technology"], label: "類別" %>
+  <%= f.input :description, label: "描述" %>
+  <%= f.input :subtitle, label: "Subtitle" %>
+  <%= f.input :weblink, label: "網站連結" %>
+  <%= f.input :copyright, label: "版權宣告Copyright" %>
+  <%= f.input :explicit, label: "兒童不宜" %>
+  <%= f.input :status, collection: ["草稿", "發布"], label: "狀態" %>
+  <%= f.button :submit, "新增" %>
+<% end %>
+<br>
+<%= link_to "返回節目列表", podcasts_path %>
