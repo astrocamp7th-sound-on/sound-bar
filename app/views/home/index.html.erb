@@ -1,1 +1,10 @@
 <h1>首頁</h1>
+<h2><%= flash[:notice]%></h2> <br>
+<% if user_signed_in? %>
+  <%= current_user.email %>
+  <%= link_to '編輯', edit_user_registration_path %>
+  <%= link_to '登出', destroy_user_session_path, method: 'delete', data: {confirm: '是否確定登出'} %>
+<% else %>
+  <%=link_to '註冊', new_user_session_path %>
+  <%=link_to '登入', user_session_path %>
+<% end %>
