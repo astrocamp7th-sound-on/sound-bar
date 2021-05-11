@@ -5,3 +5,9 @@
   <li>關鍵字：<%= @episode.keyword %></li>
   <li>描述：<%= @episode.description %></li>
 </ul>
+
+
+<p>
+   <strong>Cover:</strong>
+   <%= image_tag(@episode.cover_url) if @episode.cover? %>
+ </p>
