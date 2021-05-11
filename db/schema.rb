@@ -10,7 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 2021_05_11_031906) do
+
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,12 +67,10 @@ ActiveRecord::Schema.define(version: 2021_05_11_031906) do
     t.string "subtitle"
     t.string "weblink"
     t.string "copyright"
-    t.string "explicit"
     t.string "status"
-    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_podcasts_on_user_id"
+    t.boolean "explicit"
   end
 
   create_table "subscriptions", force: :cascade do |t|
@@ -101,7 +102,6 @@ ActiveRecord::Schema.define(version: 2021_05_11_031906) do
   add_foreign_key "episodes", "podcasts"
   add_foreign_key "orders", "podcasts"
   add_foreign_key "orders", "users"
-  add_foreign_key "podcasts", "users"
   add_foreign_key "subscriptions", "podcasts"
   add_foreign_key "subscriptions", "users"
 end

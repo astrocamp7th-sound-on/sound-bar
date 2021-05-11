@@ -1,0 +1,23 @@
+<h1>編輯單集</h1>
+
+<% if @episode.errors.any? %>
+  <ul>
+    <% @episode.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= simple_form_for @episode, url: podcast_episode_path(@podcast) do |f| %>
+  <%= f.input :title, label: "標題" %>
+  <%= f.input :description, label: "描述" %>
+  <%= f.input :keyword, label: "關鍵字" %>
+  <%= f.input :season, label: "季" %>
+  <%= f.input :episode, label: "集" %>
+  <%= f.input :explicit, label: "兒童不宜" %>
+  <%= f.input :status, collection: ["草稿", "發布"], label: "狀態" %>
+  <%= f.button :submit, "編輯單集" %>
+<% end %>
+
+<br>
+<%= link_to "返回單集列表", podcast_path(@podcast) %>
