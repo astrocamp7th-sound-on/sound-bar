@@ -41,7 +41,7 @@ class PodcastsController < ApplicationController
 
   private
   def podcast_params
-    params.require(:podcast).permit(:avatar, :name, :artist, :email, :language, :slug, :genres, :description, :subtitle, :weblink, :copyright, :explicit, :status, :cover)
+    params.require(:podcast).permit(:avatar, :name, :artist, :email, :language, :slug, :genres, :description, :subtitle, :weblink, :copyright, :explicit, :status, :cover, :cover_cache)
   end
 
   def find_podcast
