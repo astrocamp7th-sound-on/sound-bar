@@ -62,5 +62,4 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem "fog-aws"
 gem 'figaro'
-gem 'dotenv-rails'
-gem 'carrierwave-audio', '~> 1.0', '>= 1.0.1'
+# gem 'carrierwave-audio', '~> 1.0', '>= 1.0.1'
