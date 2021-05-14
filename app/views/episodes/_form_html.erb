@@ -3,7 +3,6 @@
 
    <div class="field">
      <%= form.label :cover %>
-     <%= image_tag(episode.cover_url) if episode.cover? %>
      <%= form.file_field :cover %>
      <%= form.hidden_field :cover_cache %>
    </div>
