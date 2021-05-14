@@ -10,4 +10,26 @@ class Podcast < ApplicationRecord
   validates :language, presence: true
   validates :slug, presence: true
   validates :genres, presence: true
+  
+  enum genres: {
+    arts: "Arts", 
+    business: "Business", 
+    comedy: "Comedy", 
+    education: "Education", 
+    fiction: "Fiction", 
+    healthfitness: "Health & Fitness", 
+    history: "History", 
+    kidsfamily: "Kids & Family", 
+    leisure: "Leisure", 
+    music: "Music", 
+    news: "News", 
+    religionspirituality: "Religion & Spirituality", 
+    science: "Science", 
+    societyculture: "Society & Culture", 
+    sports: "Sports", 
+    tvfilm: "TV & Film", 
+    technology: "Technology"
+  }
+
+
 end
