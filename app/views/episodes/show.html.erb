@@ -6,3 +6,9 @@
   <li>描述：<%= @episode.description %></li>
 </ul>
 
+
+<h2>節目播放器：</h2> 
+
+<audio controls="controls" preload="none" autostart="false">
+    <source src="<%= @episode.recording.url %>" type="audio/mp3"></source>
+</audio>
