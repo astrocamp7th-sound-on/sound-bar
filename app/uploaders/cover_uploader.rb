@@ -5,13 +5,9 @@ class CoverUploader < CarrierWave::Uploader::Base
 
   # Choose what kind of storage to use for this uploader:
   # storage :file
-  # if Rails.env.production?
-  # 如果是 production 環境，則將檔案儲存至遠端(S3)
+ 
   storage :fog
-  # else
-  #   # 開發的過程，將檔案儲存至本地（預設路徑為 專案資料夾/public/uploads/...)
-  #   storage :file
-  # end
+
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
