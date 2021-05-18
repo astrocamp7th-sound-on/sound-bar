@@ -8,7 +8,6 @@ class EpisodesController < ApplicationController
 
   def create
     @episode = @podcast.episodes.new(episode_params)
-
     if @episode.save
       redirect_to podcast_path(@podcast), notice: "新增單集成功"
     else
@@ -37,7 +36,7 @@ class EpisodesController < ApplicationController
 
   private
   def episode_params
-    params.require(:episode).permit(:audio, :title, :description, :keyword, :season, :episode, :explicit, :status)
+    params.require(:episode).permit(:audio, :title, :description, :keyword, :season, :episode, :explicit, :status, :recording)
   end
 
   def find_episode
