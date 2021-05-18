@@ -1,9 +1,9 @@
-<h1>Podcast 節目列表</h1> 
+<h1 class="text-5xl m-10">Podcast 節目列表</h1> 
 <%= link_to "新增節目", new_podcast_path %>
 <br>
-<table class="table" class="w-64">
+<table class="table border-collapse border border-green-800 mx-5">
   <thead>
-    <tr class="bg-red-50">
+    <tr class="bg-red-300 text-xl p-10">
       <th>類別</th>
       <th>節目名稱</th>
       <th>創作者</th>
@@ -15,14 +15,14 @@
   </thead>
   <tbody>
     <% @podcasts.each do |podcast| %>
-      <tr>
-        <td><%= podcast.genres %></td>
-        <td><%= link_to podcast.name, podcast_path(podcast.id) %></td>
-        <td><%= podcast.artist %></td>
-        <td><%= podcast.language %></td>
-        <td><%= podcast.slug %></td>
-        <td><%= link_to "編輯", edit_podcast_path(podcast) %></td>
-        <td><%= link_to "刪除", podcast_path(podcast), method: "delete", data: {confirm: "是否確認刪除？"} %></td>
+      <tr class="bg-yellow-100">
+        <td class="p-5 font-serif"><%= podcast.genres %></td>
+        <td class="p-5"><%= link_to podcast.name, podcast_path(podcast.id) %></td>
+        <td class="p-5"><%= podcast.artist %></td>
+        <td class="p-5 font-serif"><%= podcast.language %></td>
+        <td class="p-5 font-serif"><%= podcast.slug %></td>
+        <td class="p-5 bg-purple-300 hover:bg-purple-500"><%= link_to "編輯", edit_podcast_path(podcast) %></td>
+        <td class="p-5 bg-purple-300 hover:bg-purple-500"><%= link_to "刪除", podcast_path(podcast), method: "delete", data: {confirm: "是否確認刪除？"} %></td>
       </tr>
     <% end %>
   </tbody>
