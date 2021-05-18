@@ -20,6 +20,8 @@
   <%= f.input :copyright, label: "版權宣告Copyright" %>
   <%= f.input :explicit, label: "兒童不宜" %>
   <%= f.input :status, collection: ["草稿", "發布"], label: "狀態" %>
+  <%= f.input :cover, as: :file, label: "新增封面" %>
+  <br />
   <%= f.button :submit %>
 <% end %>
 <br>

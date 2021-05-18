@@ -10,6 +10,8 @@ class Podcast < ApplicationRecord
   validates :language, presence: true
   validates :slug, presence: true
   validates :genres, presence: true
+
+  mount_uploader :cover, CoverUploader
   
   enum genres: {
     arts: "Arts", 
