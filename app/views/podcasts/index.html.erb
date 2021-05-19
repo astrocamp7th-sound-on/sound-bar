@@ -1,30 +1,44 @@
-<h1>Podcast 節目列表</h1> 
-<%= link_to "新增節目", new_podcast_path %>
-<br>
-<table class="table">
-  <thead>
-    <tr>
-      <th>類別</th>
-      <th>節目名稱</th>
-      <th>創作者</th>
-      <th>語言</th>
-      <th>短網址</th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @podcasts.each do |podcast| %>
-      <tr>
-        <td><%= podcast.genres %></td>
-        <td><%= link_to podcast.name, podcast_path(podcast.id) %></td>
-        <td><%= podcast.artist %></td>
-        <td><%= podcast.language %></td>
-        <td><%= podcast.slug %></td>
-        <td><%= link_to "編輯", edit_podcast_path(podcast) %></td>
-        <td><%= link_to "刪除", podcast_path(podcast), method: "delete", data: {confirm: "是否確認刪除？"} %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<header>
+  <div class="flex m-6 justify-center md:justify-start">
+    <%= image_tag("logo", size: "180x180") %>
+  </div>
+</header>
 
+<h1 class="text-2xl font-black ml-10 mt-5 mb-5">歡迎來到 SoundBar</h1>
+
+<section class="bg-blue-50 h-screen">
+  <div class="flex justify-between">
+    <div>
+      <input class="w-72 ml-10 mt-5 mb-5 bg-blue-white shadow rounded border-0 p-2" placeholder="搜尋 Podcast">
+    </div>
+    <div>
+      <button class="ml-10 mt-5 mb-5 mr-10 rounded-lg p-2 text-lg text-white bg-blue-500 hover:shadow-inner duration-500 hover:bg-blue-400">
+        <%= link_to "建立 Podcast", new_podcast_path %>
+      </button>
+    </div>
+  </div>
+  <div class="flex items-center justify-center">
+    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <% @podcasts.each do |podcast| %>
+        <div class="relative bg-white py-6 px-6 rounded-3xl w-80 my-4 shadow-xl">
+          <div class="flex">
+            <div class="p-3 rounded"><img src="https://picsum.photos/30/30/?random=1"></div>
+            <div>
+              <h3 class="font-black duration-500 hover:text-blue-500"><%= link_to podcast.name, podcast_path(podcast.id) %></h3>
+              <p class="font-light"><%= podcast.artist %></p>
+            </div>
+          </div>
+          <div class="border-t-2"></div>
+          <p class="pt-3 font-light"> ＋新增單集</p>
+        </div>
+      <% end %>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="flex bg-blue-50 p-5 justify-center">
+  <p class="text-blue-500 pr-1 duration-500 hover:text-blue-400">使用條款</p>
+  <p class="pl-1">© 2021 SoundBar, Inc.</p>
+</footer>
