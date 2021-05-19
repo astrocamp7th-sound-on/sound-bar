@@ -24,3 +24,5 @@ Things you may want to cover:
 * ...
 
 * johnson test
+
+* How to run foreman : $ foreman s -f ppf
