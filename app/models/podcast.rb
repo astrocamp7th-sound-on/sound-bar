@@ -3,6 +3,7 @@ class Podcast < ApplicationRecord
   has_many :episodes
   has_many :orders
   has_many :subscriptions
+  has_many :donations
 
   validates :name, presence: true
   validates :artist, presence: true
