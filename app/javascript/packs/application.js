@@ -9,6 +9,7 @@ import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 
 import "tailwind/application"
+import "frontend"
 
 Rails.start()
 Turbolinks.start()
