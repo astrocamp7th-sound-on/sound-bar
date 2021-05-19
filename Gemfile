@@ -3,7 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.7.2'
 gem 'devise', '~> 4.2'
-gem "rails-i18n" #通知訊息中文化
+gem 'devise-i18n' #通知訊息中文化
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
