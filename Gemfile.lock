@@ -90,8 +90,6 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
-    devise-i18n (1.9.4)
-      devise (>= 4.7.1)
     erubi (1.10.0)
     execjs (2.7.0)
     faraday (1.4.1)
@@ -280,7 +278,6 @@ DEPENDENCIES
   byebug
   capybara (>= 3.26)
   devise (~> 4.2)
-  devise-i18n
   figaro (~> 1.2)
   hirb-unicode (~> 0.0.5)
   jbuilder (~> 2.7)

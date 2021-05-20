@@ -8,9 +8,40 @@
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
+  <div class="field">
+    <%= f.label :username %><br />
+    <%= f.text_field :username %>
+  </div>
+
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
+
+  <% if current_user.uid.nil? %>
+    <div class="field">
+      <%= f.label :新密碼 %> <i>(<em><%= @minimum_password_length %>位數字以上 </em>)</i><br />
+      <%= f.password_field :password, autocomplete: "new-password" %>
+      <% if @minimum_password_length %>
+        
+        
+      <% end %>
+    </div>
+
+    <div class="field">
+      <%= f.label :再次輸入密碼 %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :舊密碼 %> <br>
+      <%= f.password_field :current_password, autocomplete: "current-password" %>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit "更新" %>
+  </div>
+<% end %>
 
 <h3>刪除帳號</h3>
 
