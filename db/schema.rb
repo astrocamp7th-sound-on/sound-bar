@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 2021_05_19_020334) do
     t.bigint "podcast_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "recording"
     t.index ["podcast_id"], name: "index_episodes_on_podcast_id"
   end
 
@@ -68,6 +69,7 @@ ActiveRecord::Schema.define(version: 2021_05_19_020334) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "explicit"
+    t.string "cover"
   end
 
   create_table "subscriptions", force: :cascade do |t|
