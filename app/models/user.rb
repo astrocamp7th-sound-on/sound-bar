@@ -11,10 +11,6 @@ class User < ApplicationRecord
   has_many :subscriptions
   has_many :comments
 
-
-
-# ref:https://cindyliu923.medium.com/rails-devise-google-fecebook%E7%99%BB%E5%85%A5%E5%AF%A6%E4%BD%9C-ebfb3170b0a8
-
   def self.from_omniauth(access_token)
     data = access_token.info
     user = User.where(:token => access_token.credentials.token, :uid => access_token.uid).first    
