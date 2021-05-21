@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  donator: MyString
+  note: MyString
+  amount: MyString
+  tradeno: MyString
+
+two:
+  donator: MyString
+  note: MyString
+  amount: MyString
+  tradeno: MyString
