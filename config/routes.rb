@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   resources :podcasts, path: '/podcaster/podcasts' do
-    resources :episodes do
+    resources :episodes, except: [:index] do
     end
   end
 
