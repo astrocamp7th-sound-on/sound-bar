@@ -4,7 +4,7 @@ class PodcastsController < ApplicationController
   require 'digest'
 
   before_action :find_podcast, only: [:edit, :update, :show, :destroy, :new_donation, :donate!]
-  
+
   # 為了接收綠界 POST 回來的參數，關閉此驗證才能收到
   skip_before_action :verify_authenticity_token, only: [:donate_outcome]
 
@@ -115,7 +115,7 @@ class PodcastsController < ApplicationController
     @donation.update(ec_tradeno: "#{params["TradeNo"]}")
 
     # 如果綠界傳來的參數裡，RtnMsg訊息不是"交易成功"的話，就將該筆贊助的狀態由pending改為failed
-    @donation.fail! if params[:RtnMsg] != "交易成功"
+    @donation.fail! if params["RtnMsg"] != "交易成功"
 
     # 綠界的加密規則，將參數前後增加固定的HashKey及HashIV，依照參數英文順序排列
     hash_params = "HashKey=5294y06JbISpM5x9&CustomField1=#{params["CustomField1"]}&CustomField2=#{params["CustomField2"]}&CustomField3=#{params["CustomField3"]}&CustomField4=#{params["CustomField4"]}&MerchantID=2000132&MerchantTradeNo=#{@donation.tradeno}&PaymentDate=#{params["PaymentDate"]}&PaymentType=Credit_CreditCard&PaymentTypeChargeFee=#{params["PaymentTypeChargeFee"]}&RtnCode=1&RtnMsg=交易成功&SimulatePaid=0&StoreID=&TradeAmt=#{@donation.amount}&TradeDate=#{params["TradeDate"]}&TradeNo=#{params["TradeNo"]}&HashIV=v77hoKGq4kWxNNIS"
@@ -124,7 +124,7 @@ class PodcastsController < ApplicationController
     mac_value = (Digest::SHA256.hexdigest url_encode(hash_params).gsub("%20","+").downcase).upcase
 
     # 如果綠界傳來的參數裡，RtnMsg訊息是"交易成功"，且檢查碼吻合的話，就將贊助狀態改為paid
-    if mac_value == params[:CheckMacValue]
+    if mac_value == params["CheckMacValue"]
       @donation.pay!
       return "1|OK"
     # 如果綠界傳來的參數裡，RtnMsg訊息是"交易成功"，但檢查碼不吻合，那可能是遭到駭客攻擊
