@@ -1,44 +1,66 @@
-<%= link_to "返回節目列表", podcasts_path %>
-<br>
-<h1><%= @podcast.name %></h1>
+<header>
+  <div class="flex m-6 justify-center md:justify-start">
+    <%= image_tag("logo", size: "180x180") %>
+  </div>
+</header>
 
-<p>
-  <strong>Cover:</strong>
-  <%= image_tag(@podcast.cover.url) if @podcast.cover? %>
-</p>
+<h1 class="text-center text-4xl m-10">節目資訊</h1>
 
-<ul>
-  <li>創作者：<%= @podcast.artist %></li>
-  <li>類別：<%= @podcast.genres %></li>
-  <li>語言：<%= @podcast.language %></li>
-  <li>描述：<%= @podcast.description %></li>
+<div class="flex justify-center text-xl m-10">
+  <div><%= image_tag(@podcast.cover.url) if @podcast.cover? %></div>
+</div>
+
+<ul class="grid justify-center">
+  <li class="podcast-info">・Podcast 節目名稱：<%= @podcast.name %></li>
+  <li class="podcast-info">・創作者名稱：<%= @podcast.artist %></li>
+  <li class="podcast-info">・類別：<%= @podcast.genres %></li>
+  <li class="podcast-info">・Email：<%= @podcast.email %></li>
+  <li class="podcast-info">・描述：<%= @podcast.description %></li>
+  <li class="podcast-info">・Subtitle：<%= @podcast.subtitle %></li>
+  <li class="podcast-info">・iTunes 類別：<%= @podcast.genres %></li>
+  <li class="podcast-info">・語言：<%= @podcast.language %></li>
+  <li class="podcast-info">・好記短網址：<%= @podcast.slug %></li>
+  <li class="podcast-info">・版權宣告：<%= @podcast.copyright %></li>
+  <li class="podcast-info">・兒童不宜：<%= @podcast.explicit %></li>
 </ul>
 <br>
-<%= link_to "贊助", donate_p_path(@podcast) %>
-<br>
-<%= link_to "新增單集", new_podcast_episode_path(@podcast) %>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>#</th>
-      <th>標題</th>
-      <th>發布日期</th>
-      <th>連結</th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @episodes.each do |episode| %>
-      <tr>
-        <td>S<%= episode.season %>E<%= episode.episode %></td>
-        <td><%= episode.title %></td>
-        <td><%= episode.created_at %></td>
-        <td><%= link_to "連結", podcast_episode_path(@podcast, episode) %></td>
-        <td><%= link_to "編輯", edit_podcast_episode_path(@podcast, episode) %></td>
-        <td><%= link_to "刪除", podcast_episode_path(@podcast, episode), method: "delete", data: {confirm: "是否確認刪除？"} %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="grid justify-center">
+  <button class="create-episode"><%= link_to "新增單集", new_podcast_episode_path(@podcast) %></button>
+</div>
+
+<section>
+  <div class="grid justify-center">
+    <h2 class="text-xl font-bold flex justify-center underline">Episode 節目列表</h2>
+    <table>
+      <thead>
+        <th class="table-content">季數／集數</th>
+        <th class="table-content">標題</th>
+        <th class="table-content">發布日期</th>
+        <th class="table-content"></th>
+        <th class="table-content"></th>
+        <th class="table-content"></th>
+      </thead>
+      <tbody>
+        <% @episodes.each do |episode| %>
+        <tr>
+          <td class="table-content">S<%= episode.season %>E<%= episode.episode %></td>
+          <td class="table-content"><%= episode.title %></td>
+          <td class="table-content"><%= episode.created_at %></td>
+          <td class="table-content button-link"><%= link_to "預覽", podcast_episode_path(@podcast, episode) %></td>
+          <td class="table-content button-edit"><%= link_to "Edit", edit_podcast_episode_path(@podcast, episode) %></td>
+          <td class="table-content button-delete"><%= link_to "Delete", podcast_episode_path(@podcast, episode), method: "delete", data: {confirm: "是否確認刪除？"} %></td>
+        </div>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="flex justify-center">
+    <button class="border rounded-md p-3 m-3 text-white bg-blue-500 hover:bg-blue-700"><%= link_to "返回 Podcast 節目列表", podcasts_path %></button>
+  <div>
+</section>
+
+<footer class="flex bg-blue-50 p-5 justify-center">
+  <p class="text-blue-500 pr-1 duration-500 hover:text-blue-400">使用條款</p>
+  <p class="pl-1">© 2021 SoundBar, Inc.</p>
+</footer>
