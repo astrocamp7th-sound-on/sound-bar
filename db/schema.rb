@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_19_020334) do
+ActiveRecord::Schema.define(version: 2021_05_21_082529) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,19 @@ ActiveRecord::Schema.define(version: 2021_05_19_020334) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["episode_id"], name: "index_comments_on_episode_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "donations", force: :cascade do |t|
+    t.string "donator"
+    t.string "note"
+    t.integer "amount", null: false
+    t.string "tradeno"
+    t.bigint "podcast_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "status"
+    t.string "ec_tradeno"
+    t.index ["podcast_id"], name: "index_donations_on_podcast_id"
   end
 
   create_table "episodes", force: :cascade do |t|
@@ -40,17 +53,6 @@ ActiveRecord::Schema.define(version: 2021_05_19_020334) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "recording"
     t.index ["podcast_id"], name: "index_episodes_on_podcast_id"
-  end
-
-  create_table "orders", force: :cascade do |t|
-    t.bigint "podcast_id", null: false
-    t.bigint "user_id", null: false
-    t.integer "amount"
-    t.string "status"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["podcast_id"], name: "index_orders_on_podcast_id"
-    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "podcasts", force: :cascade do |t|
@@ -100,9 +102,8 @@ ActiveRecord::Schema.define(version: 2021_05_19_020334) do
 
   add_foreign_key "comments", "episodes"
   add_foreign_key "comments", "users"
+  add_foreign_key "donations", "podcasts"
   add_foreign_key "episodes", "podcasts"
-  add_foreign_key "orders", "podcasts"
-  add_foreign_key "orders", "users"
   add_foreign_key "subscriptions", "podcasts"
   add_foreign_key "subscriptions", "users"
 end

@@ -7,7 +7,6 @@ class User < ApplicationRecord
          :omniauthable, omniauth_providers: [:facebook, :google_oauth2]
 
   has_many :podcasts
-  has_many :orders
   has_many :subscriptions
   has_many :comments
 
