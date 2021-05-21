@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
 
+  # 這邊+path讓原先的controller#action不用變, 但網址前面會多個'/podcaster'
   resources :podcasts, path: '/podcaster/podcasts' do
     resources :episodes, except: [:index] do
     end
   end
 
+  # 這邊是做給未登入使用者看到的頁面
   resources :p, only: [:index, :show] do
     collection do
       post '/donate_outcome', to: 'podcasts#donate_outcome'
