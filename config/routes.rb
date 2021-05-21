@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'e/show'
+  get 'p/index'
+  get 'p/show'
   root 'home#index'
 
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }

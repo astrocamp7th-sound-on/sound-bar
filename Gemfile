@@ -2,12 +2,6 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.7.2'
-gem 'devise', '~> 4.2'
-gem 'omniauth'
-gem 'omniauth-facebook'
-gem 'omniauth-google-oauth2'
-gem 'omniauth-rails_csrf_protection' #解跨站請求問題
-gem 'figaro', '~> 1.2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.3', '>= 6.1.3.1'
@@ -69,7 +63,7 @@ gem 'mini_magick'
 # files save in aws
 gem "fog-aws"
 # ENV variables
-gem 'figaro'
+gem 'figaro', '~> 1.2'
 # foreman s -f ppf
 gem 'foreman', '~> 0.87.2'
 # bootstrap for rails
@@ -80,3 +74,11 @@ gem 'simple_form', '~> 5.1'
 gem 'repost', '~> 0.3.8'
 # status controll
 gem 'aasm', '~> 5.2'
+# user login
+gem 'devise', '~> 4.2'
+# third-party-login
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
+#解跨站請求問題
+gem 'omniauth-rails_csrf_protection'
