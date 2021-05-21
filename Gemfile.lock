@@ -171,11 +171,10 @@ GEM
     multi_xml (0.6.0)
     multipart-post (2.1.1)
     nio4r (2.5.7)
-    nokogiri (1.11.3-x86_64-darwin)
-    nio4r (2.5.7)
     nokogiri (1.11.3)
       mini_portile2 (~> 2.5.0)
       racc (~> 1.4)
+    nokogiri (1.11.3-x86_64-darwin)
     nokogiri (1.11.3-x86_64-linux)
       racc (~> 1.4)
     oauth2 (1.4.7)
@@ -247,13 +246,13 @@ GEM
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     regexp_parser (2.1.1)
+    repost (0.3.8)
     responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
-    ruby2_keywords (0.0.4)
-    repost (0.3.8)
     ruby-vips (2.1.2)
       ffi (~> 1.12)
+    ruby2_keywords (0.0.4)
     rubyzip (2.3.0)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
@@ -313,9 +312,9 @@ GEM
     zeitwerk (2.4.2)
 
 PLATFORMS
+  ruby
   x86_64-darwin-18
   x86_64-darwin-20
-  ruby
   x86_64-linux
 
 DEPENDENCIES
@@ -324,23 +323,19 @@ DEPENDENCIES
   bootstrap-sass (~> 3.4, >= 3.4.1)
   byebug
   capybara (>= 3.26)
+  carrierwave
   devise (~> 4.2)
   figaro (~> 1.2)
-  hirb-unicode (~> 0.0.5)
-  jbuilder (~> 2.7)
-  listen (~> 3.3)
-  omniauth
-  omniauth-facebook
-  omniauth-google-oauth2
-  omniauth-rails_csrf_protection
-  carrierwave
-  figaro
   fog-aws
   foreman (~> 0.87.2)
   hirb-unicode (~> 0.0.5)
   jbuilder (~> 2.7)
   listen (~> 3.3)
   mini_magick
+  omniauth
+  omniauth-facebook
+  omniauth-google-oauth2
+  omniauth-rails_csrf_protection
   pg (~> 1.1)
   puma (~> 5.0)
   rack-mini-profiler (~> 2.0)
