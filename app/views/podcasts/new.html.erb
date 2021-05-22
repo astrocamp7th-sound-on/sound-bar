@@ -1,3 +1,6 @@
-<h1 class="flex justify-center mt-10 text-xl">建立 Podcast</h1> 
-<br/>
+<div class="flex m-6 justify-center">
+  <a href="/podcaster/podcasts"><%= image_tag("new_logo_black", size: "280x280") %></a>
+</div>
+
+<h1 class="flex justify-center m-10 text-2xl font-bold">建立 Podcast</h1>
 <%= render 'form', podcast: @podcast %>
