@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
-  get 'e/show'
-  get 'p/index'
-  get 'p/show'
-  root 'home#index'
+  root 'pages#index'
+  get '/podcaster', to: 'pages#podcaster'
 
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
 
