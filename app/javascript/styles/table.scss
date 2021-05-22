@@ -1,0 +1,11 @@
+.table-content {
+  @apply py-2 px-2;
+}
+
+abbr[title="required"] {
+  color: #f00;
+}
+
+.error {
+  @apply text-red-600 font-bold;
+}
