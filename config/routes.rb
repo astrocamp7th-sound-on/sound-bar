@@ -1,14 +1,18 @@
 Rails.application.routes.draw do
-  root 'pages#index'
-  get '/podcaster', to: 'pages#podcaster'
 
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
 
-  # 這邊+path讓原先的controller#action不用變, 但網址前面會多個'/podcaster'
-  resources :podcasts, path: '/podcaster/podcasts' do
-    resources :episodes, except: [:index] do
+  constraints subdomain: 'podcaster' do
+    get '/', to: 'pages#podcaster'
+
+    resources :podcasts do
+      resources :episodes, except: [:index] do
+      end
     end
   end
+  
+  # 要擺在subdomain root的下面
+  root 'pages#index'
 
   # 這邊是做給未登入使用者看到的頁面
   resources :p, only: [:index, :show] do
