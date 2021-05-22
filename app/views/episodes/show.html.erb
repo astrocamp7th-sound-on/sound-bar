@@ -1,15 +1,23 @@
-<%= link_to "返回單集列表", podcast_path(@podcast) %>
+<div class="flex m-6 justify-center">
+  <a href="/podcaster/podcasts"><%= image_tag("new_logo_black", size: "280x280") %></a>
+</div>
+<h1 class="flex justify-center m-10 text-2xl font-bold"><%= @episode.title %></h1>
 
-<h1><%= @episode.title %></h1>
+
+
+
+<h2>節目播放器：</h2>
+
+<audio controls="controls" preload="none" autostart="false">
+    <source src="<%= @episode.recording.url %>" type="audio/mp3"></source>
+</audio>
+
 <ul>
   <li>關鍵字：<%= @episode.keyword %></li>
   <li>描述：<%= @episode.description %></li>
 </ul>
 
+<div class='flex items-center justify-center  md:gap-8 gap-4 pt-5 pb-5'>
+  <button class='btn bg-blue-500 hover:bg-blue-700'><%= link_to "返回單集列表", podcast_path(@podcast) %></button>
+</div>
 
-
-<h2>節目播放器：</h2> 
-
-<audio controls="controls" preload="none" autostart="false">
-    <source src="<%= @episode.recording.url %>" type="audio/mp3"></source>
-</audio>
