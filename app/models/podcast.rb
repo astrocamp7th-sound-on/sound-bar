@@ -14,23 +14,23 @@ class Podcast < ApplicationRecord
   mount_uploader :cover, CoverUploader
 
   enum genres: {
-    arts: "Arts",
-    business: "Business",
-    comedy: "Comedy",
-    education: "Education",
-    fiction: "Fiction",
-    healthfitness: "Health & Fitness",
-    history: "History",
-    kidsfamily: "Kids & Family",
-    leisure: "Leisure",
-    music: "Music",
-    news: "News",
-    religionspirituality: "Religion & Spirituality",
-    science: "Science",
-    societyculture: "Society & Culture",
-    sports: "Sports",
-    tvfilm: "TV & Film",
-    technology: "Technology"
+    Arts: "Arts",
+    Business: "Business",
+    Comedy: "Comedy",
+    Education: "Education",
+    Fiction: "Fiction",
+    'Health & Fitness': "Health & Fitness",
+    History: "History",
+    'Kids & Family': "Kids & Family",
+    Leisure: "Leisure",
+    Music: "Music",
+    News: "News",
+    'Religion & Spirituality': "Religion & Spirituality",
+    Science: "Science",
+    'Society & Culture': "Society & Culture",
+    Sports: "Sports",
+    'Tv & Film': "TV & Film",
+    Technology: "Technology"
   }
 
 
