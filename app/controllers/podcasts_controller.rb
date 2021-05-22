@@ -40,7 +40,6 @@ class PodcastsController < ApplicationController
   end
 
   private
-
   def find_podcast
     @podcast = Podcast.find(params[:id])
   end

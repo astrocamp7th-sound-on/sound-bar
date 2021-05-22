@@ -12,6 +12,7 @@ class Podcast < ApplicationRecord
   validates :genres, presence: true
 
   mount_uploader :cover, CoverUploader
+  before_create :generate_random_url
 
   enum genres: {
     Arts: "Arts",
@@ -33,5 +34,16 @@ class Podcast < ApplicationRecord
     Technology: "Technology"
   }
 
+  private
+  def generate_random_url
+    require 'securerandom'
+    new_random_url = SecureRandom.urlsafe_base64(32)
+    # 對Podcast做判斷式看看是否已經存在random_url
+    while Podcast.exists?(random_url: new_random_url)
+      new_random_url = SecureRandom.urlsafe_base64(32)
+    end
+
+    self.random_url = new_random_url
+  end
 
 end
