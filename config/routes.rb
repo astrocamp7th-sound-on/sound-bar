@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   # 這邊是做給未登入使用者看到的頁面，subdomain原理同上，會變成https://player.我們的網域/p
   constraints subdomain: 'player' do
     get '/browse', to: 'p#browse'
+    get '/', to: redirect('/browse')
     get '/:whatever', to: redirect('/browse')
 
     resources :p, only: [:show] do
