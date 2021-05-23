@@ -17,17 +17,31 @@ zh-TW:
         podcast:
           attributes:
             name:
-              blank: "請填寫 Podcast 名稱"
+              blank: "必填"
             artist:
-              blank: "請填寫創作者名稱"
+              blank: "必填"
             email:
-              blank: "請填寫 Email 信箱"
+              blank: "必填"
             language:
-              blank: "請選擇語言"
+              blank: "必填"
             slug:
-              blank: "請填寫短網址"
+              blank: "必填"
+              taken: "這組 slug 已被使用了，請改用其它字串"
             genres:
-              blank: "請選擇類別"
+              blank: "必填"
+        episode:
+          attributes:
+            audio:
+              blank: "必填"
+            title:
+              blank: "必填"
+            description:
+              blank: "必填"
+        comment:
+          attributes:
+            content:
+              blank: "必填"
+
 
     # Examples
     # labels:
