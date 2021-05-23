@@ -1,4 +1,28 @@
 <h1>P#show</h1>
 <p>Find me in app/views/p/show.html.erb</p>
+<%#<%=link_to "贊助", donate_p_path(@podcast), class: "btn btn-primary" %>
 
-<%= link_to "贊助", donate_p_path(@podcast), class: "btn btn-primary" %>
+<p>節目名稱:<%= @podcast.name %></p>
+<p>創作者：<%= @podcast.artist %></p></br>
+
+<% if user_signed_in? %>
+  <button class="subscribed-btn <%= 'bg-red-100' if current_user.subscribe?(@podcast) %>
+  " data-id="<%= @podcast.id %>"
+  class="ml-10 mt-5 mb-5 mr-10 rounded-lg p-2 text-lg text-white bg-blue-500 hover:shadow-inner duration-500 hover:bg-blue-400">
+  訂閱</button>
+<% else %>
+  <div class="subscribe">
+    <button class="button">
+        <label for="subscription">訂閱</label>
+      </button>
+      <input type="checkbox" id="subscription">
+      <div class="window">
+        <span>訂閱前請先登入</span> </br>
+        <div class="signup"><%= link_to "登入", new_user_registration_path %></div>
+      </div>
+  </div>
+<% end %>
+
+
+
+
