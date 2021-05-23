@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   get 'e/show'
-  get 'p/index'
-  get 'p/show'
+  # get 'p/index'
+  # get 'p/show'
   root 'home#index'
 
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
@@ -18,6 +18,7 @@ Rails.application.routes.draw do
       post '/donate_outcome', to: 'podcasts#donate_outcome'
     end
     member do
+      post :subscriptions
       get '/donate', to: 'podcasts#new_donation'
       post '/donate', to: 'podcasts#donate!'
     end
