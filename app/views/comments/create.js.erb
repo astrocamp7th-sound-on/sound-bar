@@ -1,4 +1,5 @@
 var area = document.querySelector('#comment_area')
+console.log(area)
 var li = document.createElement('li')
 li.textContent = '<%= @comment.content %>'
 area.prepend(li)

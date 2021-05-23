@@ -10,7 +10,8 @@
     <%= form.submit %>
 <% end %>
 
-
+<ul id="comment_area">
 <% @comments.each do |comment| %>
   <li><%= comment.content %></li>
 <% end %>
+</ul>
