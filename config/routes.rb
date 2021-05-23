@@ -31,7 +31,6 @@ Rails.application.routes.draw do
         resources :comments, shallow: true, only: [:create]
       end
     end
-
   end
 
   # 要擺在subdomain root的下面
