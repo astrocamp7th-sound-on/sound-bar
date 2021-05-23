@@ -21,9 +21,9 @@
 </ul>
 
 <%= simple_form_for @donation, url:  donate_p_path  do |f| %>
-  <%= f.input :donator, label: "贊助者" %>
-  <%= f.input :note, label: "想對作者說的話" %>
-  <%= f.input :amount, label: "贊助金額" %>
+  <%= f.input :donator, label: "名稱", placeholder: "未填寫則顯示「匿名贊助者」" %>
+  <%= f.input :note, label: "留言", "留一段話鼓勵我吧！" %>
+  <%= f.input :amount, label: "贊助金額", hint: "不得小於50元" %>
   <%= f.button :submit %>
 <% end %>
 

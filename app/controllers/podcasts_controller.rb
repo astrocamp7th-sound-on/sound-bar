@@ -1,5 +1,5 @@
 class PodcastsController < ApplicationController
-  before_action :find_podcast, only: [:edit, :show, :destroy]
+  before_action :find_podcast, only: [:edit, :show, :destroy, :dashboard]
 
   def index
     @podcasts = Podcast.all
@@ -38,6 +38,12 @@ class PodcastsController < ApplicationController
   def destroy
     @podcast.delete
     redirect_to podcasts_path, notice: "刪除節目成功"
+  end
+
+  def dashboard
+  end
+
+  def music
   end
 
   private
