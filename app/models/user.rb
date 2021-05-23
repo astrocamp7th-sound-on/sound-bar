@@ -12,7 +12,7 @@ class User < ApplicationRecord
 
   def self.from_omniauth(access_token)
     data = access_token.info
-    user = User.where(:token => access_token.credentials.token, :uid => access_token.uid).first    
+    user = User.where(:token => access_token.credentials.token, :uid => access_token.uid).first
     if user
       return user
     else
