@@ -1,3 +1,16 @@
-<h1>E#show</h1>
-<p>Find me in app/views/e/show.html.erb</p>
+<h1><%=@episode.title%></h1>
 
+<h3>留言</h3>
+
+<%= form_for(@comment, url:p_e_comments_path(@podcast, @episode), remote: true) do |form| %>
+  <div>
+    <%= form.label :content, '留言內容' %>
+    <%= form.text_area :content %>
+  </div>
+    <%= form.submit %>
+<% end %>
+
+
+<% @comments.each do |comment| %>
+  <li><%= comment.content %></li>
+<% end %>
