@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_22_130511) do
+ActiveRecord::Schema.define(version: 2021_05_23_035937) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,7 +52,9 @@ ActiveRecord::Schema.define(version: 2021_05_22_130511) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "recording"
+    t.string "random_url"
     t.index ["podcast_id"], name: "index_episodes_on_podcast_id"
+    t.index ["random_url"], name: "index_episodes_on_random_url", unique: true
   end
 
   create_table "podcasts", force: :cascade do |t|

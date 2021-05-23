@@ -37,10 +37,10 @@ class Podcast < ApplicationRecord
   private
   def generate_random_url
     require 'securerandom'
-    new_random_url = SecureRandom.urlsafe_base64(32)
+    new_random_url = SecureRandom.uuid
     # 對Podcast做判斷式看看是否已經存在random_url
     while Podcast.exists?(random_url: new_random_url)
-      new_random_url = SecureRandom.urlsafe_base64(32)
+      new_random_url = SecureRandom.uuid
     end
 
     self.random_url = new_random_url

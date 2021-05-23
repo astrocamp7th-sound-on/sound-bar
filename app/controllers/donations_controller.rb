@@ -30,7 +30,9 @@ class DonationsController < ApplicationController
 
   private
   def find_podcast
-    @podcast = Podcast.find(params[:id])
+    @podcast = Podcast.find_by!(random_url: params[:id])
+    rescue ActiveRecord::RecordNotFound
+      redirect_to podcasts_path, notice: "找不到節目"
   end
 
   def donation_params

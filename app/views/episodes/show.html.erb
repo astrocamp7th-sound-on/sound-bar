@@ -1,4 +1,4 @@
-<%= link_to "返回單集列表", podcast_path(@podcast) %>
+<%= link_to "返回單集列表", podcast_path(@podcast.random_url) %>
 
 <h1><%= @episode.title %></h1>
 <ul>
@@ -8,7 +8,7 @@
 
 
 
-<h2>節目播放器：</h2> 
+<h2>節目播放器：</h2>
 
 <audio controls="controls" preload="none" autostart="false">
     <source src="<%= @episode.recording.url %>" type="audio/mp3"></source>

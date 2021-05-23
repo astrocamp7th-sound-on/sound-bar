@@ -40,11 +40,15 @@ class EpisodesController < ApplicationController
   end
 
   def find_episode
-    @episode = Episode.find(params[:id])
+    @episode = Episode.find_by!(random_url: params[:id])
+    rescue ActiveRecord::RecordNotFound
+      redirect_to podcasts_path, notice: "找不到單集"
   end
 
   def find_podcast
-    @podcast = Podcast.find_by(random_url: params[:podcast_id])
+    @podcast = Podcast.find_by!(random_url: params[:podcast_id])
+    rescue ActiveRecord::RecordNotFound
+      redirect_to podcasts_path, notice: "找不到節目"
   end
 
 end

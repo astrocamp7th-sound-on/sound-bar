@@ -8,7 +8,7 @@
   </ul>
 <% end %>
 
-<%= simple_form_for @episode, url: podcast_episode_path(@podcast) do |f| %>
+<%= simple_form_for @episode, url: podcast_episode_path(@podcast.random_url) do |f| %>
   <%= f.input :title, label: "標題" %>
   <%= f.input :description, label: "描述" %>
   <%= f.input :keyword, label: "關鍵字" %>
@@ -21,4 +21,4 @@
 <% end %>
 
 <br>
-<%= link_to "返回單集列表", podcast_path(@podcast) %>
+<%= link_to "返回單集列表", podcast_path(@podcast.random_url) %>
