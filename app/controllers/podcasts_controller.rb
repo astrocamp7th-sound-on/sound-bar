@@ -136,4 +136,5 @@ class PodcastsController < ApplicationController
     # 綠界傳回的參數長相範例
     # {"CustomField1"=>"", "CustomField2"=>"", "CustomField3"=>"", "CustomField4"=>"", "MerchantID"=>"2000132", "MerchantTradeNo"=>"21052103269", "PaymentDate"=>"2021/05/21 16:10:43", "PaymentType"=>"Credit_CreditCard", "PaymentTypeChargeFee"=>"20", "RtnCode"=>"1", "RtnMsg"=>"交易成功", "SimulatePaid"=>"0", "StoreID"=>"", "TradeAmt"=>"1000", "TradeDate"=>"2021/05/21 16:10:10", "TradeNo"=>"2105211610108401", "CheckMacValue"=>"A940AD4C0F9B8839A1CAF914547C7B7B9ECBA6501661CAD13BE0A3DA1DE33CC3"}
   end
+
 end
