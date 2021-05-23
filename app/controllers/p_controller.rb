@@ -4,8 +4,7 @@ class PController < ApplicationController
   end
 
   def show
-    @podcast = Podcast.find_by(id: params[:id])
-
+    @podcast = Podcast.find_by(random_url: params[:id])
     @podcast = Podcast.find_by!(slug: params[:id]) if @podcast.nil?
     @episodes = @podcast.episodes
 

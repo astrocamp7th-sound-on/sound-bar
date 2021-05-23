@@ -47,6 +47,7 @@
             <td class="table-content">S<%= episode.season %>E<%= episode.episode %></td>
             <td class="table-content"><%= episode.title %></td>
             <td class="table-content"><%= episode.created_at %></td>
+            <td class="table-content button-link"><%= link_to "收聽", p_e_path(@podcast.random_url, episode.random_url) %></td>
           </div>
           <% end %>
         </tbody>

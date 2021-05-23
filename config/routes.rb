@@ -27,7 +27,7 @@ Rails.application.routes.draw do
         post '/donate', to: 'donations#donate!'
       end
       # get '/:id', to: 'p#show'
-      resources :e, only: [:show] do
+      resources :e, only: [:show], path: 'episodes' do
         resources :comments, shallow: true, only: [:create]
       end
     end
