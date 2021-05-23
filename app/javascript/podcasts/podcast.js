@@ -14,10 +14,8 @@ document.addEventListener("DOMContentLoaded", function () {
         success: res => {
           if (res.status === 'added')
           {
-          console.log(123)
           btn.classList.add("bg-red-100")
           } else {
-            console.log(456)
             btn.classList.remove("bg-red-100")
         }
         error: err=> {
