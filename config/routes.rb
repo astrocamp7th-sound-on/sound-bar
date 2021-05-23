@@ -15,7 +15,7 @@ Rails.application.routes.draw do
       end
 
       member do
-        get 'dashboard', to: 'podcasts#dashboard'     #數據總攬
+        get 'dashboard', to: 'podcasts#dashboard'     #數據總覽
         get 'info', to: 'podcasts#edit'               #節目資訊
         get 'resource/music', to: 'podcasts#music'    #創作資源-音效襯樂
         get 'donate', to: 'podcasts#donate'           #創作營利

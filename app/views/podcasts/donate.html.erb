@@ -1,0 +1,45 @@
+<div class="container mx-auto py-6">
+  <h1 class="text-xl font-black">創作盈利</h1>
+</div>
+
+<section class="">
+  <div class="container mx-auto h-10 flex">
+    <div class="hover:text-blue-400">
+      <h2 class="text-lg font-medium ">聽眾贊助</h2>
+    </div>
+  </div>
+  <section class="bg-gray-200 h-screen font-medium flex">
+    <div class="content container mx-auto mt-6">
+      <div class="nav-tabs">
+        <ul class="flex">
+          <li class="cursor-pointer mr-3 hover:text-blue-400" id="donateLink">贊助連結</li>
+          <li class="cursor-pointer mx-3 hover:text-blue-400" id="donationList">我的進帳</li>
+          <li class="cursor-pointer mx-3 hover:text-blue-400" id="myMoney">我的錢包</li>
+        </ul>
+      </div>
+      <div class="tabs-content bg-white p-4">
+        <div class="donateLink_content flex flex-col">
+          <p class="text-lg font-bold">讓聽眾能用最簡單的方式支持你</p>
+          <label class="text-sm mt-4">分享此連結，讓你的聽眾輕鬆贊助你的創作</label>
+          <span class="flex justify-between border border-gray-300 mt-3 mb-6 bg-gray-200 ">
+            <%= link_to '<i class="fas fa-link"></i>'.html_safe, donate_p_url(@podcast.random_url, subdomain: "player"), class: "text-blue-500 ml-2" %>
+            <input type="text" class="flex-grow mx-2 bg-gray-200 text-gray-400 cursor-not-allowed" disabled value="<%= donate_p_url(@podcast.random_url) %>">
+            <span class="copy_donate_link cursor-pointer text-gray-400 mr-2"><i class="far fa-copy"></i></span>
+          </span>
+          <%= simple_form_for @podcast, url: podcast_path(@podcast) do |f| %>
+            <%= f.input :donate_title, input_html:{class: "flex text-sm w-full border border-gray-300 hover:border-blue-600 my-2" }, label: "贊助頁面標題" %>
+            <%= f.submit "儲存", class: "w-auto rounded-lg font-medium text-white px-4 py-1 mt-3 btn-primary" %>
+          <% end %>
+        </div>
+        <div class="donationList_content flex flex-col">
+          <p class="text-lg font-bold">總覽</p>
+
+          <p class="text-lg font-bold">進帳紀錄</p>
+        </div>
+        <div class="myMoney_content">
+
+        </div>
+      </div>
+    </div>
+  </section>
+</section>

@@ -49,3 +49,7 @@
 .button-delete {
   @apply rounded-full text-white bg-red-300 font-bold hover:bg-red-600 duration-500;
 }
+
+.string {
+  @apply text-sm;
+}
