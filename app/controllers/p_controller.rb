@@ -1,12 +1,11 @@
 class PController < ApplicationController
-
-
-  def index
+  def browse
     @podcasts = Podcast.all
   end
 
   def show
     @podcast = Podcast.find(params[:id])
+    @episodes = @podcast.episodes
   end
 
   def subscriptions

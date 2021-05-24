@@ -1,10 +1,11 @@
-<h1>P#show</h1>
-<p>Find me in app/views/p/show.html.erb</p>
-<%#<%=link_to "贊助", donate_p_path(@podcast), class: "btn btn-primary" %>
-
-<p>節目名稱:<%= @podcast.name %></p>
-<p>創作者：<%= @podcast.artist %></p></br>
-
+<header class="flex justify-between bg-gray-700">
+  <div class="flex m-6 justify-center md:justify-start">
+    <%= image_tag("logo", size: "180x180") %>
+  </div>
+  <form class="search-form border hover:border-blue-600 rounded flex my-auto mr-10">
+    <button class="search-btn focus:outline-none w-10 bg-white rounded-l text-gray-500 border-none p-2"><i class="fas fa-search"></i></button><input type="text" class="search-input focus:outline-none w-72 bg-white rounded-r border-none p-2" placeholder="搜尋 Podcast">
+  </form>
+</header>
 <% if user_signed_in? %>
   <button class="subscribed-btn <%= 'bg-red-100' if current_user.subscribe?(@podcast) %>
   " data-id="<%= @podcast.id %>"
@@ -22,7 +23,61 @@
       </div>
   </div>
 <% end %>
+<section class="bg-gray-700 h-screen">
+  <h1 class="text-center text-4xl">節目資訊</h1>
 
+  <div class="flex justify-center text-xl m-10">
+    <div><%= image_tag(@podcast.cover.url) if @podcast.cover? %></div>
+  </div>
 
+  <ul class="grid justify-center">
+    <li class="podcast-info">・Podcast 節目名稱：<%= @podcast.name %></li>
+    <li class="podcast-info">・創作者名稱：<%= @podcast.artist %></li>
+    <li class="podcast-info">・類別：<%= @podcast.genres %></li>
+    <li class="podcast-info">・Email：<%= @podcast.email %></li>
+    <li class="podcast-info">・描述：<%= @podcast.description %></li>
+    <li class="podcast-info">・Subtitle：<%= @podcast.subtitle %></li>
+    <li class="podcast-info">・語言：<%= @podcast.language %></li>
+    <li class="podcast-info">・好記短網址：<%= @podcast.slug %></li>
+    <li class="podcast-info">・版權宣告：<%= @podcast.copyright %></li>
+    <li class="podcast-info">・兒童不宜：<%= @podcast.explicit %></li>
+    <button><%= link_to "贊助", donate_p_path(@podcast), class: "btn btn-primary" %></button>
+  </ul>
+  <br>
 
+  <section>
+    <div class="grid justify-center">
+      <h2 class="text-xl font-bold flex justify-center underline">Episode 節目列表</h2>
+      <table>
+        <thead>
+          <th class="table-content">季數／集數</th>
+          <th class="table-content">標題</th>
+          <th class="table-content">發布日期</th>
+          <th class="table-content"></th>
+          <th class="table-content"></th>
+          <th class="table-content"></th>
+        </thead>
+        <tbody>
+          <% @episodes.each do |episode| %>
+          <tr>
+            <td class="table-content">S<%= episode.season %>E<%= episode.episode %></td>
+            <td class="table-content"><%= episode.title %></td>
+            <td class="table-content"><%= episode.created_at %></td>
+            <td class="table-content button-link"><%= link_to "預覽", podcast_episode_path(@podcast, episode) %></td>
+            <td class="table-content button-edit"><%= link_to "Edit", edit_podcast_episode_path(@podcast, episode) %></td>
+            <td class="table-content button-delete"><%= link_to "Delete", podcast_episode_path(@podcast, episode), method: "delete", data: {confirm: "是否確認刪除？"} %></td>
+          </div>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class="flex justify-center">
+      <button class="border rounded-md p-3 m-3 text-white bg-blue-500 hover:bg-blue-700"><%= link_to "返回 Podcast 節目列表", podcasts_path %></button>
+    <div>
+  </section>
+</section>
 
+<footer class="flex bg-blue-50 p-5 justify-center">
+  <p class="text-blue-500 pr-1 duration-500 hover:text-blue-400">使用條款</p>
+  <p class="pl-1">© 2021 SoundBar, Inc.</p>
+</footer>

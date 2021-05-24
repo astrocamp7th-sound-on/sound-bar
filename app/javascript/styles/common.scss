@@ -18,34 +18,10 @@
   @apply border-2 rounded-md m-2 p-2 hover:border-blue-500;
 }
 
-.btn {
-  @apply w-auto rounded-lg shadow-xl font-medium text-white px-4 py-2;
-}
-
-.btn-primary {
-  @apply bg-blue-500 hover:bg-blue-700;
-}
-
 .podcast-info {
   @apply text-lg font-bold;
 }
 
 .create-episode {
   @apply border rounded-md p-3 m-3 text-white bg-blue-500 hover:bg-blue-700;
-}
-
-.table-content {
-  @apply py-2 px-2;
-}
-
-.button-link {
-  @apply rounded-full text-white  bg-green-300 font-bold hover:bg-green-600 duration-500;
-}
-
-.button-edit {
-  @apply rounded-full text-white bg-blue-300 font-bold hover:bg-blue-600 duration-500;
-}
-
-.button-delete {
-  @apply rounded-full text-white bg-red-300 font-bold hover:bg-red-600 duration-500;
 }
