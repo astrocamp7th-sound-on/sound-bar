@@ -16,8 +16,8 @@ document.addEventListener("DOMContentLoaded", function () {
           } else {
             btn.classList.remove("bg-red-100")
         }
-        error: err=> {
-          console.log(error)
+        error: res => {
+          console.log(res)
           }
         }
       })
