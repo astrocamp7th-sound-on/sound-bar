@@ -9,7 +9,7 @@ class Podcast < ApplicationRecord
   validates :artist, presence: true
   validates :email, presence: true
   validates :language, presence: true
-  validates :slug, presence: true
+  validates :slug, presence: true, uniqueness: true
   validates :genres, presence: true
 
   mount_uploader :cover, CoverUploader

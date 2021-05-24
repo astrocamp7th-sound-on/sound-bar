@@ -4,8 +4,13 @@ class PController < ApplicationController
   end
 
   def show
-    @podcast = Podcast.find(params[:id])
+    @podcast = Podcast.find_by(id: params[:id])
+
+    @podcast = Podcast.find_by!(slug: params[:id]) if @podcast.nil?
     @episodes = @podcast.episodes
+
+    rescue ActiveRecord::RecordNotFound
+      redirect_to browse_path, notice: "找不到節目"
   end
 
   def subscriptions
@@ -20,7 +25,6 @@ class PController < ApplicationController
   end
 
 private
-
   def podcast_params
     params.require(:podcast).permit(:id,:avatar, :name, :artist)
   end
