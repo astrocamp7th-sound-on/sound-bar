@@ -1,11 +1,10 @@
 class CommentsController < ApplicationController
-  before_action :authenticate_user!, only: :create
+  before_action :authenticate_user!
 
   def create
     @episode = Episode.find(params[:e_id])
     @podcast = Podcast.find(params[:p_id])
     @comment = @episode.comments.new(comment_params)
-    @comments = @episode.comments.order(id: :desc)
     @comment.user = current_user
 
     if @comment.save
