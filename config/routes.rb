@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  get 'e/show'
+  root 'home#index'
+
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
 
   # 讓網址變成https://podcaster.我們的網域/
@@ -18,14 +21,18 @@ Rails.application.routes.draw do
 
   # 這邊是做給未登入使用者看到的頁面，subdomain原理同上，會變成https://player.我們的網域/p
   constraints subdomain: 'player' do
-    get '/', to: redirect('/browse')
     get '/browse', to: 'p#browse'
+    get '/', to: redirect('/browse')
+    get '/:whatever', to: redirect('/browse')
+
     resources :p, only: [:show] do
       member do
+        post :subscriptions
         get '/donate', to: 'donations#new_donation'
         post '/donate', to: 'donations#donate!'
       end
-      resources :e, only: [:show] do
+      # get '/:id', to: 'p#show'
+      resources :e, only: [:show], path: 'episodes' do
         resources :comments, shallow: true, only: [:create]
       end
     end

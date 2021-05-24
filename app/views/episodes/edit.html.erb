@@ -13,7 +13,7 @@
 <% end %>
 
 <div class="grid justify-center">
-  <%= simple_form_for @episode, url: podcast_episode_path(@podcast) do |f| %>
+  <%= simple_form_for @episode, url: podcast_episode_path(@podcast.random_url) do |f| %>
     <%= f.input :title, input_html:{class: "fill-form" }, label: "標題" %>
     <%= f.input :description, input_html:{class: "fill-form" }, label: "描述" %>
     <%= f.input :keyword, input_html:{class: "fill-form" }, label: "關鍵字" %>
@@ -23,9 +23,12 @@
     <%= f.input :status, collection: ["草稿", "發布"], input_html:{class: "fill-form" }, label: "狀態" %>
     <%= f.input :recording, as: :file, input_html:{class: "flex" }, label: "更新音檔 MP3" %>
     <div class='flex items-center justify-center  md:gap-8 gap-4 pt-5 pb-5'>
-      <button class='btn bg-gray-500 hover:bg-gray-700'><%= link_to "返回單集列表", podcast_path(@podcast) %></button>
+      <button class='btn bg-gray-500 hover:bg-gray-700'><%= link_to "返回單集列表", podcast_path(@podcast.random_url) %></button>
       <%= f.button :submit, "更新單集", class: "btn-primary btn" %>
     </div>
   <% end %>
+</div>
+<div>
+  <%= render '/layouts/footer' %>
 </div>
 

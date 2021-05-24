@@ -3,4 +3,6 @@ class Episode < ApplicationRecord
   has_many :comments
 
   mount_uploader :recording, RecordingUploader
+  before_create :generate_random_url
+
 end
