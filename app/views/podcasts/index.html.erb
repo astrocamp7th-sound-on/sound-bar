@@ -37,14 +37,14 @@
           <div class="flex">
             <div class="p-3"><img src="https://picsum.photos/30/30/?random=1"></div>
             <div>
-              <h3 class="font-black duration-500 hover:text-blue-500"><%= link_to podcast.name, podcast_path(podcast.id) %></h3>
+              <h3 class="font-black duration-500 hover:text-blue-500"><%= link_to podcast.name, podcast_path(podcast.random_url) %></h3>
               <p class="font-light"><%= podcast.artist %></p>
             </div>
           </div>
           <div class="border-t-2"></div>
           <div class="flex justify-center">
-            <p class="pt-3 pr-3 hover:text-blue-700 duration-500"><%= link_to "編輯", edit_podcast_path(podcast) %></p>
-            <p class="pt-3 hover:text-red-500 duration-500"><%= link_to "刪除", podcast_path(podcast), method: "delete", data: {confirm: "是否確認刪除？"} %></p>
+            <p class="pt-3 pr-3 hover:text-blue-700 duration-500"><%= link_to "編輯", edit_podcast_path(podcast.random_url) %></p>
+            <p class="pt-3 hover:text-red-500 duration-500"><%= link_to "刪除", podcast_path(podcast.random_url), method: "delete", data: {confirm: "是否確認刪除？"} %></p>
           </div>
         </div>
       <% end %>

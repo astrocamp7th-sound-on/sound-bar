@@ -2,6 +2,7 @@ class Podcast < ApplicationRecord
   # belongs_to :user
   has_many :episodes
   has_many :subscriptions
+  has_many :subscribers, through: :subscriptions
   has_many :donations
 
   validates :name, presence: true
@@ -12,6 +13,7 @@ class Podcast < ApplicationRecord
   validates :genres, presence: true
 
   mount_uploader :cover, CoverUploader
+  before_create :generate_random_url
 
   enum genres: {
     Arts: "Arts",
@@ -32,6 +34,5 @@ class Podcast < ApplicationRecord
     'Tv & Film': "TV & Film",
     Technology: "Technology"
   }
-
 
 end

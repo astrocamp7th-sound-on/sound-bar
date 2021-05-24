@@ -1,5 +1,5 @@
 class PodcastsController < ApplicationController
-  before_action :find_podcast, only: [:edit, :update, :show, :destroy]
+  before_action :find_podcast, only: [:edit, :show, :destroy]
 
   def index
     @podcasts = Podcast.all
@@ -27,6 +27,7 @@ class PodcastsController < ApplicationController
   end
 
   def update
+    @podcast = Podcast.find(params[:id])
     if @podcast.update(podcast_params)
       redirect_to podcasts_path, notice: "編輯節目成功"
     else
@@ -40,13 +41,13 @@ class PodcastsController < ApplicationController
   end
 
   private
-
-  def find_podcast
-    @podcast = Podcast.find(params[:id])
-  end
-
   def podcast_params
     params.require(:podcast).permit(:avatar, :name, :artist, :email, :language, :slug, :genres, :description, :subtitle, :weblink, :copyright, :explicit, :status, :cover)
   end
 
+  def find_podcast
+    @podcast = Podcast.find_by(random_url: params[:id])
+    rescue ActiveRecord::RecordNotFound
+      redirect_to podcasts_path, notice: "找不到節目"
+  end
 end
