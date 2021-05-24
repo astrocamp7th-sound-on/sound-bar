@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   get 'e/show'
   root 'home#index'
 
@@ -25,6 +25,7 @@ Rails.application.routes.draw do
     get '/browse', to: 'p#browse'
     resources :p, only: [:show] do
       member do
+        post :subscriptions
         get '/donate', to: 'donations#new_donation'
         post '/donate', to: 'donations#donate!'
       end

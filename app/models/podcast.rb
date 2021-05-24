@@ -2,6 +2,7 @@ class Podcast < ApplicationRecord
   # belongs_to :user
   has_many :episodes
   has_many :subscriptions
+  has_many :subscribers, through: :subscriptions
   has_many :donations
 
   validates :name, presence: true
