@@ -18,20 +18,20 @@
 
 <h1 class="welcome">歡迎來到 SoundBar</h1>
 
-<section class="bg-blue-50 h-screen">
+<section class="bg-blue-50 h-full">
   <div class="flex justify-between">
-    <form class="search-form border hover:border-blue-600 rounded flex my-auto ml-10">
-      <button class="search-btn focus:outline-none w-10 bg-white rounded-l text-gray-500 border-none p-2"><i class="fas fa-search"></i></button><input type="text" class="search-input focus:outline-none w-72 bg-white rounded-r border-none p-2" placeholder="搜尋 Podcast">
+    <form class="search-form border hover:border-blue-600 rounded flex my-auto ml-5">
+      <button class="search-btn focus:outline-none w-5 bg-white rounded-l text-gray-500 border-none p-2"><i class="fas fa-search"></i></button><input type="text" class="search-input focus:outline-none w-auto bg-white rounded-r border-none p-2" placeholder="搜尋 Podcast">
     </form>
     <div>
-      <button class="ml-10 mt-5 mb-5 mr-10 rounded-lg p-2 text-lg text-white bg-blue-500 hover:shadow-inner duration-500 hover:bg-blue-400">
+      <button class="ml-5 mt-5 mb-5 mr-5 rounded-lg p-2 text-lg text-white bg-blue-500 hover:shadow-inner duration-500 hover:bg-blue-400">
         <%= link_to "建立 Podcast", new_podcast_path %>
       </button>
     </div>
   </div>
 
   <div class="flex items-center justify-center">
-    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 pb-5">
       <% @podcasts.each do |podcast| %>
         <div class="relative bg-white py-6 px-6 rounded-3xl w-80 my-4 shadow-xl transform hover:-translate-y-1 hover:scale-100">
           <div class="flex">
@@ -48,9 +48,11 @@
           </div>
         </div>
       <% end %>
-
       </div>
     </div>
+  </div>
+  <div>
+    <%= render '/layouts/footer' %>
   </div>
 </section>
 
