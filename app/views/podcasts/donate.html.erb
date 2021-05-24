@@ -27,14 +27,26 @@
             <span class="copy_donate_link cursor-pointer text-gray-400 mr-2"><i class="far fa-copy"></i></span>
           </span>
           <%= simple_form_for @podcast, url: podcast_path(@podcast) do |f| %>
-            <%= f.input :donate_title, input_html:{class: "flex text-sm w-full border border-gray-300 hover:border-blue-600 my-2" }, label: "贊助頁面標題" %>
+            <label class="text-sm">贊助頁面標題</label>
+            <%= f.input :donate_title, input_html:{class: "flex text-sm w-full border border-gray-300 hover:border-blue-600 my-2" } %>
             <%= f.submit "儲存", class: "w-auto rounded-lg font-medium text-white px-4 py-1 mt-3 btn-primary" %>
           <% end %>
         </div>
         <div class="donationList_content flex flex-col">
-          <p class="text-lg font-bold">總覽</p>
-
-          <p class="text-lg font-bold">進帳紀錄</p>
+          <p class="text-lg font-bold my-3">總覽</p>
+          <table class="table-fixed">
+            <thead>
+              <th>全部</th>
+              <th>過去 30 天</th>
+              <th>過去 7 天</th>
+            </thead>
+            <tbody>
+              <td>NT$ <%= number_with_delimiter(@podcast.donations.where(status: "paid").sum("amount"), delimiter: ',') %></td>
+              <td>NT$ <%= number_with_delimiter(@podcast.donations.where(status: "paid").where(created_at: (Time.now.midnight - 30.days)..Time.now.midnight).sum("amount"), delimiter: ',') %></td>
+              <td>NT$ <%= number_with_delimiter(@podcast.donations.where(status: "paid").where(created_at: (Time.now.midnight - 7.days)..Time.now.midnight).sum("amount"), delimiter: ',') %></td>
+            </tbody>
+          </table>
+          <p class="text-lg font-bold my-3">進帳紀錄</p>
         </div>
         <div class="myMoney_content">
 
