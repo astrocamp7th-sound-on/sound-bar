@@ -39,6 +39,6 @@ class User < ApplicationRecord
   end
 
   def subscribe?(podcast)
-    subscriptions.exists?(podcast.id)
+    subscriptions.exists?(podcast_id: podcast.id)
   end
 end

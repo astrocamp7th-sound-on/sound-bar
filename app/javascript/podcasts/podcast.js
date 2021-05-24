@@ -12,9 +12,9 @@ document.addEventListener("DOMContentLoaded", function () {
         type: "post",
         success: res => {
           if (res.status === 'added'){
-            btn.classList.add("bg-red-100")
+            btn.classList.add("bg-red-400")
           } else {
-            btn.classList.remove("bg-red-100")
+            btn.classList.remove("bg-red-400")
         }
         error: res => {
           console.log(res)
