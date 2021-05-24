@@ -1,4 +1,8 @@
-<h1>編輯單集</h1>
+<div class="flex m-6 justify-center">
+  <%= link_to image_tag("new_logo_black", size: "280x280"), "/podcaster/podcasts" %>
+</div>
+
+<h1 class="flex justify-center m-10 text-2xl font-bold">編輯單集</h1>
 
 <% if @episode.errors.any? %>
   <ul>
@@ -8,17 +12,20 @@
   </ul>
 <% end %>
 
-<%= simple_form_for @episode, url: podcast_episode_path(@podcast.random_url) do |f| %>
-  <%= f.input :title, label: "標題" %>
-  <%= f.input :description, label: "描述" %>
-  <%= f.input :keyword, label: "關鍵字" %>
-  <%= f.input :season, label: "季" %>
-  <%= f.input :episode, label: "集" %>
-  <%= f.input :explicit, label: "兒童不宜" %>
-  <%= f.input :status, collection: ["草稿", "發布"], label: "狀態" %>
-  <%= f.input :recording, as: :file, label: "更新音檔 MP3" %>
-  <%= f.button :submit, "更新單集" %>
-<% end %>
+<div class="grid justify-center">
+  <%= simple_form_for @episode, url: podcast_episode_path(@podcast.random_url) do |f| %>
+    <%= f.input :title, input_html:{class: "fill-form" }, label: "標題" %>
+    <%= f.input :description, input_html:{class: "fill-form" }, label: "描述" %>
+    <%= f.input :keyword, input_html:{class: "fill-form" }, label: "關鍵字" %>
+    <%= f.input :season, input_html:{class: "fill-form" }, label: "季" %>
+    <%= f.input :episode, input_html:{class: "fill-form" }, label: "集" %>
+    <%= f.input :explicit, input_html:{class: "" }, label: "兒童不宜" %>
+    <%= f.input :status, collection: ["草稿", "發布"], input_html:{class: "fill-form" }, label: "狀態" %>
+    <%= f.input :recording, as: :file, input_html:{class: "flex" }, label: "更新音檔 MP3" %>
+    <div class='flex items-center justify-center  md:gap-8 gap-4 pt-5 pb-5'>
+      <button class='btn bg-gray-500 hover:bg-gray-700'><%= link_to "返回單集列表", podcast_path(@podcast.random_url) %></button>
+      <%= f.button :submit, "更新單集", class: "btn-primary btn" %>
+    </div>
+  <% end %>
+</div>
 
-<br>
-<%= link_to "返回單集列表", podcast_path(@podcast.random_url) %>

@@ -39,6 +39,13 @@ ActiveRecord::Schema.define(version: 2021_05_23_035937) do
     t.index ["podcast_id"], name: "index_donations_on_podcast_id"
   end
 
+  create_table "episode_uploaders", force: :cascade do |t|
+    t.string "name"
+    t.string "attachment"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "episodes", force: :cascade do |t|
     t.string "audio"
     t.string "title", null: false

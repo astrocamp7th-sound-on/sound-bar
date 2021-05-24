@@ -13,3 +13,20 @@
 <audio controls="controls" preload="none" autostart="false">
     <source src="<%= @episode.recording.url %>" type="audio/mp3"></source>
 </audio>
+<h1><%=@episode.title%></h1>
+
+<h3>留言</h3>
+
+<%= form_for(@comment, url:p_e_comments_path(@podcast.random_url, @episode.random_url), remote: true) do |form| %>
+  <div>
+    <%= form.label :content, '留言內容' %>
+    <%= form.text_area :content %>
+  </div>
+    <%= form.submit %>
+<% end %>
+
+<ul id="comment_area">
+<% @comments.each do |comment| %>
+  <li><%= comment.content %></li>
+<% end %>
+</ul>
