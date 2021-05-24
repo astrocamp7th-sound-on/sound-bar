@@ -1,15 +1,26 @@
-<%= link_to "返回單集列表", podcast_path(@podcast.random_url) %>
+<div class="flex m-6 justify-center">
+  <%= link_to image_tag("new_logo_black", size: "280x280"), "/podcaster/podcasts" %>
+</div>
+<h1 class="flex justify-center m-5 text-2xl font-bold"><%= @episode.title %></h1>
 
-<h1><%= @episode.title %></h1>
-<ul>
-  <li>關鍵字：<%= @episode.keyword %></li>
-  <li>描述：<%= @episode.description %></li>
+<ul class="grid justify-center">
+  <li class="podcast-info">・完整檔案：</li>
+  <div class="grid justify-center mb-5">
+    <audio controls="controls" preload="none" autostart="false" class="w-96">
+        <source src="<%= @episode.recording.url %>" type="audio/mp3"></source>
+    </audio>
+  </div>
+  <li class="podcast-info">・標題：<%= @episode.title %></li>
+  <li class="podcast-info">・描述：<%= @episode.description %></li>
+  <li class="podcast-info">・季數：<%= @episode.season %></li>
+  <li class="podcast-info">・集數：<%= @episode.episode %></li>
+  <li class="podcast-info">・關鍵字：<%= @episode.keyword %></li>
+  <li class="podcast-info">・兒童不宜：<%= @episode.explicit %></li>
 </ul>
 
-
-
-<h2>節目播放器：</h2>
-
-<audio controls="controls" preload="none" autostart="false">
-    <source src="<%= @episode.recording.url %>" type="audio/mp3"></source>
-</audio>
+<div class='flex items-center justify-center  md:gap-8 gap-4 pt-5 pb-5'>
+  <button class='btn bg-blue-500 hover:bg-blue-700'><%= link_to "返回單集列表", podcast_path(@podcast.random_url) %></button>
+</div>
+<div>
+  <%= render '/layouts/footer' %>
+</div>

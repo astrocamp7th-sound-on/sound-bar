@@ -1,1 +1,6 @@
 import "./common.scss"
+import "./p_show.scss"
+import "./button.scss"
+import "./table.scss"
+import "./form.scss"
+import "./sidebar.scss"

@@ -6,8 +6,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: [:facebook, :google_oauth2]
 
-  has_many :podcasts
+
   has_many :subscriptions
+  has_many :favorite_podcasts, through: :subscriptions, source: :podcast
+  has_many :podcasts
   has_many :comments
 
   def self.from_omniauth(access_token)
@@ -34,5 +36,9 @@ class User < ApplicationRecord
         )
       end
     end
+  end
+
+  def subscribe?(podcast)
+    subscriptions.exists?(podcast_id: podcast.id)
   end
 end

@@ -1,0 +1,19 @@
+abbr[title="required"] {
+  color: #f00;
+}
+
+.error {
+  @apply text-red-600 font-bold;
+}
+
+.fill-form {
+  @apply flex w-full border-2 rounded-md m-2 p-2 hover:border-blue-500;
+}
+
+.fill-form-status {
+  @apply border-2 rounded-md m-2 p-2 hover:border-blue-500;
+}
+
+.input {
+  @apply m-2;
+}

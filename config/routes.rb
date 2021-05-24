@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
 
   #SoundBar for Podcasters 參考:https://podcasters.soundon.fm/
-  get '/', to: 'pages#podcaster', constraints: { subdomain: 'podcaster'}
+  get '/', to: 'pages#podcaster', constraints: { subdomain: 'podcasters'}
 
   constraints subdomain: 'host' do
     resources :podcasts, except: [:edit] do
@@ -24,23 +24,24 @@ Rails.application.routes.draw do
 
   end
 
-
   post '/donate_outcome', to: 'donations#donate_outcome'
 
   #聽眾報到-web馬上收聽 參考:https://player.soundon.fm/browse
   constraints subdomain: 'player' do
-    get '/browse', to: 'p#browse'
+    get '/browse', to: 'player/podcasts#browse'
     get '/', to: redirect('/browse')
     get '/:whatever', to: redirect('/browse')
 
-    resources :p, only: [:show] do
-      member do
-        get '/donate', to: 'donations#new_donation'
-        post '/donate', to: 'donations#donate!'
-      end
-      # get '/:id', to: 'p#show'
-      resources :e, only: [:show], path: 'episodes' do
-        resources :comments, shallow: true, only: [:create]
+    scope module: :player do                  # 參考 https://qiita.com/ryosuketter/items/9240d8c2561b5989f049
+      resources :podcasts, path: '/p', as: "player_podcast", only: [:show] do
+        member do
+          post :subscriptions
+          get '/donate', to: 'donations#new_donation'
+          post '/donate', to: 'donations#donate!'
+        end
+        resources :episodes, only: [:show], path: 'episodes' do
+          resources :comments, shallow: true, only: [:create]
+        end
       end
     end
   end

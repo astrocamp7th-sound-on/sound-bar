@@ -2,6 +2,6 @@ class PagesController < ApplicationController
   def index
   end
 
-  def podcaster
+  def podcasters
   end
 end
