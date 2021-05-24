@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
 
   #SoundBar for Podcasters 參考:https://podcasters.soundon.fm/
-  get '/', to: 'pages#podcaster', constraints: { subdomain: 'podcasters'}
+  get '/', to: 'pages#podcasters', constraints: { subdomain: 'podcasters'}
 
   constraints subdomain: 'host' do
     resources :podcasts, except: [:edit] do
