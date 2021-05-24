@@ -24,7 +24,7 @@
 </ul>
 
 <div class="grid justify-center">
-  <button class="create-episode"><%= link_to "新增單集", new_podcast_episode_path(@podcast) %></button>
+  <button class="create-episode"><%= link_to "新增單集", new_podcast_episode_path(@podcast.random_url) %></button>
 </div>
 
 <section>
@@ -45,10 +45,10 @@
           <td class="table-content">S<%= episode.season %>E<%= episode.episode %></td>
           <td class="table-content"><%= episode.title %></td>
           <td class="table-content"><%= episode.created_at %></td>
-          <td class="table-content button-link"><%= link_to "預覽", podcast_episode_path(@podcast, episode) %></td>
-          <td class="table-content button-edit"><%= link_to "Edit", edit_podcast_episode_path(@podcast, episode) %></td>
-          <td class="table-content button-delete"><%= link_to "Delete", podcast_episode_path(@podcast, episode), method: "delete", data: {confirm: "是否確認刪除？"} %></td>
-        </tr>
+          <td class="table-content button-link"><%= link_to "預覽", podcast_episode_path(@podcast.random_url, episode.random_url) %></td>
+          <td class="table-content button-edit"><%= link_to "Edit", edit_podcast_episode_path(@podcast.random_url, episode.random_url) %></td>
+          <td class="table-content button-delete"><%= link_to "Delete", podcast_episode_path(@podcast.random_url, episode.random_url), method: "delete", data: {confirm: "是否確認刪除？"} %></td>
+        </div>
         <% end %>
       </tbody>
     </table>

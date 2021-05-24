@@ -41,7 +41,7 @@
     <li class="podcast-info">・好記短網址：<%= @podcast.slug %></li>
     <li class="podcast-info">・版權宣告：<%= @podcast.copyright %></li>
     <li class="podcast-info">・兒童不宜：<%= @podcast.explicit %></li>
-    <button><%= link_to "贊助", donate_p_path(@podcast), class: "btn btn-primary" %></button>
+    <button><%= link_to "贊助", donate_p_path(@podcast.random_url), class: "btn btn-primary" %></button>
   </ul>
   <br>
 
@@ -63,9 +63,7 @@
             <td class="table-content">S<%= episode.season %>E<%= episode.episode %></td>
             <td class="table-content"><%= episode.title %></td>
             <td class="table-content"><%= episode.created_at %></td>
-            <td class="table-content button-link"><%= link_to "預覽", podcast_episode_path(@podcast, episode) %></td>
-            <td class="table-content button-edit"><%= link_to "Edit", edit_podcast_episode_path(@podcast, episode) %></td>
-            <td class="table-content button-delete"><%= link_to "Delete", podcast_episode_path(@podcast, episode), method: "delete", data: {confirm: "是否確認刪除？"} %></td>
+            <td class="table-content button-link"><%= link_to "收聽", p_e_path(@podcast.random_url, episode.random_url) %></td>
           </div>
           <% end %>
         </tbody>
