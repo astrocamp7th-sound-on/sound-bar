@@ -1,6 +1,6 @@
 <header>
-  <div class="flex m-6 justify-center md:justify-start">
-    <%= image_tag("logo", size: "180x180") %>
+  <div class="flex m-6 justify-center">
+    <%= link_to image_tag("new_logo_black", size: "280x280"), "/podcaster/podcasts" %>
   </div>
 </header>
 
@@ -22,7 +22,6 @@
   <li class="podcast-info">・版權宣告：<%= @podcast.copyright %></li>
   <li class="podcast-info">・兒童不宜：<%= @podcast.explicit %></li>
 </ul>
-<br>
 
 <div class="grid justify-center">
   <button class="create-episode"><%= link_to "新增單集", new_podcast_episode_path(@podcast) %></button>
@@ -30,7 +29,7 @@
 
 <section>
   <div class="grid justify-center">
-    <h2 class="text-xl font-bold flex justify-center underline">Episode 節目列表</h2>
+    <h2 class="text-xl font-bold flex justify-center underline mb-2">Episode 節目列表</h2>
     <table>
       <thead>
         <th class="table-content">季數／集數</th>
@@ -49,7 +48,7 @@
           <td class="table-content button-link"><%= link_to "預覽", podcast_episode_path(@podcast, episode) %></td>
           <td class="table-content button-edit"><%= link_to "Edit", edit_podcast_episode_path(@podcast, episode) %></td>
           <td class="table-content button-delete"><%= link_to "Delete", podcast_episode_path(@podcast, episode), method: "delete", data: {confirm: "是否確認刪除？"} %></td>
-        </div>
+        </tr>
         <% end %>
       </tbody>
     </table>
@@ -59,7 +58,3 @@
   <div>
 </section>
 
-<footer class="flex bg-blue-50 p-5 justify-center">
-  <p class="text-blue-500 pr-1 duration-500 hover:text-blue-400">使用條款</p>
-  <p class="pl-1">© 2021 SoundBar, Inc.</p>
-</footer>
