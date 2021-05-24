@@ -1,21 +1,13 @@
-<% if podcast.errors.any? %>
-  <ul>
-    <% podcast.errors.full_messages.each do |msg| %>
-    <li><%= msg %></li>
-    <% end %>
-  </ul>
-<% end %>
-
-<div class="create_table grid justify-center border-0 shadow rounded-r-none">
+<div class="grid justify-center">
   <%= simple_form_for podcast do |f| %>
     <%= f.input :cover, as: :file, input_html:{class: "m-2 p-2" }, label: "上傳封面圖片" %>
-    <%= f.input :name, input_html:{class: "fill-form" }, label: "Podcast 節目名稱"%>
-    <%= f.input :artist, input_html:{class: "fill-form" }, label: "創作者名稱" %>
-    <%= f.input :email, input_html:{class: "fill-form" }, label: "Email" %>
-    <%= f.input :language, collection: ["繁體中文", "简体中文", "粵語", "English", "日本語", "한국어"], input_html:{class: "fill-form" }, label: "語言", placeholder: "Select a language" %>
-    <%= f.input :slug, input_html:{class: "fill-form" }, label: "好記短網址 https://soundbar.tk/" %>
+    <%= f.input :name, input_html:{class: "fill-form" }, label: "Podcast 節目名稱", error: '請填寫 Podcast 名稱' %>
+    <%= f.input :artist, input_html:{class: "fill-form" }, label: "創作者名稱", error: '請填寫創作者名稱'  %>
+    <%= f.input :email, input_html:{class: "fill-form" }, label: "Email", error: '請填寫 Email 信箱'  %>
+    <%= f.input :language, collection: ["繁體中文", "简体中文", "粵語", "English", "日本語", "한국어"], input_html:{class: "fill-form" }, label: "語言", placeholder: "Select a language", error: '請選擇語言'  %>
+    <%= f.input :slug, input_html:{class: "fill-form" }, label: "好記短網址 https://soundbar.tk/", error: '請填寫短網址' %>
     <p class="text-purple-500 text-sm">必須為英文與數字，請勿使用特殊符號。</p>
-    <%= f.input :genres, collection: Podcast.genres.values, input_html:{class: "fill-form" }, label: "iTunes 類別" %>
+    <%= f.input :genres, collection: Podcast.genres.keys, input_html:{class: "fill-form" }, label: "類別", error: '請填寫類別' %>
     <%= f.input :description, input_html:{class: "fill-form" }, label: "描述", placeholder: "描述這個 Podcast 所包含的內容。" %>
     <%= f.input :subtitle, input_html:{class: "fill-form" }, label: "Subtitle" %>
     <%= f.input :weblink, input_html:{class: "fill-form" }, label: "網站連結" %>
@@ -24,8 +16,9 @@
     <%= f.input :status, collection: ["草稿", "發布"], input_html:{class: "fill-form-status" }, label: "狀態" %>
 
     <div class='flex items-center justify-center  md:gap-8 gap-4 pt-5 pb-5'>
-      <button class='btn bg-gray-500 hover:bg-gray-700'><%= link_to "返回節目列表", podcasts_path %></button>
+      <button class='btn bg-gray-500 hover:bg-gray-700'><%= link_to "返回 Podcast 列表", podcasts_path %></button>
       <%= f.button :submit, "儲存", class: "btn-primary btn" %>
     </div>
   <% end %>
 </div>
+
