@@ -14,6 +14,14 @@ zh-TW:
   activerecord:
     errors:
       models:
+        user:
+          attributes:
+            email:
+              taken: "此 Email 已被使用了，請改用其他 Email"
+              blank: "必填"
+            password:
+              blank: "必填"
+              too_short: "密碼長度不夠"
         podcast:
           attributes:
             name:
