@@ -1,4 +1,4 @@
-<%= link_to "返回節目列表", p_path(@podcast.random_url) %>
+<%= link_to "返回#{@podcast.name}", player_podcast_path(@podcast.random_url) %>
 
 <h1><%= @episode.title %></h1>
 <ul>
@@ -13,16 +13,14 @@
 <audio controls="controls" preload="none" autostart="false">
     <source src="<%= @episode.recording.url %>" type="audio/mp3"></source>
 </audio>
-<h1><%=@episode.title%></h1>
 
 <h3>留言</h3>
 
-<%= form_for(@comment, url:p_e_comments_path(@podcast.random_url, @episode.random_url), remote: true) do |form| %>
+<%= simple_form_for @comment, url: player_podcast_episode_comments_path(@podcast.random_url, @episode.random_url), remote: true do |f| %>
   <div>
-    <%= form.label :content, '留言內容' %>
-    <%= form.text_area :content %>
+    <%= f.input :content, label: "留言內容" %>
   </div>
-    <%= form.submit %>
+    <%= f.button :submit, class: "btn btn-primary" %>
 <% end %>
 
 <ul id="comment_area">
