@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'e/show'
-  root 'home#index'
-
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
 
   # 讓網址變成https://podcaster.我們的網域/
