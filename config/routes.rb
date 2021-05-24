@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  get 'e/show'
+  root 'home#index'
+
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
 
   # 讓網址變成https://podcaster.我們的網域/
@@ -23,6 +26,7 @@ Rails.application.routes.draw do
 
     resources :p, only: [:show] do
       member do
+        post :subscriptions
         get '/donate', to: 'donations#new_donation'
         post '/donate', to: 'donations#donate!'
       end
