@@ -14,13 +14,13 @@
 <% else %>
   <div class="subscribe">
     <button class="button">
-        <label for="subscription">訂閱</label>
-      </button>
-      <input type="checkbox" id="subscription">
-      <div class="window">
-        <span>訂閱前請先登入</span> </br>
-        <div class="signup"><%= link_to "登入", new_user_registration_path %></div>
-      </div>
+      <label for="subscription">訂閱</label>
+    </button>
+    <input type="checkbox" id="subscription">
+    <div class="check-sign-up">
+      <span>訂閱前請先登入</span> </br>
+      <div class="sign-up"><%= link_to "登入", new_user_registration_path %></div>
+    </div>
   </div>
 <% end %>
 <section class="bg-gray-700 h-screen">
