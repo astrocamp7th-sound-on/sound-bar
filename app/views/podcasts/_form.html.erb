@@ -7,7 +7,7 @@
     <%= f.input :language, collection: ["繁體中文", "简体中文", "粵語", "English", "日本語", "한국어"], input_html:{class: "fill-form" }, label: "語言", placeholder: "Select a language", error: '請選擇語言'  %>
     <%= f.input :slug, input_html:{class: "fill-form" }, label: "好記短網址 https://soundbar.tk/", error: '請填寫短網址' %>
     <p class="text-purple-500 text-sm">必須為英文與數字，請勿使用特殊符號。</p>
-    <%= f.input :genres, collection: Podcast.genres.keys, input_html:{class: "fill-form" }, label: "類別", error: '請選擇類別' %>
+    <%= f.input :genres, collection: Podcast.genres.keys, input_html:{class: "fill-form" }, label: "類別", error: '請填寫類別' %>
     <%= f.input :description, input_html:{class: "fill-form" }, label: "描述", placeholder: "描述這個 Podcast 所包含的內容。" %>
     <%= f.input :subtitle, input_html:{class: "fill-form" }, label: "Subtitle" %>
     <%= f.input :weblink, input_html:{class: "fill-form" }, label: "網站連結" %>
