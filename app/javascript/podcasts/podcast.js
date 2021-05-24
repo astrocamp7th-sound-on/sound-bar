@@ -7,13 +7,11 @@ document.addEventListener("DOMContentLoaded", function () {
     subsbtn.addEventListener('click', function (e) {
       let btn = e.target
       let id = btn.dataset['id']
-      console.log(e)
       Rails.ajax({
         url: `/p/${id}/subscriptions`,
         type: "post",
         success: res => {
-          if (res.status === 'added')
-          {
+          if (res.status === 'added'){
           btn.classList.add("bg-red-100")
           } else {
             btn.classList.remove("bg-red-100")
