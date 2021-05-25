@@ -10,46 +10,98 @@
   </div>
   <section class="bg-gray-200 h-screen font-medium flex">
     <div class="content container mx-auto mt-6">
+
+      <!-- Nav-Tabs -->
       <div class="nav-tabs">
         <ul class="flex">
-          <li class="cursor-pointer mr-3 hover:text-blue-400" id="donateLink">贊助連結</li>
-          <li class="cursor-pointer mx-3 hover:text-blue-400" id="donationList">我的進帳</li>
-          <li class="cursor-pointer mx-3 hover:text-blue-400" id="myMoney">我的錢包</li>
+          <li class="cursor-pointer hover:text-blue-400 p-2 bg-white" id="donateLink">贊助連結</li>
+          <li class="cursor-pointer hover:text-blue-400 mx-1 p-2" id="donationList">我的進帳</li>
+          <li class="cursor-pointer hover:text-blue-400 p-2" id="myMoney">我的錢包</li>
         </ul>
       </div>
       <div class="tabs-content bg-white p-4">
+
+        <!-- 贊助連結 -->
         <div class="donateLink_content flex flex-col">
           <p class="text-lg font-bold">讓聽眾能用最簡單的方式支持你</p>
           <label class="text-sm mt-4">分享此連結，讓你的聽眾輕鬆贊助你的創作</label>
-          <span class="flex justify-between border border-gray-300 mt-3 mb-6 bg-gray-200 ">
-            <%= link_to '<i class="fas fa-link"></i>'.html_safe, donate_p_url(@podcast.random_url, subdomain: "player"), class: "text-blue-500 ml-2" %>
-            <input type="text" class="flex-grow mx-2 bg-gray-200 text-gray-400 cursor-not-allowed" disabled value="<%= donate_p_url(@podcast.random_url) %>">
+          <span class="flex justify-between border border-gray-300 mt-3 mb-10 py-1 bg-gray-200 ">
+            <%= link_to '<i class="fas fa-link"></i>'.html_safe, donate_podcast_url(@podcast.random_url, subdomain: "player"), class: "text-blue-500 ml-2" %>
+            <input type="text" class="flex-grow mx-2 bg-gray-200 text-gray-400 cursor-not-allowed" disabled value="<%= donate_podcast_url(@podcast.random_url) %>">
             <span class="copy_donate_link cursor-pointer text-gray-400 mr-2"><i class="far fa-copy"></i></span>
           </span>
           <%= simple_form_for @podcast, url: podcast_path(@podcast) do |f| %>
             <label class="text-sm">贊助頁面標題</label>
-            <%= f.input :donate_title, input_html:{class: "flex text-sm w-full border border-gray-300 hover:border-blue-600 my-2" } %>
+            <%= f.input :donate_title, label: false, input_html:{class: "flex text-sm w-full border hover:border-blue-500 focus:border-blue-500 my-2 p-2" } %>
             <%= f.submit "儲存", class: "w-auto rounded-lg font-medium text-white px-4 py-1 mt-3 btn-primary" %>
           <% end %>
         </div>
+
+        <!-- 我的贊助 -->
         <div class="donationList_content flex flex-col">
           <p class="text-lg font-bold my-3">總覽</p>
           <table class="table-fixed">
-            <thead>
-              <th>全部</th>
-              <th>過去 30 天</th>
-              <th>過去 7 天</th>
+            <thead class="bg-gray-100">
+              <th class="text-left p-2">全部</th>
+              <th class="text-left p-2">過去 30 天</th>
+              <th class="text-left p-2">過去 7 天</th>
             </thead>
             <tbody>
-              <td>NT$ <%= number_with_delimiter(@podcast.donations.where(status: "paid").sum("amount"), delimiter: ',') %></td>
-              <td>NT$ <%= number_with_delimiter(@podcast.donations.where(status: "paid").where(created_at: (Time.now.midnight - 30.days)..Time.now.midnight).sum("amount"), delimiter: ',') %></td>
-              <td>NT$ <%= number_with_delimiter(@podcast.donations.where(status: "paid").where(created_at: (Time.now.midnight - 7.days)..Time.now.midnight).sum("amount"), delimiter: ',') %></td>
+              <tr class="border-b border-gray-100">
+                <td class="p-2">NT$ <%= number_with_delimiter(@podcast.donations.where(status: "paid").sum("amount"), delimiter: ',') %></td>
+                <td class="p-2">NT$ <%= number_with_delimiter(@podcast.donations.where(status: "paid").where(created_at: (Time.now.midnight - 30.days)..Time.now.midnight).sum("amount"), delimiter: ',') %></td>
+                <td class="p-2">NT$ <%= number_with_delimiter(@podcast.donations.where(status: "paid").where(created_at: (Time.now.midnight - 7.days)..Time.now.midnight).sum("amount"), delimiter: ',') %></td>
+              </tr>
             </tbody>
           </table>
-          <p class="text-lg font-bold my-3">進帳紀錄</p>
+          <p class="text-lg font-bold mt-10 mb-3">進帳紀錄</p>
+          <table class="table-fixed">
+            <thead class="bg-gray-100">
+              <th class="text-left p-2">用戶名稱</th>
+              <th class="text-left p-2">時間</th>
+              <th class="text-left p-2">金額</th>
+              <th class="text-left p-2">留言</th>
+            </thead>
+            <% if @podcast.donations.exists?(status: "paid") %>
+            <tbody>
+              <% @podcast.donations.where(status: "paid").each do |d| %>
+                <tr class="border-b border-gray-100">
+                    <td class="p-2"><%= d.donator %></td>
+                    <td class="p-2"><%= d.created_at.strftime("%Y-%m-%d") %></td>
+                    <td class="p-2">NT$ <%= number_with_delimiter(d.amount, delimiter: ',') %></td>
+                    <td class="p-2"><%= d.note %></td>
+                </tr>
+              <% end %>
+            </tbody>
+            <% else %>
+              <tbody class="">
+                <tr class="border-b border-gray-100 border-b border-gray-100">
+                  <td colspan="4" class="p-2 text-center text-sm text-gray-300">暫無任何進帳紀錄</td>
+                </tr>
+              </tbody>
+            <% end %>
+          </table>
         </div>
-        <div class="myMoney_content">
 
+        <!-- 我的錢包 -->
+        <div class="myMoney_content flex flex-col items-start ">
+          <label class="text-sm">錢包餘額</label>
+          <h3 class="text-xl my-3 font-bold">NT$ <%= number_with_delimiter(@podcast.donations.where(status: "paid").sum("amount"), delimiter: ',') %></h3>
+          <%= link_to "我要提領", "#", class: "rounded-lg font-medium text-white px-4 py-1 btn-primary" %>
+          <p class="text-lg font-bold mt-10 mb-3">提領紀錄</p>
+          <table class="table-fixed self-stretch">
+            <thead class="bg-gray-100 text-sm font-thin">
+              <th class="text-left p-2">匯款日期</th>
+              <th class="text-left p-2">提領金額</th>
+              <th class="text-left p-2">代扣稅額</th>
+              <th class="text-left p-2">實領金額</th>
+            </thead>
+            <tbody>
+              <tr class="border-b border-gray-100">
+                <td colspan="4" class="p-2 text-center text-sm text-gray-300">暫無任何提領紀錄</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
