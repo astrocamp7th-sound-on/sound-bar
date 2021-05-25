@@ -4,5 +4,5 @@ import { faGlobe, faCog, faAngleDown, faSearch, faTachometerAlt, faListUl, faCha
 import { faFileAlt } from '@fortawesome/free-regular-svg-icons'
 
 
-library.add(faUser, faGlobe, faCog, faAngleDown, faSearch, faTachometerAlt, faFileAlt, faListUl, faChartLine, faCommentDollar, faUser, faLock )
+library.add(faUser, faGlobe, faCog, faAngleDown, faSearch, faTachometerAlt, faFileAlt, faListUl, faChartLine, faCommentDollar, faLock )
 dom.watch()
