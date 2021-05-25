@@ -3,6 +3,20 @@ document.addEventListener("turbolinks:load", function () {
 
   let donateTabs = document.querySelector('#donateTabs')
   let donateFrom = document.querySelector('#donateFrom')
+  let withdraw = document.querySelector('#withdraw')
+  let withdrawClose = document.querySelector('#withdraw-close')
+
+  if (withdraw){
+    withdraw.addEventListener('click', function(){
+      document.querySelector('.withdraw-box').classList.remove('hidden')
+    })
+  }
+
+  if (withdrawClose){
+    withdrawClose.addEventListener('click', function(){
+      document.querySelector('.withdraw-box').classList.add('hidden')
+    })
+  }
 
   if (donateFrom){
     donateFrom.addEventListener('click', function(e){
