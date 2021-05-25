@@ -17,9 +17,5 @@ class Donation < ApplicationRecord
     end
   end
 
-  def paid?
-
-  end
-
 
 end

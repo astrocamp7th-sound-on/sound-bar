@@ -2,25 +2,28 @@
   <h1 class="text-xl font-black">創作盈利</h1>
 </div>
 
-<section class="">
-  <div class="container mx-auto h-10 flex">
-    <div class="hover:text-blue-400">
-      <h2 class="text-lg font-medium ">聽眾贊助</h2>
+<section>
+  <div class="container mx-auto h-10 flex my-2">
+    <div class="nav-tabs">
+      <ul class="inline-flex" id="donateFrom">
+        <li class="cursor-pointer hover:text-blue-400 text-lg font-medium p-2 text-blue-500" id="playerDonate">聽眾贊助</li>
+        <li class="cursor-pointer hover:text-blue-400 text-lg font-medium p-2 " id="adDonate">廣告贊助</li>
+      </ul>
     </div>
   </div>
   <section class="bg-gray-200 h-screen font-medium flex">
-    <div class="content container mx-auto mt-6">
+    <div class="playerDonate_content container mx-auto mt-6">
 
       <!-- Nav-Tabs -->
       <div class="nav-tabs">
-        <ul class="flex">
-          <li class="cursor-pointer hover:text-blue-400 p-2 bg-white" id="donateLink">贊助連結</li>
+        <ul class="inline-flex text-sm" id="donateTabs">
+          <li class="cursor-pointer hover:text-blue-400 p-2 bg-white text-blue-500" id="donateLink">贊助連結</li>
           <li class="cursor-pointer hover:text-blue-400 mx-1 p-2" id="donationList">我的進帳</li>
           <li class="cursor-pointer hover:text-blue-400 p-2" id="myMoney">我的錢包</li>
         </ul>
       </div>
-      <div class="tabs-content bg-white p-4">
 
+      <div class="tabs-content bg-white p-4">
         <!-- 贊助連結 -->
         <div class="donateLink_content flex flex-col">
           <p class="text-lg font-bold">讓聽眾能用最簡單的方式支持你</p>
@@ -38,7 +41,7 @@
         </div>
 
         <!-- 我的贊助 -->
-        <div class="donationList_content flex flex-col">
+        <div class="donationList_content flex flex-col hidden">
           <p class="text-lg font-bold my-3">總覽</p>
           <table class="table-fixed">
             <thead class="bg-gray-100">
@@ -84,7 +87,7 @@
         </div>
 
         <!-- 我的錢包 -->
-        <div class="myMoney_content flex flex-col items-start ">
+        <div class="myMoney_content flex flex-col items-start hidden">
           <label class="text-sm">錢包餘額</label>
           <h3 class="text-xl my-3 font-bold">NT$ <%= number_with_delimiter(@podcast.donations.where(status: "paid").sum("amount"), delimiter: ',') %></h3>
           <%= link_to "我要提領", "#", class: "rounded-lg font-medium text-white px-4 py-1 btn-primary" %>
@@ -103,7 +106,13 @@
             </tbody>
           </table>
         </div>
+
       </div>
+
+    </div>
+    <div class="adDonate_content container mx-auto mt-6 flex flex-col items-start hidden">
+      <p class="text-sm">成為 SoundOn 夥伴後，您可以透過自己的 Podcast 賺取廣告贊助</p>
+      <%= link_to "填寫申請表單", "#", class: "text-sm w-auto rounded-lg font-medium text-white px-4 py-1 mt-3 btn-primary" %>
     </div>
   </section>
 </section>
