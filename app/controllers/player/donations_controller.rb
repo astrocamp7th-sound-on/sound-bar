@@ -1,4 +1,4 @@
-class DonationsController < ApplicationController
+class Player::DonationsController < ApplicationController
   # 為了接收綠界 POST 回來的參數，關閉此驗證才能收到
   skip_before_action :verify_authenticity_token, only: [:donate_outcome]
 
