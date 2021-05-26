@@ -1,6 +1,7 @@
 import Rails from "@rails/ujs"
 
-document.addEventListener("DOMContentLoaded", function () {
+// 訂閱功能
+document.addEventListener("turbolinks:load", function () {
 
   let subsbtn = document.querySelector('.subscribed-btn')
   if (subsbtn){
@@ -15,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
             btn.classList.add("bg-red-400")
           } else {
             btn.classList.remove("bg-red-400")
-        }
+          }
         error: res => {
           console.log(res)
           }
@@ -23,4 +24,5 @@ document.addEventListener("DOMContentLoaded", function () {
       })
     })
   }
+
 })

@@ -2,20 +2,31 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
 
-  # 讓網址變成https://podcaster.我們的網域/
-  constraints subdomain: 'podcasters' do
-    get '/', to: 'pages#podcasters'
+  #SoundBar for Podcasters 參考:https://podcasters.soundon.fm/
+  get '/', to: 'pages#podcasters', constraints: { subdomain: 'podcasters'}
 
-    # 然後登入後的CRUD網址變成https://podcaster.我們的網域/podcasts/:id/...
-    resources :podcasts do
-      resources :episodes, except: [:index] do
+  constraints subdomain: 'host' do
+    resources :podcasts, except: [:edit] do
+      resources :episodes, except: [:show, :edit] do
+                                    # episodes#index #單集列表
+        collection do
+          get '/:id', to: 'episodes#edit', as: 'edit' #編輯單集
+        end
+      end
+
+      member do
+        get 'dashboard', to: 'podcasts#dashboard'     #數據總覽
+        get 'info', to: 'podcasts#edit'               #節目資訊
+        get 'resource/music', to: 'podcasts#music'    #創作資源-音效襯樂
+        get 'donate', to: 'podcasts#donate'           #創作營利
       end
     end
+
   end
 
   post '/donate_outcome', to: 'donations#donate_outcome'
 
-  # 這邊是做給未登入使用者看到的頁面，subdomain原理同上，會變成https://player.我們的網域/p
+  #聽眾報到-web馬上收聽 參考:https://player.soundon.fm/browse
   constraints subdomain: 'player' do
     get '/browse', to: 'player/podcasts#browse'
     get '/', to: redirect('/browse')
@@ -37,4 +48,5 @@ Rails.application.routes.draw do
 
   # 要擺在subdomain root的下面
   root 'pages#index'
+
 end

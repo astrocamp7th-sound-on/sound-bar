@@ -7,7 +7,12 @@ module.exports = {
   ],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'indigo': '#394263',
+        'titleblue': '#66C8FC',
+      },
+    },
     screens: {
       xs: '360px',
       sm: '576px',
@@ -17,7 +22,9 @@ module.exports = {
     },
   },
   variants: {
-    extend: {},
+    extend: {
+      zIndex: ['hover', 'active'],
+    },
   },
   plugins: [],
 }

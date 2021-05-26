@@ -1,30 +1,40 @@
-<header class="flex justify-between bg-gray-700">
-  <div class="flex m-6 justify-center md:justify-start">
-    <%= image_tag("logo", size: "180x180") %>
-  </div>
-  <form class="search-form border hover:border-blue-600 rounded flex my-auto mr-10">
-    <button class="search-btn focus:outline-none w-10 bg-white rounded-l text-gray-500 border-none p-2"><i class="fas fa-search"></i></button><input type="text" class="search-input focus:outline-none w-72 bg-white rounded-r border-none p-2" placeholder="搜尋 Podcast">
-  </form>
-</header>
+<html class="bg-indigo">
+  <header class="flex justify-between">
+    <div class="flex m-4 justify-center md:justify-start">
+      <%= image_tag("logo_trans", size: "250x250") %>
+    </div>
+    <form class="search-form border hover:border-blue-600 rounded flex my-auto mr-10">
+      <button class="search-btn focus:outline-none w-10 bg-white rounded-l text-gray-500 border-none p-2"><i class="fas fa-search"></i></button><input type="text" class="search-input focus:outline-none w-auto bg-white rounded-r border-none p-2" placeholder="搜尋 Podcast">
+    </form>
+  </header>
 
-<section class="bg-gray-700 h-screen">
-  <div class="flex items-center justify-center">
-    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+  <section class="container player_page grid relative ml-5 h-screen">
+    <div class="">
+      <h1 class="text-4xl text-titleblue">隨時隨地, 找到頻率最對的聲音</h1>
+    <div class="text-white mt-3">
+      <p>經典並非老派</p>
+      <p>SoundOn 以音頻為基礎, 結合創新科技應用</p>
+      <p>收藏你所愛, 毋須擔心過時的問題</p>
+      <p>人性化的設計讓您隨時擁有溫度的聲音</p>
+    </div>
+    <h2 class="text-white text-2xl mt-20 mb-6">新聲報到</h2>
+
+    <div class="flex">
       <% @podcasts.each do |podcast| %>
-        <div class="relative bg-white py-6 px-6 rounded-3xl w-80 my-4 shadow-xl transform hover:-translate-y-1 hover:scale-100">
-          <div class="flex">
-            <div class="p-3"><img src="https://picsum.photos/30/30/?random=1"></div>
-            <div>
-              <h3 class="font-black duration-500 hover:text-blue-500"><%= link_to podcast.name, player_podcast_path(podcast.random_url) %></h3>
-              <p class="font-light"><%= podcast.artist %></p>
-            </div>
-          </div>
-          <div class="border-t-2"></div>
-          <div class="flex justify-center">
-          </div>
+      <button class="front_arrow">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+      <div class="cover_line imgBox">
+        <div class="">
+          <div class=""><img src="https://picsum.photos/200/200/?random=1"></div>
         </div>
+      </div>
+      <button class="back_arrow">
+        <i class="fas fa-chevron-right"></i>
+      </button>
       <% end %>
     </div>
-  </div>
-</section>
 
+    </div>
+  </section>
+</html>

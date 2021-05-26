@@ -1,0 +1,38 @@
+.player_page {
+  max-width: 1024px,
+}
+
+.container {
+  @apply mx-auto;
+}
+
+@media (max-width: 1024px) {
+  .container {
+
+  }
+}
+
+.cover_line {
+  @apply relative w-52 m-px transform hover:-translate-y-1 hover:scale-110 transition duration-300;
+}
+
+.imgBox { /* now a container for the image */
+  display: inline-block; /* shrink wrap to image */
+  overflow: hidden; /* hide the excess */
+}
+.imgBox img {
+  display: block; /* no whitespace */
+  transition: .3s ease-in-out;
+}
+.imgBox:hover img {
+  transform: scale(1.1);
+  z-index: 10;
+}
+
+.front_arrow {
+  @apply absolute left-0 z-10 bg-yellow-50 opacity-20 p-3 hover:opacity-50 duration-300;
+}
+
+.back_arrow {
+  @apply absolute right-0 z-10 bg-yellow-50 opacity-20 p-3 hover:opacity-50 duration-300;
+}

@@ -48,7 +48,7 @@
           </div>
           <div class="border-t-2"></div>
           <div class="flex justify-center">
-            <p class="pt-3 pr-3 hover:text-blue-700 duration-500"><%= link_to "編輯", edit_podcast_path(podcast.random_url) %></p>
+            <p class="pt-3 pr-3 hover:text-blue-700 duration-500"><%= link_to "編輯", info_podcast_path(podcast.random_url) %></p>
             <p class="pt-3 hover:text-red-500 duration-500"><%= link_to "刪除", podcast_path(podcast.random_url), method: "delete", data: {confirm: "是否確認刪除？"} %></p>
           </div>
         </div>
