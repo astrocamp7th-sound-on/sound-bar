@@ -7,7 +7,6 @@ document.addEventListener("turbolinks:load", function () {
   let donateFrom = document.querySelector('#donateFrom')
   let withdraw = document.querySelector('#withdraw')
   let withdrawClose = document.querySelector('#withdraw-close')
-
   let copyDonateLink = document.querySelector('.copy-donate-link')
 
   if(copyDonateLink){
@@ -15,7 +14,6 @@ document.addEventListener("turbolinks:load", function () {
       document.querySelector('#donateLinkInput').select()
       document.execCommand('Copy')
 
-      
       Swal.fire({
         icon: 'success',
         title: '已複製！',
@@ -23,7 +21,6 @@ document.addEventListener("turbolinks:load", function () {
         timer: 700
       })
     })
-
   }
 
   if (withdraw){

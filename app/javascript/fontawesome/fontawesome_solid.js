@@ -12,32 +12,23 @@ import {
   faCommentDollar,
   faUser,
   faLock,
-  faLink
+  faLink,
+  faChevronDown,
 } from '@fortawesome/free-solid-svg-icons'
 
-// fa regular
-import {
-  faFileAlt,
-  faCopy,
-  faTimesCircle
-} from '@fortawesome/free-regular-svg-icons'
-
-
 library.add(
-  faUser,
   faGlobe,
   faCog,
   faAngleDown,
   faSearch,
   faTachometerAlt,
-  faFileAlt,
   faListUl,
   faChartLine,
   faCommentDollar,
+  faUser,
   faLock,
   faLink,
-  faCopy,
-  faTimesCircle
+  faChevronDown,
 )
 
 dom.watch()

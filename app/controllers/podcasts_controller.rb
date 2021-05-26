@@ -46,7 +46,6 @@ class PodcastsController < ApplicationController
   end
 
   def donate
-
   end
 
   private
