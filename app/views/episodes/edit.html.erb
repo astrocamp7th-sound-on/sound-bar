@@ -4,16 +4,8 @@
 
 <h1 class="flex justify-center m-10 text-2xl font-bold">編輯單集</h1>
 
-<% if @episode.errors.any? %>
-  <ul>
-    <% @episode.errors.full_messages.each do |msg| %>
-    <li><%= msg %></li>
-    <% end %>
-  </ul>
-<% end %>
-
 <div class="grid justify-center">
-  <%= simple_form_for @episode, url: podcast_episode_path(@podcast.random_url) do |f| %>
+  <%= simple_form_for @episode, url: podcast_episode_path(@podcast.random_url, @episode.random_url) do |f| %>
     <%= f.input :title, input_html:{class: "fill-form" }, label: "標題" %>
     <%= f.input :description, input_html:{class: "fill-form" }, label: "描述" %>
     <%= f.input :keyword, input_html:{class: "fill-form" }, label: "關鍵字" %>

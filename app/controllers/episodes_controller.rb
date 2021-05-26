@@ -1,6 +1,6 @@
 class EpisodesController < ApplicationController
-  before_action :find_episode, only: [:edit, :update, :show, :destroy]
   before_action :find_podcast, except: [:index]
+  before_action :find_episode, only: [:redit, :update, :show, :destroy]
 
   def new
     @episode = Episode.new
@@ -18,7 +18,7 @@ class EpisodesController < ApplicationController
   def show
   end
 
-  def edit
+  def redit
   end
 
   def update
@@ -46,7 +46,7 @@ class EpisodesController < ApplicationController
   end
 
   def find_podcast
-    @podcast = Podcast.find_by!(random_url: params[:podcast_id]) if @podcast.nil?
+    @podcast = Podcast.find_by!(random_url: params[:podcast_id])
     rescue ActiveRecord::RecordNotFound
       redirect_to podcasts_path, notice: "找不到節目"
   end
