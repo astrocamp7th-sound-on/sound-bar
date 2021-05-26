@@ -1,6 +1,6 @@
 <header>
   <div class="flex m-6 justify-center md:justify-start">
-    <%= link_to image_tag("new_logo_black", size: "280x280"), "/podcaster/podcasts" %>  </div>
+    <%= link_to image_tag("new_logo_black", size: "280x280"), podcasts_path  %>  </div>
   <div class="flex justify-end m-3">
     <div class="p-3">
       <span class="p-1"><i class="far fa-user"></i></span>
@@ -42,7 +42,7 @@
           <div class="flex">
             <div class="p-3"><img src="https://picsum.photos/30/30/?random=1"></div>
             <div>
-              <h3 class="font-black duration-500 hover:text-blue-500"><%= link_to podcast.name, podcast_path(podcast.random_url) %></h3>
+              <h3 class="font-black duration-500 hover:text-blue-500"><%= link_to podcast.name, dashboard_podcast_path(podcast.random_url) %></h3>
               <p class="font-light"><%= podcast.artist %></p>
             </div>
           </div>

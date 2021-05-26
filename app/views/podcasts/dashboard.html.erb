@@ -1,10 +1,24 @@
-<h1>數據總覽</h1>
 
-<section>
-  最新單集
-  <div>
-    <%= image_tag(@podcast.cover.url) if @podcast.cover? %>
-    <%= @podcast.episodes.last.title %>
-    <%= @podcast.episodes.last.created_at %>
+
+<div class="flex">
+  <div class="side_bar min-w-2xl sm:w-0 w-60"><%= render 'sidebar' %></div>
+  <div class="w-full bg-green-200">
+    <div class="container container-donate w-2/3 mx-auto py-6">
+      <h1 class="text-xl font-black">數據總覽</h1>
+    </div>
+
+    <section class="bg-gray-200 font-medium flex">
+
+      最新單集
+      <div>
+        <%= image_tag(@podcast.cover.url) if @podcast.cover? %>
+        <%= @podcast.episodes.last.title %>
+        <%= @podcast.episodes.last.created_at %>
+      </div>
+    </section>
+
+    <div class="">
+      <%= render '/layouts/footer' %>
+    </div>
   </div>
-</section>
+</div>
