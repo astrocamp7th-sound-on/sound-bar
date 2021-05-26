@@ -8,8 +8,9 @@ Rails.application.routes.draw do
   constraints subdomain: 'host' do
     resources :podcasts, except: [:edit] do
                                       # podcasts#show #單集列表
-      resources :episodes, except: [:show, :edit] do
+      resources :episodes, except: [:new, :show, :edit] do
         collection do
+          get '/new', to: 'episodes#new', as: 'new'   #不寫這行的話，不知為何/episodes/new路徑一直去找 episodes#edit
           get '/:id', to: 'episodes#edit', as: 'edit' #編輯單集
         end
       end

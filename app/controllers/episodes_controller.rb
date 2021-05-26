@@ -1,6 +1,6 @@
 class EpisodesController < ApplicationController
   before_action :find_podcast, except: [:index]
-  before_action :find_episode, only: [:redit, :update, :show, :destroy]
+  before_action :find_episode, only: [:edit, :update, :show, :destroy]
 
   def new
     @episode = Episode.new
@@ -18,7 +18,7 @@ class EpisodesController < ApplicationController
   def show
   end
 
-  def redit
+  def edit
   end
 
   def update
