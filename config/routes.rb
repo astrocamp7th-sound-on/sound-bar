@@ -7,8 +7,8 @@ Rails.application.routes.draw do
 
   constraints subdomain: 'host' do
     resources :podcasts, except: [:edit] do
+                                      # podcasts#show #單集列表
       resources :episodes, except: [:show, :edit] do
-                                     # episodes#index #單集列表
         collection do
           get '/:id', to: 'episodes#edit', as: 'edit' #編輯單集
         end
@@ -24,7 +24,7 @@ Rails.application.routes.draw do
 
   end
 
-  post '/donate_outcome', to: 'donations#donate_outcome'
+  post '/donate_outcome', to: 'player/donations#donate_outcome'
 
   #聽眾報到-web馬上收聽 參考:https://player.soundon.fm/browse
   constraints subdomain: 'player' do
@@ -32,7 +32,7 @@ Rails.application.routes.draw do
     get '/', to: redirect('/browse')
     get '/:whatever', to: redirect('/browse')
 
-    scope module: :player do                  # 參考 https://qiita.com/ryosuketter/items/9240d8c2561b5989f049
+    scope module: :player do
       resources :podcasts, path: '/p', as: "player_podcast", only: [:show] do
         member do
           post :subscriptions

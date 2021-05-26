@@ -83,7 +83,7 @@
                 </thead>
                 <% if @podcast.donations.exists?(status: "paid") %>
                 <tbody>
-                  <% @podcast.donations.where(status: "paid").each do |d| %>
+                  <% @podcast.donations.where(status: "paid").order(id: :desc).each do |d| %>
                     <tr class="border-b border-gray-100">
                         <td class="p-2"><%= d.donator %></td>
                         <td class="p-2"><%= d.created_at.strftime("%Y-%m-%d") %></td>
