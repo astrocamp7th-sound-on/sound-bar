@@ -6,19 +6,12 @@ Rails.application.routes.draw do
   get '/', to: 'pages#podcasters', constraints: { subdomain: 'podcasters'}
 
   constraints subdomain: 'host' do
-    resources :podcasts, except: [:edit] do
-                                      # podcasts#show #單集列表
-      resources :episodes, except: [:new, :show, :edit] do
-        collection do
-          get '/new', to: 'episodes#new', as: 'new'   #不寫這行的話，不知為何/episodes/new路徑一直去找 episodes#edit
-          get '/:id', to: 'episodes#edit', as: 'edit' #編輯單集
-        end
-      end
-
+    resources :podcasts, except: [:edit, :show] do
+      resources :episodes, except: [:edit]
       member do
         get 'dashboard', to: 'podcasts#dashboard'     #數據總覽
-        get 'info', to: 'podcasts#edit'               #節目資訊
-        get 'resource/music', to: 'podcasts#music'    #創作資源-音效襯樂
+        get 'info', to: 'podcasts#info'               #節目資訊
+        get 'resource/music', to: 'podcasts#music'    #行銷資源-音效襯樂
         get 'donate', to: 'podcasts#donate'           #創作營利
       end
     end

@@ -1,8 +1,8 @@
 
 
 <div class="flex">
-  <div class="side_bar min-w-2xl sm:w-0 w-60"><%= render 'sidebar' %></div>
-  <div class="flex flex-col w-full relative bg-gray-200 min-h-screen">
+  <div class="side_bar min-w-2xl sm:w-0 w-60"><%= render '/backend/sidebar' %></div>
+  <div class="flex flex-col w-full relative bg-gray-100 min-h-screen">
     <!-- NavBar -->
     <div class="absolute top-0 w-full">
       <!-- 這邊要插入NavBar -->
@@ -14,7 +14,7 @@
       </div>
     </div>
     <!-- 下半框 -->
-    <div class="bg-gray-200">
+    <div class="bg-gray-100">
       <section class="font-medium flex flex-wrap container w-2/3 mx-auto mt-6">
         <!-- 關鍵數據 -->
         <div class="key-data bg-white flex-grow w-full my-3">
@@ -50,8 +50,8 @@
               <%= image_tag(@podcast.cover.url) if @podcast.cover? %>
             </div>
             <div class="episode-title ml-2">
-              <label class="text-lg font-semibold text-gray-800"><%= @podcast.episodes.last.title %></label>
-              <p class="my-3 text-sm text-gray-600">發布日期：<%= @podcast.episodes.last.created_at.strftime("%Y-%m-%d") %></p>
+              <label class="text-lg font-semibold text-gray-800"><%= @podcast.episodes.last.title if not @podcast.episodes.last.nil? %></label>
+              <p class="my-3 text-sm text-gray-600">發布日期：<%= @podcast.episodes.last.created_at.strftime("%Y-%m-%d") if not @podcast.episodes.last.nil? %></p>
             </div>
           </div>
           <div class="download px-3">
@@ -98,7 +98,7 @@
     </div>
     <!-- Footer -->
     <div class="absolute bottom-0 w-full">
-      <%= render '/layouts/footer' %>
+      <%= render '/backend/footer' %>
     </div>
   </div>
 </div>
