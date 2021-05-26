@@ -11,7 +11,7 @@ Rails.application.routes.draw do
       member do
         get 'dashboard', to: 'podcasts#dashboard'     #數據總覽
         get 'info', to: 'podcasts#info'               #節目資訊
-        get 'resource/music', to: 'podcasts#music'    #行銷資源-音效襯樂
+        get 'resource/music', to: 'podcasts#music'    #創作資源-音效襯樂
         get 'donate', to: 'podcasts#donate'           #創作營利
       end
     end
