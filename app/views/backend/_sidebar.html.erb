@@ -1,7 +1,9 @@
-<div class="h-full min-h-screen bg-blue-50 border-r border-gray-300">
-  <%= link_to image_tag("new_logo_black", size: "280x280"), podcasts_path %>
-  <div class="flex justify-center">
-    <div class="w-24 h-24 pt-3"><%= image_tag(@podcast.cover.url) if @podcast.cover? %></div>
+<div class="h-full min-h-screen bg-blue-50">
+  <div class="flex flex-col items-center mt-3">
+    <%= link_to image_tag("new_logo_black", size: "160x160"), podcasts_path %>
+    <div class="w-24 h-24 pt-3 bg-red-300">
+      <%= image_tag(@podcast.cover.url, size: "160x160") if @podcast.cover.present? %>
+    </div>
   </div>
   <ul class="m-3 p-3">
     <li class="sidebar_list">
