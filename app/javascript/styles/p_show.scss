@@ -1,0 +1,20 @@
+
+  #subscription {
+    display: none;
+  }
+  .subscription{
+    max-width: 200px;
+  }
+  .check-sign-up{
+    background-color: grey;
+    overflow: hidden;
+    max-height: 0;
+    transition:(max-height .3s);
+  }
+  #subscription:checked ~ .check-sign-up{
+  max-height: 300px;
+  }
+  .sign-up {
+    color: blue;
+  }
+

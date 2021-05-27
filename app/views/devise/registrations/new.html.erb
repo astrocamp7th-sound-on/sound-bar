@@ -1,29 +1,64 @@
-<h2>註冊</h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+<div class="font-sans">
+  <div class="relative min-h-screen flex flex-col sm:justify-center items-center bg-gray-100 ">
+    <div class="relative sm:max-w-sm w-full">
+      <div class="relative w-full rounded-3xl  px-6 py-4 bg-gray-100 shadow-md">
+        <label for="" class="flex justify-center mt-3 text-lg">
+          <span>註冊 |</span><span><%= link_to image_tag("new_logo_black", size: "100x100") %></span>
+          <span>for Podcasters</span>
+        </label>
+        <form method="#" action="#" class="mt-10">
+          <div><i class="fas fa-user"></i>
+            <%= f.input :email, autofocus: true, autocomplete: "email", input_html:{ class:"sign_form", placeholder: "Email" } %>
+          </div>
+          <div class="mt-7"><i class="fas fa-lock"></i>
+            <%= f.input :password, autocomplete: "new-password", input_html:{ class:"sign_form", placeholder: "密碼" } %>
+            <% if @minimum_password_length %>
+            <em>(密碼需 6 位數以上)</em>
+            <% end %><br />
+          </div>
 
-  <div class="field">
-    <%= f.label :密碼 %>
-    <% if @minimum_password_length %>
-    <em>(密碼6個數字以上)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
+          <div class="mt-7"><i class="fas fa-lock"></i>
+            <%= f.input :password_confirmation, autocomplete: "new-password", input_html:{ class:"sign_form", placeholder: "確認密碼" } %>
+          </div>
 
-  <div class="field">
-    <%= f.label :再次輸入密碼 %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+          <div class="mt-7">
+            <%= f.button :submit, "註冊", input_html:{ class: "create_account_btn" } %>
+          </div>
 
-  <div class="actions">
-    <%= f.submit "註冊" %>
+          <div class="flex mt-7 items-center text-center">
+              <hr class="border-gray-300 border-1 w-full rounded-md">
+              <label class="block font-medium text-sm text-gray-600 w-full">
+                  透過第三方登入
+              </label>
+              <hr class="border-gray-300 border-1 w-full rounded-md">
+          </div>
+
+          <div class="flex mt-7 justify-center w-full">
+              <button class="fb_btn">
+                  Facebook
+              </button>
+
+              <button class="google_btn">
+                  Google
+              </button>
+          </div>
+
+          <%= render "devise/shared/links" %>
+
+
+          <div class="mt-7">
+              <div class="flex justify-center items-center">
+              <p class="text-blue-500 pr-1 duration-500 hover:text-blue-400">使用條款</p>
+              <p class="pl-1">© 2021 SoundBar, Inc.</p>
+              </div>
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
+</div>
 <% end %>
 
-<%= render "devise/shared/links" %>

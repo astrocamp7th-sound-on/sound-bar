@@ -1,4 +1,4 @@
-class DonationsController < ApplicationController
+class Player::DonationsController < ApplicationController
   # 為了接收綠界 POST 回來的參數，關閉此驗證才能收到
   skip_before_action :verify_authenticity_token, only: [:donate_outcome]
 
@@ -30,7 +30,9 @@ class DonationsController < ApplicationController
 
   private
   def find_podcast
-    @podcast = Podcast.find(params[:id])
+    @podcast = Podcast.find_by!(random_url: params[:id])
+    rescue ActiveRecord::RecordNotFound
+      redirect_to browse_path, notice: "找不到節目"
   end
 
   def donation_params
