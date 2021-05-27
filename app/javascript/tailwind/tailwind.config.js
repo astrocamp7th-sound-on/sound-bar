@@ -11,6 +11,7 @@ module.exports = {
       colors: {
         'indigo': '#394263',
         'titleblue': '#66C8FC',
+        'footerbg': '#21253E',
       },
     },
     screens: {
