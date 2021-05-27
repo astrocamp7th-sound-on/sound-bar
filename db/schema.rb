@@ -113,10 +113,10 @@ ActiveRecord::Schema.define(version: 2021_05_23_100742) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "comments", "episodes"
-  add_foreign_key "comments", "users"
-  add_foreign_key "donations", "podcasts"
-  add_foreign_key "episodes", "podcasts"
-  add_foreign_key "subscriptions", "podcasts"
-  add_foreign_key "subscriptions", "users"
+  add_foreign_key "comments", "episodes", on_delete: :cascade
+  add_foreign_key "comments", "users", on_delete: :cascade
+  add_foreign_key "donations", "podcasts", on_delete: :cascade
+  add_foreign_key "episodes", "podcasts", on_delete: :cascade
+  add_foreign_key "subscriptions", "podcasts", on_delete: :cascade
+  add_foreign_key "subscriptions", "users", on_delete: :cascade
 end
