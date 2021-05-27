@@ -1,4 +1,4 @@
-import { library, dom } from '@fortawesome/fontawesome-svg-core'
+import { library, dom } from '@fortawesome/fontawesome-svg-core';
 
 // fas solid
 import {
@@ -14,15 +14,22 @@ import {
   faLock,
   faLink,
   faChevronRight,
-  faChevronLeft
-} from '@fortawesome/free-solid-svg-icons'
+  faChevronLeft,
+  faEnvelopeSquare,
+} from '@fortawesome/free-solid-svg-icons';
 
 // fa regular
 import {
   faFileAlt,
   faCopy,
   faTimesCircle
-} from '@fortawesome/free-regular-svg-icons'
+} from '@fortawesome/free-regular-svg-icons';
+
+import {
+  faFacebookSquare,
+  faInstagramSquare,
+  faMedium
+} from '@fortawesome/free-brands-svg-icons'
 
 
 library.add(
@@ -41,7 +48,12 @@ library.add(
   faCopy,
   faTimesCircle,
   faChevronRight,
-  faChevronLeft
+  faChevronLeft,
+  faEnvelopeSquare,
+  faFacebookSquare,
+  faInstagramSquare,
+  faMedium
 )
 
 dom.watch()
+
