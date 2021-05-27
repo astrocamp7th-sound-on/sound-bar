@@ -29,9 +29,7 @@ document.addEventListener('turbolinks:load', function() {
   if (createEpisodeBtn){
     createEpisodeBtn.forEach(btn =>
       btn.addEventListener('click', function(e){
-        console.log(e.target.dataset['randomUrl'])
-      document.querySelector('.create-episode').classList.remove('hidden')
-      // document.querySelector('#new_podcast')
+        document.querySelector('.create-episode').classList.remove('hidden')
       })
     )
   }
