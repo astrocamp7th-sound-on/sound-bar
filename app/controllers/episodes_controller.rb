@@ -27,7 +27,7 @@ class EpisodesController < ApplicationController
 
   def update
     if @episode.update(episode_params)
-      redirect_to podcast_path(@podcast.random_url), notice: "編輯單集成功"
+      redirect_to podcast_episode_path(@podcast.random_url, @episode.random_url), notice: "編輯單集成功"
     else
       render :edit
     end
