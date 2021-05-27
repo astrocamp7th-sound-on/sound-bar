@@ -58,7 +58,6 @@ ActiveRecord::Schema.define(version: 2021_05_23_100742) do
     t.bigint "podcast_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "episode_cover"
     t.string "recording"
     t.string "random_url"
     t.index ["podcast_id"], name: "index_episodes_on_podcast_id"
