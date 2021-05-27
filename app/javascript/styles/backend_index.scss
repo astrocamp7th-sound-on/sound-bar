@@ -1,0 +1,22 @@
+.create-podcast-content, .create-podcast-content > nav, .create-podcast-content > div {
+  width: 44rem;
+}
+
+.create-episode-content, .create-episode-content > nav, .create-episode-content > div {
+  width: 44rem;
+}
+
+#podcast_slug {
+  @apply relative
+}
+#podcast_slug + span {
+  @apply text-purple-500 text-xs relative left-3 bottom-3;
+}
+
+.episode_episode, .episode_season {
+  @apply flex-grow;
+}
+
+#episode_explicit {
+  @apply mr-2;
+}

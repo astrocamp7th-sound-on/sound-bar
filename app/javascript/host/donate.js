@@ -39,9 +39,13 @@ document.addEventListener("turbolinks:load", function () {
     donateFrom.addEventListener('click', function(e){
       for(let i = 0; i < donateFrom.children.length; i++){
         donateFrom.children[i].classList.remove('text-blue-500')
+        donateFrom.children[i].classList.remove('border-b-2')
+        donateFrom.children[i].classList.remove('border-blue-400')
         document.querySelector(`.${donateFrom.children[i].id}_content`).classList.add('hidden')
       }
       e.target.classList.add('text-blue-500')
+      e.target.classList.add('border-b-2')
+      e.target.classList.add('border-blue-400')
       document.querySelector(`.${e.target.id}_content`).classList.remove('hidden')
     })
   }
