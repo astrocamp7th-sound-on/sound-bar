@@ -51,31 +51,7 @@
       </div>
     </div>
   </section>
-  <footer class="footerbg">
-    <div class="flex flex-wrap justify-around">
-      <div class=""><%= link_to image_tag("logo_trans", size: "180x180"), "/#" %></div>
-      <div>
-        <ul class="flex py-2">
-          <li class="footer_link"><a href="">官方網站</a></li>
-          <li class="footer_link"><a href="">投放廣告</a></li>
-          <li class="footer_link"><a href="">原創節目</a></li>
-          <li class="footer_link"><a href="">創作者平台</a></li>
-          <li class="footer_link"><a href="">客服中心</a></li>
-        </ul>
-      </div>
-      <div>
-        <ul class="flex">
-          <li class="footer_link text-4xl"><a href=""><i class="fab fa-facebook-square"></i></a></li>
-          <li class="footer_link text-4xl"><a href=""><i class="fab fa-instagram-square"></i></a></li>
-          <li class="footer_link text-4xl"><a href=""><i class="fab fa-medium"></i></a></li>
-          <li class="footer_link text-4xl"><a href=""><i class="fas fa-envelope-square"></i></a></li>
-        </ul>
-      </div>
-    </div>
-  </footer>
-  <div class="footer_copyright">
-    <p class="p-1">©</p>
-    <p class="p-1">2021</p>
-    <p class="p-1">SoundBar</p>
+  <div>
+    <%= render '/frontend/footer' %>
   </div>
 </html>
