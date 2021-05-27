@@ -16,6 +16,11 @@
   </div>
 </header>
 
+<div class="flex">
+  <p class="mx-2">Hi, <%= current_user.email %></p>
+  <p class="mx-2"><%= link_to "登出", destroy_user_session_path, method: "delete", class: "btn btn-success" %></p>
+</div>
+
 <h1 class="welcome">歡迎來到 SoundBar</h1>
 
 <section class="bg-blue-50 h-full">
@@ -43,7 +48,7 @@
           </div>
           <div class="border-t-2"></div>
           <div class="flex justify-center">
-            <p class="pt-3 pr-3 hover:text-blue-700 duration-500"><%= link_to "編輯", edit_podcast_path(podcast.random_url) %></p>
+            <p class="pt-3 pr-3 hover:text-blue-700 duration-500"><%= link_to "編輯", info_podcast_path(podcast.random_url) %></p>
             <p class="pt-3 hover:text-red-500 duration-500"><%= link_to "刪除", podcast_path(podcast.random_url), method: "delete", data: {confirm: "是否確認刪除？"} %></p>
           </div>
         </div>

@@ -1,0 +1,10 @@
+<h1>數據總覽</h1>
+
+<section>
+  最新單集
+  <div>
+    <%= image_tag(@podcast.cover.url) if @podcast.cover? %>
+    <%= @podcast.episodes.last.title %>
+    <%= @podcast.episodes.last.created_at %>
+  </div>
+</section>

@@ -31,6 +31,8 @@ gem 'bootsnap', '>= 1.4.4', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  # foreman s -f ppf
+  gem 'foreman', '~> 0.87.2'
 end
 
 group :development do
@@ -64,8 +66,6 @@ gem 'mini_magick'
 gem "fog-aws"
 # ENV variables
 gem 'figaro', '~> 1.2'
-# foreman s -f ppf
-gem 'foreman', '~> 0.87.2'
 # bootstrap for rails
 gem 'bootstrap-sass', '~> 3.4', '>= 3.4.1'
 # make form easy
