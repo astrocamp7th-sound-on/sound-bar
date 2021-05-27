@@ -23,9 +23,7 @@ module.exports = {
     },
   },
   variants: {
-    extend: {
-      zIndex: ['hover', 'active'],
-    },
+    extend: {},
   },
   plugins: [],
 }
