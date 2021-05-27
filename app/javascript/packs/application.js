@@ -12,6 +12,7 @@ import "tailwind/application"
 import "fontawesome"
 import "styles"
 import "podcasts"
+import "player"
 
 Rails.start()
 Turbolinks.start()
