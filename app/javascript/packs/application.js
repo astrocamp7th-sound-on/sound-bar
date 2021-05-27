@@ -16,5 +16,5 @@ ActiveStorage.start()
 
 import "fontawesome"
 import "styles"
-import "podcasts"
+import "host"
 import "player"
