@@ -28,13 +28,13 @@
       <div class="grid grid-flow-row xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 xs:grid-cols-1 gap-x-8 w-full">
         <% @podcasts.each do |podcast| %>
           <div class="cursor-pointer relative bg-white mt-8 border border-gray-300 hover:border-gray-400 rounded ">
-            <div class="flex p-5 border-b border-gray-200">
-              <div class="w-14 h-14 mr-4">
+            <div class="flex border-b border-gray-200">
+              <div class="w-14 h-14 p-10">
                 <%= image_tag(@podcast.cover.url, size: "30x30") if podcast.cover? %>
               </div>
-              <div class="ml-2">
-                <h3 class="font-semibold text-gray-800"><%= link_to podcast.name, dashboard_podcast_path(podcast.random_url) %></h3>
-                <p class="font-thin text-sm text-gray-600"><%= podcast.artist %></p>
+              <div class="w-full">
+                <h3 class="font-semibold text-gray-800 pt-5"><%= link_to podcast.name, dashboard_podcast_path(podcast.random_url), class: "block" %></h3>
+                <%= link_to podcast.artist, dashboard_podcast_path(podcast.random_url), class: "block font-thin text-sm text-gray-600 pb-5" %>
               </div>
             </div>
             <div class="flex justify-between">
