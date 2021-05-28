@@ -1,5 +1,5 @@
 class PodcastsController < ApplicationController
-  before_action :find_podcast, only: [:info, :destroy, :dashboard, :music, :donate]
+  before_action :find_podcast, only: [:info, :update, :destroy, :dashboard, :music, :donate]
 
   def index
     @podcasts = Podcast.order(id: :desc)
@@ -21,7 +21,6 @@ class PodcastsController < ApplicationController
   end
 
   def update
-    @podcast = Podcast.find(params[:id])
     cookies[:return_to_url] = request.referer
 
     if @podcast.update(podcast_params)
