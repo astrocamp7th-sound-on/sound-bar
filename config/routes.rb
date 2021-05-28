@@ -6,8 +6,8 @@ Rails.application.routes.draw do
   get '/', to: 'pages#podcasters', constraints: { subdomain: 'podcasters'}
 
   constraints subdomain: 'host' do
-    resources :podcasts, except: [:edit, :show] do
-      resources :episodes, except: [:edit]
+    resources :podcasts, except: [:new, :edit, :show] do
+      resources :episodes, except: [:new, :edit]
       member do
         get 'dashboard', to: 'podcasts#dashboard'     #數據總覽
         get 'info', to: 'podcasts#info'               #節目資訊
@@ -34,7 +34,7 @@ Rails.application.routes.draw do
           post '/donate', to: 'donations#donate!'
         end
         resources :episodes, only: [:show], path: 'episodes' do
-          resources :comments, shallow: true, only: [:create]
+          resources :comments, only: [:create]
         end
       end
     end

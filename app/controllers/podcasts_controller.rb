@@ -3,10 +3,8 @@ class PodcastsController < ApplicationController
 
   def index
     @podcasts = Podcast.order(id: :desc)
-  end
-
-  def new
     @podcast = Podcast.new
+    @episode = Episode.new
   end
 
   def create
