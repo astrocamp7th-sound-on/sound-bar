@@ -75,7 +75,7 @@ Rails.application.configure do
   # config.action_cable.disable_request_forgery_protection = true
 
   # ngrok server
-  config.hosts << "e65a5d989913.ngrok.io"
+  config.hosts << "fd1b1d889327.ngrok.io"
   # subdomains
   config.action_dispatch.tld_length = 0
 end

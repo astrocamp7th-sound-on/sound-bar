@@ -4,7 +4,7 @@
   </div> -->
 </header>
 <div class="flex">
-  <div class="side_bar min-w-2xl sm:w-0"><%= render 'sidebar' %></div>
+  <div class="bg-blue-50 border-r border-gray-300 min-w-2xl sm:w-0"><%= render '/backend/sidebar' %></div>
   <div class="w-5/6">
     <h1 class="text-center text-2xl font-bold m-10">節目資訊</h1>
     <div class="bg-gray-100">
@@ -25,7 +25,7 @@
       </ul>
 
       <div class="grid justify-center">
-        <button class="create-episode"><%= link_to "新增單集", new_podcast_episode_path(@podcast.random_url) %></button>
+        <button class="create-episode"><%= link_to "新增單集", new_podcast_episodes_path(@podcast.random_url) %></button>
       </div>
 
       <section>
@@ -62,7 +62,7 @@
   </div>
 </div>
 <div>
-  <%= render '/layouts/footer' %>
+  <%= render '/backend/footer' %>
 </div>
 
 

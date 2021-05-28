@@ -5,3 +5,7 @@
 .container-donate{
   min-width: 36rem;
 }
+
+#donateLinkInput::selection{
+  @apply bg-gray-100 text-gray-400;
+}

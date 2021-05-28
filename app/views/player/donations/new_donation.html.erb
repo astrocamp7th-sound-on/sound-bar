@@ -16,7 +16,7 @@
 
 <h1><%= @podcast.donate_title %></h1>
 
-<%= simple_form_for @donation, url:  donate_p_path  do |f| %>
+<%= simple_form_for @donation, url:  donate_player_podcast_path(@podcast.random_url)  do |f| %>
   <%= f.input :donator, label: "名稱", placeholder: "未填寫則顯示「匿名贊助者」" %>
   <%= f.input :note, label: "留一段話鼓勵我吧！" %>
   <%= f.input :amount, label: "贊助金額", hint: "不得小於50元" %>

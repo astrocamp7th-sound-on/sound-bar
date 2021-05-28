@@ -1,0 +1,38 @@
+<div class="flex justify-end w-full bg-white h-20 p-4 text-gray-600">
+  <ul class="navbar">
+    <li>
+      <ul>
+
+      </ul>
+    </li>
+  </ul>
+
+  <ul class="navbar flex">
+    <!-- 登出 -->
+    <li class="relative mx-3 cursor-pointer">
+      <i class="far fa-user"></i>
+      <span><%= current_user.email %></span>
+      <i class="fas fa-chevron-down"></i>
+      <ul class="absolute shadow-xl w-full py-1 rounded border border-gray-100 border-opacity-70 hidden">
+        <li class="text-sm p-2 hover:bg-gray-100 transition duration-200">
+          <%= link_to "登出", destroy_user_session_url(subdomain: ""), method: "delete", class: "block" %>
+        </li>
+      </ul>
+    </li>
+    <!-- 語言 -->
+    <li class="relative mx-3 cursor-pointer">
+      <i class="fas fa-globe"></i>
+      <span>語言</span>
+      <i class="fas fa-chevron-down"></i>
+      <ul class="absolute shadow-xl w-full py-1 rounded border border-gray-100 border-opacity-70 hidden">
+        <li class="text-sm p-2 hover:bg-gray-100 transition duration-200">中文</li>
+        <li class="text-sm p-2 hover:bg-gray-100 transition duration-200">English</li>
+      </ul>
+    </li>
+    <!-- 設定 -->
+    <span class="mx-3 cursor-pointer">
+      <i class="fas fa-cog"></i>
+    </span>
+  </ul>
+
+</div>
