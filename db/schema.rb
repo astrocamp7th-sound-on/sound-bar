@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_23_100742) do
+ActiveRecord::Schema.define(version: 2021_05_27_065828) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,7 +19,6 @@ ActiveRecord::Schema.define(version: 2021_05_23_100742) do
     t.bigint "episode_id", null: false
     t.bigint "user_id", null: false
     t.string "content"
-    t.integer "star"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["episode_id"], name: "index_comments_on_episode_id"
@@ -58,7 +57,6 @@ ActiveRecord::Schema.define(version: 2021_05_23_100742) do
   end
 
   create_table "podcasts", force: :cascade do |t|
-    t.string "avatar"
     t.string "name", null: false
     t.string "artist", null: false
     t.string "email", null: false
@@ -69,7 +67,6 @@ ActiveRecord::Schema.define(version: 2021_05_23_100742) do
     t.string "subtitle"
     t.string "weblink"
     t.string "copyright"
-    t.string "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "explicit"

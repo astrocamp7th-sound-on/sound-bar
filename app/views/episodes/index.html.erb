@@ -1,0 +1,61 @@
+<div class="flex">
+  <div class="bg-blue-50 border-r border-gray-300 min-w-2xl sm:w-0 w-60"><%= render '/backend/sidebar' %></div>
+  <div class="flex flex-col w-full relative bg-gray-100 min-h-screen">
+    <!-- NavBar -->
+    <div class="absolute top-0 w-full">
+      <%= render '/backend/navbar' %>
+    </div>
+    <!-- 上半框 -->
+    <div class="bg-white mt-20">
+      <div class="container container-donate w-2/3 mx-auto py-6 bg-white">
+        <h1 class="text-xl font-black">單集列表</h1>
+      </div>
+    </div>
+     <!-- 下半框 -->
+     <div class="bg-gray-100">
+       <section class="container w-2/3 mx-auto mt-6">
+        <!-- 搜尋框及新增單集 -->
+        <div class="flex justify-between">
+          <form class="search-form flex bg-white border border-gray-300 hover:border-blue-400 rounded transition duration-300">
+            <input type="text" class="ml-3 p-1 bg-transparent focus:outline-none w-96" placeholder="搜尋單集">
+            <button class="mr-3 p-1 bg-transparent focus:outline-none text-gray-600">
+              <i class="fas fa-search"></i>
+            </button>
+          </form>
+          <div id="create-episode-btn" class="border border-gray-300 py-1 px-4 text-sm bg-white hover:text-blue-500 hover:border-blue-500 cursor-pointer transition duration-300 rounded">
+            ＋ 新增單集
+          </div>
+        </div>
+        <!-- 單集列表 -->
+        <div class="mt-6">
+          <table class="border border-gray-200 w-full">
+            <thead class="bg-red-50 text-sm">
+              <th class="p-2 w-24"></th>
+              <th class="p-2 w-10">#</th>
+              <th class="p-2 text-left">標題</th>
+              <th class="p-2 w-40 text-right">發布日期</th>
+              <th class="p-2 w-20">連結</th>
+            </thead>
+            <tbody class="bg-white">
+              <% @podcast.episodes.each do |episode| %>
+                <tr>
+                  <td class="p-2 w-24"><%= image_tag(@podcast.cover.url) if @podcast.cover? %></td>
+                  <td class="w-10"><%= link_to "S#{episode.season}E#{episode.episode}", podcast_episode_path(@podcast.random_url, episode.random_url), class: "block py-4 px-2" %></td>
+                  <td class="text-left"><%= link_to episode.title, podcast_episode_path(@podcast.random_url, episode.random_url), class: "block py-4 px-2" %></td>
+                  <td class="w-40 text-right text-sm">
+                    <%= link_to "#{episode.created_at.strftime('%m月%d日 %H:%M')}<br>#{episode.created_at.strftime('%Y年')}".html_safe, podcast_episode_path(@podcast.random_url, episode.random_url), class: "block p-2" %>
+                  </td>
+                  <td class="p-2 text-center w-20"><span id="episodeLink" class="cursor-pointer border border-gray-200 text-gray-400 hover:border-blue-400 hover:text-blue-400 rounded-full py-1 px-2"><i class="fas fa-link"></i></span></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+       </section>
+     </div>
+    <!-- Footer -->
+    <div class="absolute bottom-0 w-full">
+      <%= render '/backend/footer' %>
+    </div>
+  </div>
+</div>

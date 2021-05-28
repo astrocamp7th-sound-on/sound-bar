@@ -1,10 +1,102 @@
-<h1>數據總覽</h1>
+<div class="flex">
+  <div class="bg-blue-50 border-r border-gray-300 min-w-2xl sm:w-0 w-60"><%= render '/backend/sidebar' %></div>
+  <div class="flex flex-col w-full relative bg-gray-100 min-h-screen">
+    <!-- NavBar -->
+    <div class="absolute top-0 w-full">
+      <%= render '/backend/navbar' %>
+    </div>
+    <!-- 上半框 -->
+    <div class="bg-white mt-20">
+      <div class="container container-donate w-2/3 mx-auto py-6 bg-white">
+        <h1 class="text-xl font-black">數據總覽</h1>
+      </div>
+    </div>
+    <!-- 下半框 -->
+    <div class="bg-gray-100">
+      <section class="font-medium flex flex-wrap container w-2/3 mx-auto mt-6">
+        <!-- 關鍵數據 -->
+        <div class="key-data bg-white flex-grow w-full my-3">
+          <div class="border-b border-gray-200 p-3">
+            <label class="text-sm px-3">關鍵數據</label>
+          </div>
+          <div class="p-3">
+            <table>
+              <thead class="text-sm text-gray-400 font-thin">
+                <th class="px-3">累積不重複下載數</th>
+                <th class="px-3">平均單集不重複下載數</th>
+                <th class="px-3">近7天下載數</th>
+                <th class="px-3">近30天下載數</th>
+                <th class="px-3">已發佈集數</th>
+              </thead>
+              <tbody>
+                <td class="px-4">8</td>
+                <td class="px-4">4</td>
+                <td class="px-4">1</td>
+                <td class="px-4">6</td>
+                <td class="px-4"><%= @podcast.episodes.count %></td>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <!-- 最新單集 -->
+        <div class="key-data bg-white my-3 mr-3 w-2/6 flex-grow">
+          <div class="border-b border-gray-200 p-3">
+            <label class="text-sm px-3">最新單集</label>
+          </div>
+          <div class="latest-episode flex p-3">
+            <div class="w-32 h-32 mr-2">
+              <%= image_tag(@podcast.cover.url) if @podcast.cover? %>
+            </div>
+            <div class="episode-title ml-2">
+              <label class="text-lg font-semibold text-gray-800"><%= @podcast.episodes.last.title if @podcast.episodes.last %></label>
+              <p class="my-3 text-sm text-gray-600">發布日期：<%= @podcast.episodes.last.created_at.strftime("%Y-%m-%d") if not @podcast.episodes.last.nil? %></p>
+            </div>
+          </div>
+          <div class="download px-3">
+            <div class="mb-3 flex justify-between">
+              <span class="text-sm text-gray-900">不重複下載數</span>
+              <span class="">
+                <span class="text-xl font-bold mx-2">4</span>
+                <span>--</span>
+              </span>
+            </div>
+            <div class="mb-3 flex justify-between">
+              <span class="text-sm text-gray-900">發布7天不重複下載數</span>
+              <span>
+                <span class="text-xl font-bold mx-2">2</span>
+                <span>--</span>
+              </span>
+            </div>
+          </div>
 
-<section>
-  最新單集
-  <div>
-    <%= image_tag(@podcast.cover.url) if @podcast.cover? %>
-    <%= @podcast.episodes.last.title %>
-    <%= @podcast.episodes.last.created_at %>
+        </div>
+        <!-- 熱門單集 -->
+        <div class="key-data bg-white my-3 ml-3 w-3/6 flex-grow">
+          <div class="border-b border-gray-200 p-3">
+            <label class="text-sm px-3">熱門單集</label>
+          </div>
+          <div class="p-3">
+            <table class="w-full">
+              <thead class="text-sm text-gray-400 font-thin border-b border-gray-200 leading-8">
+                <th class="px-3 text-center w-1/12">#</th>
+                <th class="px-3 text-left w-7/12">單集標題</th>
+                <th class="px-3 text-right w-4/12">不重複下載數</th>
+              </thead>
+              <tbody class="text-gray-700">
+                <% @podcast.episodes.each_with_index do |episode, index| %>
+                  <td class="px-3 text-center w-1/12"><%= index + 1 %></td>
+                  <td class="px-3 text-left w-7/12"><%= episode.title %></td>
+                  <td class="px-3 text-right w-4/12">4</td>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </div>
+    <!-- Footer -->
+    <div class="absolute bottom-0 w-full">
+      <%= render '/backend/footer' %>
+    </div>
   </div>
-</section>
+</div>
