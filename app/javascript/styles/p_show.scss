@@ -8,10 +8,10 @@
   background-color: grey;
   overflow: hidden;
   max-height: 0;
-  transition:(max-height .3s);
+  transition: (max-height 0.3s);
 }
 #subscription:checked ~ .check-sign-up {
-max-height: 300px;
+  max-height: 300px;
 }
 .sign-up {
   color: blue;

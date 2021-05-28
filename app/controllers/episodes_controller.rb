@@ -6,10 +6,6 @@ class EpisodesController < ApplicationController
     @episodes = @podcast.episodes
   end
 
-  def new
-    @episode = Episode.new
-  end
-
   def create
     @episode = @podcast.episodes.new(episode_params)
     if @episode.save
@@ -20,9 +16,6 @@ class EpisodesController < ApplicationController
   end
 
   def show
-  end
-
-  def edit
   end
 
   def update

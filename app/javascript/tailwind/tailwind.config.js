@@ -9,11 +9,11 @@ module.exports = {
   theme: {
     extend: {},
     screens: {
-      xs: '360px',
-      sm: '576px',
-      md: '768px',
-      lg: '992px',
-      xl: '1440px',
+      xs: "360px",
+      sm: "576px",
+      md: "768px",
+      lg: "992px",
+      xl: "1440px",
     },
   },
   variants: {
