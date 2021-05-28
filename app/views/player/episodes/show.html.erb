@@ -1,30 +1,32 @@
-<%= link_to "返回#{@podcast.name}", player_podcast_path(@podcast.random_url) %>
+<div class="container mx-auto">
+  <%= link_to "返回#{@podcast.name}", player_podcast_path(@podcast.random_url) %>
 
-<h1><%= @episode.title %></h1>
-<ul>
-  <li>關鍵字：<%= @episode.keyword %></li>
-  <li>描述：<%= @episode.description %></li>
-</ul>
+  <h1><%= @episode.title %></h1>
+  <ul>
+    <li>關鍵字：<%= @episode.keyword %></li>
+    <li>描述：<%= @episode.description %></li>
+  </ul>
 
 
 
-<h2>節目播放器：</h2>
+  <h2>節目播放器：</h2>
 
-<audio controls="controls" preload="none" autostart="false">
-    <source src="<%= @episode.recording.url %>" type="audio/mp3"></source>
-</audio>
+  <audio controls="controls" preload="none" autostart="false">
+      <source src="<%= @episode.recording.url %>" type="audio/mp3"></source>
+  </audio>
 
-<h3>留言</h3>
+  <h3>留言</h3>
 
-<%= simple_form_for @comment, url: player_podcast_episode_comments_path(@podcast.random_url, @episode.random_url), remote: true do |f| %>
-  <div>
-    <%= f.input :content, label: "留言內容" %>
-  </div>
-    <%= f.button :submit, class: "btn btn-primary" %>
-<% end %>
+  <%= simple_form_for @comment, url: player_podcast_episode_comments_path(@podcast.random_url, @episode.random_url), remote: true do |f| %>
+    <div>
+      <%= f.input :content, label: "留言內容" %>
+    </div>
+      <%= f.button :submit, class: "btn btn-primary" %>
+  <% end %>
 
-<ul id="comment_area">
-<% @comments.each do |comment| %>
-  <li><%= comment.content %></li>
-<% end %>
-</ul>
+  <ul id="comment_area">
+  <% @comments.each do |comment| %>
+    <li><%= comment.content %></li>
+  <% end %>
+  </ul>
+</div>

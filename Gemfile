@@ -80,5 +80,5 @@ gem 'devise', '~> 4.2'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
-#解跨站請求問題
+# 解跨站請求問題
 gem 'omniauth-rails_csrf_protection'
