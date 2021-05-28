@@ -48,7 +48,7 @@
               <%= image_tag(@podcast.cover.url) if @podcast.cover? %>
             </div>
             <div class="episode-title ml-2">
-              <label class="text-lg font-semibold text-gray-800"><%= @podcast.episodes.last.title if not @podcast.episodes.last.nil? %></label>
+              <label class="text-lg font-semibold text-gray-800"><%= @podcast.episodes.last.title if @podcast.episodes.last %></label>
               <p class="my-3 text-sm text-gray-600">發布日期：<%= @podcast.episodes.last.created_at.strftime("%Y-%m-%d") if not @podcast.episodes.last.nil? %></p>
             </div>
           </div>
