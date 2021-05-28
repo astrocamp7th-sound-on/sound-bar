@@ -1,6 +1,7 @@
 import "./donate"
 
-document.addEventListener('turbolinks:load', function() {
+// 使用者登入後的節目列表搜尋框
+let searchForm = document.querySelector(".search-form")
 
   let searchForm = document.querySelector('.search-form')
   let createPodcastBtn = document.querySelector('.create-podcast-btn')
@@ -66,8 +67,8 @@ document.addEventListener('turbolinks:load', function() {
     searchForm.addEventListener('focusin', (e) => {
       e.target.parentElement.classList.add('search-bar-ring');
     })
-    searchForm.addEventListener('focusout', (e) => {
-      e.target.parentElement.classList.remove('search-bar-ring');
+    searchForm.addEventListener("focusout", (e) => {
+      e.target.parentElement.classList.remove("search-bar-ring")
     })
   }
 
