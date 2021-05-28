@@ -1,0 +1,46 @@
+<div class="h-full min-h-screen bg-blue-50">
+  <div class="flex flex-col items-center mt-3">
+    <%= link_to image_tag("new_logo_black", size: "160x160"), podcasts_path %>
+    <div class="w-24 h-24 pt-3 bg-red-300">
+      <%= image_tag(@podcast.cover.url, size: "160x160") if @podcast.cover.present? %>
+    </div>
+  </div>
+  <ul class="m-3 p-3">
+    <li class="sidebar_list">
+      <a href="">
+        <span class="p-1"><i class="fas fa-tachometer-alt"></i></span>
+        <%= link_to "數據總覽", dashboard_podcast_path(@podcast.random_url) %>
+      </a>
+    </li>
+    <li class="sidebar_list">
+      <a href="">
+        <span class="p-1"><i class="far fa-file-alt"></i></span>
+        <%= link_to "節目資訊", info_podcast_path(@podcast.random_url) %>
+      </a>
+    </li>
+    <li class="sidebar_list">
+      <a href="">
+        <span class="p-1"><i class="fas fa-list-ul"></i></span>
+        <%= link_to "單集列表", podcast_episodes_path(@podcast.random_url) %>
+      </a>
+    </li>
+    <li class="sidebar_list">
+      <a href="">
+        <span class="p-1"><i class="fas fa-chart-line"></i></span>
+        <span>分析</span>
+      </a>
+    </li>
+    <li class="sidebar_list">
+      <a href="">
+        <span class="p-1"><i class="far fa-file-alt"></i></span>
+        <%= link_to "創作資源", resource_music_podcast_path(@podcast.random_url) %>
+      </a>
+    </li>
+    <li class="sidebar_list">
+      <a href="">
+        <span class="p-1"><i class="fas fa-comment-dollar"></i></span>
+        <%= link_to "創作營利", donate_podcast_path(@podcast.random_url) %>
+      </a>
+    </li>
+  </ul>
+</div>

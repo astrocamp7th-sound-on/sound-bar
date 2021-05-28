@@ -1,5 +1,5 @@
 class PodcastsController < ApplicationController
-  before_action :find_podcast, only: [:edit, :show, :destroy, :dashboard, :donate]
+  before_action :find_podcast, only: [:info, :destroy, :dashboard, :music, :donate]
 
   def index
     @podcasts = Podcast.order(id: :desc)
@@ -19,11 +19,7 @@ class PodcastsController < ApplicationController
     end
   end
 
-  def show
-    @episodes = @podcast.episodes
-  end
-
-  def edit
+  def info
   end
 
   def update
@@ -50,7 +46,6 @@ class PodcastsController < ApplicationController
   end
 
   def donate
-
   end
 
   private

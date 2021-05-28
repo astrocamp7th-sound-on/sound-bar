@@ -11,5 +11,9 @@ if (searchForm) {
     searchForm.addEventListener("focusout", (e) => {
       e.target.parentElement.classList.remove("search-bar-ring")
     })
-  })
-}
+  }
+
+
+
+
+})
