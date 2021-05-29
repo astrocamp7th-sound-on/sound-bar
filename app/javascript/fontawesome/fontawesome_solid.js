@@ -15,6 +15,8 @@ import {
   faLink,
   faChevronDown,
   faTimes,
+  faAngleLeft,
+  faAngleRight,
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
@@ -31,6 +33,8 @@ library.add(
   faLink,
   faChevronDown,
   faTimes,
+  faAngleLeft,
+  faAngleRight,
 )
 
 dom.watch()
