@@ -24,4 +24,3 @@ document.addEventListener("turbolinks:load", function () {
     })
   }
 })
-那好像差不多惹

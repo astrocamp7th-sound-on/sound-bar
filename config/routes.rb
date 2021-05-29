@@ -7,13 +7,13 @@ Rails.application.routes.draw do
 
   constraints subdomain: 'host' do
     resources :podcasts, except: [:new, :edit, :show] do
-      resources :episodes, except: [:new, :edit]
       member do
-        get 'dashboard', to: 'podcasts#dashboard'     #數據總覽
-        get 'info', to: 'podcasts#info'               #節目資訊
-        get 'resource/music', to: 'podcasts#music'    #創作資源-音效襯樂
-        get 'donate', to: 'podcasts#donate'           #創作營利
+        get :dashboard                           #數據總覽
+        get :info                                #節目資訊
+        get :donate                              #創作營利
+        get 'resource/music', action: 'music'    #創作資源-音效襯樂
       end
+      resources :episodes, except: [:new, :edit]
     end
 
   end

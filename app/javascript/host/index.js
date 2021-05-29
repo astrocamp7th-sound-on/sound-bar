@@ -1,4 +1,5 @@
 import "./donate"
+import "./info"
 
 document.addEventListener("turbolinks:load", function () {
 
