@@ -13,6 +13,7 @@ import "fontawesome"
 import "styles"
 import "podcasts"
 import "player"
+import "browser"
 
 Rails.start()
 Turbolinks.start()
