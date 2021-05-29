@@ -12,6 +12,7 @@ module.exports = {
         'indigo': '#394263',
         'titleblue': '#66C8FC',
         'footerbg': '#21253E',
+        'genresbg': '#505A7B',
       },
     },
     screens: {
