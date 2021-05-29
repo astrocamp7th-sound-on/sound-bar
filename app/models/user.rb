@@ -1,11 +1,9 @@
 class User < ApplicationRecord
-
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: [:facebook, :google_oauth2]
-
 
   has_many :subscriptions
   has_many :favorite_podcasts, through: :subscriptions, source: :podcast
@@ -39,6 +37,6 @@ class User < ApplicationRecord
   end
 
   def subscribe?(podcast)
-    subscriptions.exists?(podcast_id: podcast.id)
+    subscriptions.exists?(podcast: podcast)
   end
 end
