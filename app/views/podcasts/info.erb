@@ -1,3 +1,6 @@
+<!-- 關閉網頁播放器燈箱用 -->
+<div id="closePodcastBtn" class="w-screen h-screen cursor-auto fixed z-10 hidden">
+</div>
 
 <div class="flex">
   <div class="bg-blue-50 border-r border-gray-300 min-w-2xl sm:w-0 w-60"><%= render '/backend/sidebar' %></div>
@@ -9,7 +12,48 @@
     <!-- 上半框 -->
     <div class="bg-white mt-20">
       <div class="container container-donate w-2/3 mx-auto py-6 bg-white">
-        <h1 class="text-xl font-black">節目資訊</h1>
+        <div class="flex justify-between mt-6">
+          <h1 class="text-xl font-black">節目資訊</h1>
+          <span id="openPodcastBtn" class="flex justify-between items-center border border-gray-300 py-1 px-4 text-sm bg-white hover:text-blue-500 hover:border-blue-500 cursor-pointer transition duration-300 rounded relative">
+            <i class="far fa-caret-square-right"></i>
+            <p class="ml-2">網頁播放器</p>
+            <!-- 網頁播放器燈箱 -->
+            <div id="podcastLink" class="w-72 bg-white shadow-xl border-t border-gray-100 rounded p-5 cursor-auto absolute top-12 -left-20 z-30 hidden">
+              <section class="h-20 border-b border-blue-50 flex flex-wrap justify-between">
+                <p class="text-gray-700 hover:text-gray-700">連結</p>
+                <div class="flex">
+                  <%= link_to "開啟連結", player_podcast_url(@podcast.random_url, subdomain: "player"), class: "text-blue-500 hover:text-blue-400 mr-1", target: "_blank" %>
+                  <span id="copyPodcastSpan" class="cursor-pointer text-blue-500 hover:text-blue-400 ml-1">
+                    複製連結
+                  </span>
+                </div>
+                <div class="flex-grow">
+                  <span class="flex justify-between border border-gray-200 mt-3 mb-10 py-1 bg-gray-100 rounded hover:border hover:border-blue-500 transition duration-300">
+                    <%= link_to '<i class="fas fa-link"></i>'.html_safe, player_podcast_url(@podcast.random_url, subdomain: "player"), class: "text-blue-500 ml-2 hover:text-blue-400 transition duration-200", target: "_blank" %>
+                    <input type="text" id="playerPodcastLinkInput" class="flex-grow mx-2 bg-gray-100 text-gray-400 cursor-not-allowed focus:outline-none" readonly value="<%= player_podcast_url(@podcast.random_url) %>">
+                    <span class="copy-podcast-link cursor-pointer text-gray-400 mr-2 hover:text-gray-300"><i class="far fa-copy"></i></span>
+                  </span>
+                </div>
+              </section>
+              <section class="h-20 mt-2 border-b border-blue-50 flex flex-wrap justify-between">
+                <p class="text-gray-700 hover:text-gray-700">好記短網址</p>
+                <div class="flex">
+                  <%= link_to "開啟連結", player_podcast_url(@podcast.slug, subdomain: "player"), class: "text-blue-500 hover:text-blue-400 mr-1", target: "_blank" %>
+                  <span id="copyPodcastSlugSpan" class="cursor-pointer text-blue-500 hover:text-blue-400 ml-1">
+                    複製連結
+                  </span>
+                </div>
+                <div class="flex-grow">
+                  <span class="flex justify-between border border-gray-200 mt-3 mb-10 py-1 bg-gray-100 rounded hover:border hover:border-blue-500 transition duration-300">
+                    <%= link_to '<i class="fas fa-link"></i>'.html_safe, player_podcast_url(@podcast.slug, subdomain: "player"), class: "text-blue-500 ml-2 hover:text-blue-400 transition duration-200", target: "_blank" %>
+                    <input type="text" id="playerPodcastSlugLinkInput" class="flex-grow mx-2 bg-gray-100 text-gray-400 cursor-not-allowed focus:outline-none" readonly value="<%= player_podcast_url(@podcast.slug) %>">
+                    <span class="copy-podcast-slug-link cursor-pointer text-gray-400 mr-2 hover:text-gray-300"><i class="far fa-copy"></i></span>
+                  </span>
+                </div>
+              </section>
+            </div>
+          </span>
+        </div>
       </div>
     </div>
     <!-- 下半框 -->
@@ -50,7 +94,7 @@
           <%= f.input :explicit, input_html:{class: "m-2 p-2" }, label: "兒童不宜" %>
         </section>
         <div class="flex justify-between mt-6">
-          <%= link_to "刪除節目", podcast_path(@podcast.random_url), method: "delete", data: {confirm: "是否確認刪除？"}, class: "mx-1 text-red-500 border border-red-500 py-2 px-4 text-sm bg-white hover:text-red-400 hover:border-red-400 cursor-pointer transition duration-300 rounded" %>
+          <%= link_to "刪除節目", podcast_path(@podcast.random_url), method: :delete, data: {confirm: "是否確認刪除？"}, class: "mx-1 text-red-500 border border-red-500 py-2 px-4 text-sm bg-white hover:text-red-400 hover:border-red-400 cursor-pointer transition duration-300 rounded" %>
           <%= f.submit "儲存", class: "mx-2 text-white py-2 px-4 text-sm bg-blue-500 hover:bg-blue-400 cursor-pointer transition duration-300 rounded" %>
         </div>
         <% end %>
