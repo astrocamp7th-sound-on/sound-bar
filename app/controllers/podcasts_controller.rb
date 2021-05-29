@@ -13,7 +13,7 @@ class PodcastsController < ApplicationController
     if @podcast.save
       redirect_to podcasts_path, notice: "新增節目成功"
     else
-      render :new
+      redirect_to podcasts_path, notice: "新增節目失敗"
     end
   end
 
@@ -27,7 +27,7 @@ class PodcastsController < ApplicationController
       redirect_to cookies[:return_to_url] || podcasts_path, notice: "編輯節目成功"
       cookies[:return_to_url] = nil
     else
-      render :edit
+      render :info
     end
   end
 

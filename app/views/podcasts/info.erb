@@ -10,8 +10,8 @@
       <%= render '/backend/navbar' %>
     </div>
     <!-- 上半框 -->
-    <div class="bg-white mt-20">
-      <div class="container container-donate w-2/3 mx-auto py-6 bg-white">
+    <div class="bg-white mt-11">
+      <div class="container container-donate w-11/12 mx-auto py-6 bg-white">
         <div class="flex justify-between mt-6">
           <h1 class="text-xl font-black">節目資訊</h1>
           <span id="openPodcastBtn" class="flex justify-between items-center border border-gray-300 py-1 px-4 text-sm bg-white hover:text-blue-500 hover:border-blue-500 cursor-pointer transition duration-300 rounded relative">
@@ -58,10 +58,10 @@
     </div>
     <!-- 下半框 -->
     <div class="bg-gray-100 mb-16">
-      <section class="container container-info w-2/3 mx-auto mt-6">
+      <section class="container container-info w-11/12 mx-auto mt-6">
         <%= simple_form_for @podcast, url: podcast_path(@podcast.random_url) do |f| %>
         <div class="flex justify-between">
-          <span id="create-episode-btn" class="flex justify-between items-center border border-gray-300 pt-1 pb-2 px-4 text-sm bg-white hover:text-blue-400 hover:border-blue-400 cursor-pointer transition duration-300 rounded">
+          <span class="flex justify-between items-center border border-gray-300 pt-1 pb-2 px-4 text-sm bg-white hover:text-blue-400 hover:border-blue-400 cursor-pointer transition duration-300 rounded">
             重置
           </span>
           <%= f.submit "儲存", class: "mx-2 text-white py-2 px-4 text-sm bg-blue-500 hover:bg-blue-400 cursor-pointer transition duration-300 rounded" %>
@@ -72,13 +72,16 @@
             <%= f.input :artist, input_html:{class: "edit-form" }, label: "創作者名稱" %>
             <%= f.input :email, input_html:{class: "edit-form" }, label: "Email" %>
           </div>
-          <div class="podcast-cover w-56 h-64 pr-2 pt-2 rounded flex flex-col flex-shrink-0 items-end">
+          <div class="w-56 h-64 pr-2 pt-2 rounded flex flex-col flex-shrink-0 items-center">
             <div class="w-48 h-48 rounded-lg bg-gray-300"><%= image_tag(@podcast.cover.url) if @podcast.cover? %></div>
-            <%= f.input :cover, as: :file, input_html:{class: "w-36 border border-gray-300 my-2 mx-4 py-1 px-4 text-sm bg-white hover:text-blue-400 hover:border-blue-400 cursor-pointer transition duration-300 rounded" }, label: false %>
+            <label class="border border-gray-300 my-2 mx-4 pt-1 px-4 text-sm bg-white hover:text-blue-400 hover:border-blue-400 cursor-pointer transition duration-300 rounded">
+              上傳封面圖片
+              <%= f.input :cover, as: :file, input_html:{class: "hidden" }, label: false %>
+            </label>
           </div>
         </section>
         <section class="w-full mt-6 p-4 bg-white rounded border border-gray-200 text-sm">
-          <%= f.input :description, input_html:{class: "edit-form" }, label: "描述", placeholder: "描述這個 Podcast 所包含的內容。" %>
+          <%= f.input :description, input_html:{class: "edit-form" }, label: "描述" %>
           <%= f.input :subtitle, input_html:{class: "edit-form" }, label: "Subtitle" %>
         </section>
         <section class="w-full mt-6 p-4 bg-white rounded border border-gray-200 text-sm">
