@@ -1,5 +1,4 @@
-<html class="bg-indigo">
-  <header class="flex justify-between">
+  <header class="flex justify-between bg-indigo">
     <div class="flex m-4 justify-center md:justify-start">
       <%= link_to image_tag("logo_trans", size: "250x250"), "/#" %>
     </div>
@@ -8,8 +7,9 @@
     </form>
   </header>
 
-  <section class="container player_page grid relative ml-5 h-screen">
-    <div class="ml-5">
+<div class="bg-indigo">
+  <div class="max-w-screen-lg mx-auto h-screen">
+    <div class="ml-5 mr-5">
       <h1 class="text-4xl text-titleblue">隨時隨地, 找到頻率最對的聲音</h1>
       <div class="text-white mt-3">
         <p>經典並非老派</p>
@@ -18,40 +18,26 @@
         <p>人性化的設計讓您隨時擁有溫度的聲音</p>
       </div>
       <h2 class="text-white text-2xl mt-20 mb-6">新聲報到</h2>
-      <div class="flex">
-        <% @podcasts.each do |podcast| %>
+      <div class="wrapper relative">
         <button class="front_arrow">
           <i class="fas fa-chevron-left"></i>
         </button>
-        <div class="cover_line imgBox">
-          <div class="">
-            <div class="relative"><img src="https://picsum.photos/200/200/?random=1"></div>
-          </div>
-        </div>
-        <button class="back_arrow">
-          <i class="fas fa-chevron-right"></i>
-        </button>
-        <% end %>
-      </div>
-      <h2 class="text-white text-2xl mt-20 mb-6">熱議發燒</h2>
-      <div class="flex">
         <% @podcasts.each do |podcast| %>
-        <button class="front_arrow">
-          <i class="fas fa-chevron-left"></i>
-        </button>
         <div class="cover_line imgBox">
           <div class="">
-            <div class="relative"><img src="https://picsum.photos/200/200/?random=1"></div>
+            <div class="covers">
+              <img src="https://picsum.photos/200/200/?random=1">
+            </div>
           </div>
         </div>
-        <button class="back_arrow">
+        <% end %>
+        <button id="backArrow" class="back_arrow">
           <i class="fas fa-chevron-right"></i>
         </button>
-        <% end %>
       </div>
     </div>
-  </section>
+  </div>
+</div>
   <div>
     <%= render '/frontend/footer' %>
   </div>
-</html>

@@ -16,6 +16,8 @@ import {
   faChevronRight,
   faChevronLeft,
   faEnvelopeSquare,
+  faGlobeAmericas,
+  faShare
 } from '@fortawesome/free-solid-svg-icons';
 
 // fa regular
@@ -27,6 +29,7 @@ import {
 
 import {
   faFacebookSquare,
+  faFacebookF,
   faInstagramSquare,
   faMedium
 } from '@fortawesome/free-brands-svg-icons'
@@ -51,8 +54,11 @@ library.add(
   faChevronLeft,
   faEnvelopeSquare,
   faFacebookSquare,
+  faFacebookF,
   faInstagramSquare,
-  faMedium
+  faMedium,
+  faGlobeAmericas,
+  faShare
 )
 
 dom.watch()

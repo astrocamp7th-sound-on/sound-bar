@@ -1,34 +1,14 @@
-.player_page {
-  max-width: 1024px,
-}
-
-.container {
-  @apply mx-auto;
-}
-
 .cover_line {
-  @apply relative w-52 m-px transform hover:-translate-y-1 hover:scale-110 transition duration-300;
+  @apply m-px transform hover:scale-110 transition duration-300;
 }
 
-.imgBox {
-  display: inline-block;
-  overflow: hidden;
-  .imgBox img {
-    display: block;
-    transition: 1s ease-in-out;
-  }
-}
-
-.imgBox:hover img {
-  transform: scale(1.1);
-}
 
 .front_arrow {
-  @apply absolute left-0 z-10 bg-yellow-50 opacity-20 p-3 hover:opacity-50 duration-300;
+  @apply sticky left-0 z-10 bg-yellow-50 opacity-30 p-3 hover:opacity-50 duration-300;
 }
 
 .back_arrow {
-  @apply absolute right-0 z-10 bg-yellow-50 opacity-20 p-3 hover:opacity-50 duration-300;
+  @apply sticky right-0 z-10 bg-yellow-50 opacity-30 p-3 hover:opacity-50 duration-300;
 }
 
 .footerbg {
@@ -41,4 +21,33 @@
 
 .footer_copyright {
   @apply flex justify-center bg-footerbg text-gray-500 pb-5 pt-5 border-gray-400 border-t;
+}
+
+.cover_size {
+  width: 900px
+}
+
+.fb_icon {
+  @apply border-2 border-gray-500 rounded-full m-2 px-3 py-1 h-auto w-auto text-2xl hover:border-white hover:text-white duration-300;
+}
+
+.share_icon {
+  @apply border-2 border-gray-500 rounded-full m-2 px-2 py-1 h-auto w-auto text-2xl hover:border-white hover:text-white duration-300;
+}
+
+.button {
+  @apply text-white bg-green-500 rounded-lg font-medium px-4 py-3 transition duration-500 ease-in-out transform hover:-translate-x-0 hover:scale-105;
+}
+
+.wrapper {
+  display: flex;
+  overflow-x: auto;
+}
+
+.covers {
+  min-width: 150px;
+  height: 150px;
+}
+
+.move_back {
 }
