@@ -3,9 +3,7 @@ class Player::DonationsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:donate_outcome]
   before_action :find_podcast, only: [:new_donation, :donate!]
 
-  require 'erb'
   include ERB::Util
-  require 'digest'
 
   def new_donation
     @donation = @podcast.donations.new
@@ -59,7 +57,7 @@ class Player::DonationsController < ApplicationController
     mac_value = (Digest::SHA256.hexdigest url_encode(hash_params).gsub("%20","+").downcase).upcase
 
     # 此網址為綠界測試網址
-    ec_url = ENV["EC_TEST_URL"]
+    ec_url = ENV["EC_URL"]
 
     # 這邊是要傳給綠界的參數 Hash
     ec_params = { ChoosePayment: "Credit", ClientBackURL: client_back_url, EncryptType: "1", ItemName: "贊助節目：#{@podcast.name}", MerchantID: ENV["MERCHANT_ID"], MerchantTradeDate: trade_date, MerchantTradeNo: trade_no, PaymentType: ENV["PAYMENT_TYPE"], ReturnURL: return_url, TotalAmount: "#{@donation.amount}", TradeDesc: "soundbar_donate", CheckMacValue: mac_value }
