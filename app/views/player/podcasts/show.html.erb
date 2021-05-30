@@ -8,12 +8,12 @@
 </header>
 
 <div class="bg-indigo">
-  <div class="max-w-screen-lg mx-auto">
+  <div class="max-w-screen-lg mx-auto pt-10">
     <div class="">
       <span class="bg-genresbg m-10 py-1 px-5 text-white rounded-xl"><%= @podcast.genres %></span>
       <div class="ms:flex m-10 md:flex">
-        <div class="cover_size">
-          <%= image_tag(@podcast.cover.url) if @podcast.cover? %>
+        <div class="cover_size pr-5">
+          <%= image_tag(@podcast.cover.url, size: "900x900") if @podcast.cover? %>
         </div>
         <div>
           <ul class="">
@@ -28,22 +28,22 @@
           </ul>
         </div>
       </div>
-      <div class="flex justify-center m-5 p-5">
-        <button class="btn btn-primary text-xl">
+      <div class="flex justify-center p-5">
+        <button class="border rounded-md p-3 m-3 text-white bg-blue-500 hover:bg-blue-700">
           <%= link_to "贊助" , donate_player_podcast_path(@podcast.random_url)  %>
         </button>
         <% if user_signed_in? %>
         <button class="subscribed-btn <%= 'bg-red-400' if current_user.subscribe?(@podcast) %>" data-id="<%= @podcast.id %>">訂閱</button>
         <% else %>
           <div class="subscribe">
-            <button class="button m-2 text-xl">
+            <button class="button m-2">
               <label for="subscription">訂閱</label>
             </button>
             <input type="checkbox" id="subscription">
             <div class="check-sign-up">
               <span>訂閱前請先登入</span> </br>
               <div class="sign-up">
-                <%= link_to "＜登入＞" , new_user_registration_path %>
+              <%= link_to "＜登入＞" , new_user_registration_path %>
               </div>
             </div>
           </div>
@@ -53,40 +53,44 @@
   </div>
 </div>
 
-<div class="">
-  <div class="max-w-screen-lg mx-auto">
-    <div class="bg-white">
-      <div class="grid justify-center">
-        <h2 class="text-xl font-bold flex justify-center underline">Episode 節目列表</h2>
-        <table>
-          <thead>
-            <th class="table-content">季數／集數</th>
-            <th class="table-content">標題</th>
-            <th class="table-content">發布日期</th>
-            <th class="table-content"></th>
-            <th class="table-content"></th>
-            <th class="table-content"></th>
-          </thead>
-          <tbody>
-            <% @episodes.each do |episode| %>
-              <tr>
-                <td class="table-content">S<%= episode.season %>E<%= episode.episode %></td>
-                <td class="table-content"><%= episode.title %></td>
-                <td class="table-content"><%= episode.created_at %></td>
-                <td class="table-content button-link"><%= link_to "收聽" , player_podcast_episode_path(@podcast.random_url, episode.random_url) %></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-      </div>
-      <div class="flex justify-center">
-        <button class="border rounded-md p-3 m-3 text-white bg-blue-500 hover:bg-blue-700">
-          <%= link_to "返回 Podcast 節目列表" , podcasts_path %>
-        </button>
+<div class="bg-gray-100">
+  <div class="max-w-screen-lg mx-auto pt-10">
+    <div class="bg-white rounded-md">
+      <div class="flex justify-around">
+        <div class="pt-5 pb-5">
+          <%= image_tag(@podcast.cover.url, size: "180x180") if @podcast.cover? %>
+        </div>
+        <div class="grid jusfity-between pt-5 pb-5">
+          <% @episodes.each do |episode| %>
+          <p class="text-2xl">
+            <span class="pr-1">EP.<%= episode.episode %></span>
+            <span>｜</span>
+            <span><%= episode.title %></span>
+          </p>
+          <p class="font-extralight"><%= episode.description %></p>
+          <div class="flex items-end justify-between">
+            <p class="align-bottom"><span class="pr-2"><i class="far fa-clock"></i></span>12:10</p>
+            <p class="">
+              <span class="pr-2"><i class="far fa-calendar-alt"></i></span>
+              <span><%= episode.created_at %></span>
+            </p>
+          </div>
+        </div>
+        <div class="play_button my-auto"><a href=""><i class="fas fa-play-circle"></i></a>
+          <%= link_to "Play" , player_podcast_episode_path(@podcast.random_url, episode.random_url) %>
+        </div>
+          <% end %>
       </div>
     </div>
   </div>
+  <div class="flex justify-center">
+    <button class="border rounded-md p-3 m-3 text-white bg-blue-500 hover:bg-blue-700">
+      <%= link_to "返回 Podcast 節目列表" , podcasts_path %>
+    </button>
+  </div>
 </div>
+
+
 
 <%= render '/frontend/footer' %>
 

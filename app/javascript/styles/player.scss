@@ -23,10 +23,6 @@
   @apply flex justify-center bg-footerbg text-gray-500 pb-5 pt-5 border-gray-400 border-t;
 }
 
-.cover_size {
-  width: 900px
-}
-
 .fb_icon {
   @apply border-2 border-gray-500 rounded-full m-2 px-3 py-1 h-auto w-auto text-2xl hover:border-white hover:text-white duration-300;
 }
@@ -36,7 +32,7 @@
 }
 
 .button {
-  @apply text-white bg-green-500 rounded-lg font-medium px-4 py-3 transition duration-500 ease-in-out transform hover:-translate-x-0 hover:scale-105;
+  @apply border rounded-md p-3 m-3 text-white bg-green-500 hover:bg-green-700;
 }
 
 .wrapper {
@@ -50,4 +46,8 @@
 }
 
 .move_back {
+}
+
+.play_button {
+  @apply text-titleblue text-4xl;
 }

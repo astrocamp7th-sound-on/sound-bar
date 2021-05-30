@@ -17,14 +17,17 @@ import {
   faChevronLeft,
   faEnvelopeSquare,
   faGlobeAmericas,
-  faShare
+  faShare,
+  faPlayCircle
 } from '@fortawesome/free-solid-svg-icons';
 
 // fa regular
 import {
   faFileAlt,
   faCopy,
-  faTimesCircle
+  faTimesCircle,
+  faCalendarAlt,
+  faClock
 } from '@fortawesome/free-regular-svg-icons';
 
 import {
@@ -58,7 +61,10 @@ library.add(
   faInstagramSquare,
   faMedium,
   faGlobeAmericas,
-  faShare
+  faShare,
+  faPlayCircle,
+  faCalendarAlt,
+  faClock
 )
 
 dom.watch()
