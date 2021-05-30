@@ -10,10 +10,10 @@ class PodcastsController < ApplicationController
   def create
     @podcast = Podcast.new(podcast_params)
 
-    if @podcast.save
+    if @podcast.save!
       redirect_to podcasts_path, notice: "新增節目成功"
     else
-      render :new
+      redirect_to @podcast
     end
   end
 
@@ -50,6 +50,8 @@ class PodcastsController < ApplicationController
   def podcast_params
     params.require(:podcast).permit(:avatar, :name, :artist, :email, :language, :slug, :genres, :description, :subtitle, :weblink, :copyright, :explicit, :status, :cover, :donate_title)
   end
+
+
 
   def find_podcast
     @podcast = Podcast.find_by(random_url: params[:id])

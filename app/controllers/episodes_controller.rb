@@ -16,7 +16,7 @@ class EpisodesController < ApplicationController
       redirect_to podcast_path(@podcast.random_url), notice: "新增單集成功"
     else
       render :new
-    end
+    endx
   end
 
   def show
@@ -39,6 +39,15 @@ class EpisodesController < ApplicationController
   end
 
   private
+  def send_mail
+    @episode = @podcast.episodes.new(episode_params)
+    if @episode.save
+      @users = @episode.podcast.subsscribers
+        SubscribeMailer.send_notification_to(@user).deliver_now
+      end
+    end
+  end
+
   def episode_params
     params.require(:episode).permit(:audio, :title, :description, :keyword, :season, :episode, :explicit, :status, :recording)
   end

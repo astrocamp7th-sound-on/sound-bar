@@ -1,13 +1,13 @@
 import "./donate"
 
 // 使用者登入後的節目列表搜尋框
-
+document.addEventListener("turbolinks:load", function () {
 
   let searchForm = document.querySelector('.search-form')
   let createPodcastBtn = document.querySelector('.create-podcast-btn')
   let closeCreatePodcast = document.querySelector('.close-create-podcast')
   let createEpisodeBtn = document.querySelectorAll('.create-episode-btn')
-  let closeCreateEpisode = document.querySelector('.close-create-episode')
+  let closeCreateEpisode = document.querySelector('#close-create-episode')
   let createEpisodeForm = document.querySelector('#createEpisodeFrom')
 
   // Episode 燈箱內容切換(主要/更多)
@@ -71,5 +71,7 @@ import "./donate"
       e.target.parentElement.classList.remove("search-bar-ring")
     })
   }
+})
+
 
 

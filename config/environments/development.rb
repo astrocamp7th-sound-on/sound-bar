@@ -33,8 +33,23 @@ Rails.application.configure do
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :local
 
+  config.action_mailer.default_url_options = { :host => 'localhost' }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:              'smtp.mailgun.org',
+    port:                 587,
+    domain:               'localhost',
+    user_name:            'postmaster@sandbox3cc6f29de571497c9b3885d51e6955ca.mailgun.org',
+    password:             'ceeea3ea3a4f18d720e3961149059732-f696beb4-cbc08f44',
+    authentication:       'plain',
+    enable_starttls_auto: true
+  }
+#   SMTP hostname: smtp.mailgun.org
+# Port: 587 (recommended)
+# Username: postmaster@sandbox3cc6f29de571497c9b3885d51e6955ca.mailgun.org
+# Default password: ceeea3ea3a4f18d720e3961149059732-f696beb4-cbc08f44
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
   config.action_mailer.perform_caching = false
 
