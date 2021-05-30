@@ -10,8 +10,13 @@
       <%= render '/backend/navbar' %>
     </div>
     <!-- 上半框 -->
+<<<<<<< HEAD
     <div class="bg-white mt-11">
       <div class="container container-donate w-11/12 mx-auto py-6 bg-white">
+=======
+    <div class="bg-white mt-20">
+      <div class="container container-donate w-2/3 mx-auto py-6 bg-white">
+>>>>>>> c160de18650b4a207ef49419d49202fe0650fe2c
         <div class="flex justify-between mt-6">
           <h1 class="text-xl font-black">節目資訊</h1>
           <span id="openPodcastBtn" class="flex justify-between items-center border border-gray-300 py-1 px-4 text-sm bg-white hover:text-blue-500 hover:border-blue-500 cursor-pointer transition duration-300 rounded relative">
@@ -58,10 +63,17 @@
     </div>
     <!-- 下半框 -->
     <div class="bg-gray-100 mb-16">
+<<<<<<< HEAD
       <section class="container container-info w-11/12 mx-auto mt-6">
         <%= simple_form_for @podcast, url: podcast_path(@podcast.random_url) do |f| %>
         <div class="flex justify-between">
           <span class="flex justify-between items-center border border-gray-300 pt-1 pb-2 px-4 text-sm bg-white hover:text-blue-400 hover:border-blue-400 cursor-pointer transition duration-300 rounded">
+=======
+      <section class="container container-info w-2/3 mx-auto mt-6">
+        <%= simple_form_for @podcast, url: podcast_path(@podcast.random_url) do |f| %>
+        <div class="flex justify-between">
+          <span id="create-episode-btn" class="flex justify-between items-center border border-gray-300 pt-1 pb-2 px-4 text-sm bg-white hover:text-blue-400 hover:border-blue-400 cursor-pointer transition duration-300 rounded">
+>>>>>>> c160de18650b4a207ef49419d49202fe0650fe2c
             重置
           </span>
           <%= f.submit "儲存", class: "mx-2 text-white py-2 px-4 text-sm bg-blue-500 hover:bg-blue-400 cursor-pointer transition duration-300 rounded" %>
