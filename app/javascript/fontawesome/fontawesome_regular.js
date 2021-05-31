@@ -7,6 +7,8 @@ import {
   faCopy,
   faTimesCircle,
   faCaretSquareRight,
+  faCalendarAlt,
+  faClock,
 } from '@fortawesome/free-regular-svg-icons'
 
 
@@ -16,6 +18,8 @@ library.add(
   faCopy,
   faTimesCircle,
   faCaretSquareRight,
+  faCalendarAlt,
+  faClock,
 )
 
 dom.watch()

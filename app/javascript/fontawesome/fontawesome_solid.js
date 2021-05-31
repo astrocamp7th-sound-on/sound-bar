@@ -13,6 +13,12 @@ import {
   faUser,
   faLock,
   faLink,
+  faChevronRight,
+  faChevronLeft,
+  faEnvelopeSquare,
+  faGlobeAmericas,
+  faShare,
+  faPlayCircle,
   faChevronDown,
   faTimes,
   faAngleLeft,
@@ -35,6 +41,12 @@ library.add(
   faTimes,
   faAngleLeft,
   faAngleRight,
+  faChevronLeft,
+  faChevronRight,
+  faEnvelopeSquare,
+  faGlobeAmericas,
+  faShare,
+  faPlayCircle,
 )
 
 dom.watch()
