@@ -2,7 +2,7 @@ class PodcastsController < ApplicationController
   before_action :find_podcast, only: [:info, :update, :destroy, :dashboard, :music, :donate]
 
   def index
-    @podcasts = Podcast.order(id: :desc)
+    @podcasts = Podcast.order(id: :desc).page(params[:page]).per(12)
     @podcast = Podcast.new
     @episode = Episode.new
   end

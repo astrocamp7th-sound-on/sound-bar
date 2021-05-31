@@ -3,7 +3,7 @@ class EpisodesController < ApplicationController
   before_action :find_episode, only: [:edit, :update, :show, :destroy]
 
   def index
-    @episodes = @podcast.episodes.order(id: :desc)
+    @episodes = @podcast.episodes.order(id: :desc).page(params[:page]).per(10)
     @episode = Episode.new
   end
 

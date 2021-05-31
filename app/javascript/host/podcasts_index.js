@@ -1,12 +1,4 @@
-import "./donate"
-import "./info"
-import "./show"
-import "./podcasts_index"
-import "./episodes_index"
-import "./episodes_index"
-
 document.addEventListener("turbolinks:load", function () {
-// 使用者登入後的節目列表搜尋框
   let searchForm = document.querySelector('.search-form')
   let createPodcastBtn = document.querySelector('.create-podcast-btn')
   let closeCreatePodcast = document.querySelector('.close-create-podcast')

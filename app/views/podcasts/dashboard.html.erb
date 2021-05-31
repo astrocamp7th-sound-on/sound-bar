@@ -45,7 +45,11 @@
           </div>
           <div class="latest-episode flex p-3">
             <div class="w-32 h-32 mr-2">
-              <%= image_tag(@episode.cover.url) if @episode.cover? %>
+              <% if @podcast.episodes.last %>
+                <%= image_tag(@podcast.episodes.last.cover.url) if @podcast.episodes.last.cover? %>
+              <% else %>
+                <%= image_tag(@podcast.cover.url) if @podcast.cover? %>
+              <% end %>
             </div>
             <div class="episode-title ml-2">
               <label class="text-lg font-semibold text-gray-800"><%= @podcast.episodes.last.title if @podcast.episodes.last %></label>
