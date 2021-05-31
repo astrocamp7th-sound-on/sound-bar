@@ -1,32 +1,83 @@
-<div class="container mx-auto">
-  <%= link_to "返回#{@podcast.name}", player_podcast_path(@podcast.random_url) %>
+<%= render '/frontend/header' %>
 
-  <h1><%= @episode.title %></h1>
-  <ul>
-    <li>關鍵字：<%= @episode.keyword %></li>
-    <li>描述：<%= @episode.description %></li>
-  </ul>
-
-
-
-  <h2>節目播放器：</h2>
-
-  <audio controls="controls" preload="none" autostart="false">
-      <source src="<%= @episode.recording.url %>" type="audio/mp3"></source>
-  </audio>
-
-  <h3>留言</h3>
-
-  <%= simple_form_for @comment, url: player_podcast_episode_comments_path(@podcast.random_url, @episode.random_url), remote: true do |f| %>
+<div class="bg-indigo pb-10">
+  <div class="max-w-screen-lg mx-auto">
     <div>
-      <%= f.input :content, label: "留言內容" %>
+      <div class="flex">
+        <div>
+          <div class="text-white text-2xl pt-5 pl-10">
+            <i class="fas fa-chevron-left"></i>
+            <%= link_to "返回", player_podcast_path(@podcast.random_url) %>
+          </div>
+        </div>
+        <div class="my-auto pl-5 pr-5"><%= image_tag(@podcast.cover.url, size: "70x70") if @podcast.cover? %></div>
+        <div class="grid">
+          <p class="p-1 text-white text-3xl"><%= @podcast.name %></p>
+          <p class="p-1 text-blue-300 text-xl"><%= @podcast.subtitle %></p>
+        </div>
+      </div>
     </div>
-      <%= f.button :submit, class: "btn btn-primary" %>
-  <% end %>
-
-  <ul id="comment_area">
-  <% @comments.each do |comment| %>
-    <li><%= comment.content %></li>
-  <% end %>
-  </ul>
+    <div>
+      <li class="flex justify-end pt-1 pr-7 text-gray-400">
+        <a href="" class="fb_icon"><i class="fab fa-facebook-f"></i></a>
+        <a href="" class="share_icon"><i class="fas fa-share"></i></a>
+      </li>
+    </div>
+    <div class="grid grid-cols-3 gap-3 rounded-lg bg-genresbg m-10">
+      <div class="m-10">
+        <%= image_tag(@podcast.cover.url, size: "230x230") if @podcast.cover? %>
+      </div>
+      <div class="mt-10">
+        <div class="text-white text-4xl">EP<%= @episode.episode %>｜<%= @episode.title %></div>
+        <div class="mt-8 text-gray-400">
+          <span class="pr-2"><i class="far fa-calendar-alt"></i></span>
+          <span class=""><%= @episode.created_at.strftime('%Y-%m-%d') %></div></span>
+        </div>
+        <div class="flex justify-end pr-5">
+          <button id="playerBtn" class="justify-center"><%= image_tag("play", size: "130x130")%></button>
+        </div>
+      </div>
+    </div>
+    <div>
+    </div>
+  </div>
 </div>
+
+<div class="bg-gray-100">
+  <div class="max-w-screen-lg mx-auto">
+    <div>
+      <p class="text-2xl pt-20 pb-5 pl-10">單輯描述</p>
+      <div class="border rounded-md bg-white">
+        <p class="p-10"><%= @episode.description %></p>
+      </div>
+    </div>
+
+    <div class="max-w-screen-lg mx-auto">
+      <div class="border rounded-md bg-titleblue m-10">
+        <h2 class="text-2xl m-10">留言區</h2>
+        <%= simple_form_for @comment, url: player_podcast_episode_comments_path(@podcast.random_url, @episode.random_url), remote: true do |f| %>
+          <div class="m-10">
+            <%= f.input :content, label: "留言內容", input_html:{ class:"fill-form "} %></div>
+          </div>
+          <div class="pb-10 pl-10">
+            <%= f.button :submit, "送出留言", class: "btn btn-primary" %>
+          </div>
+            <% end %>
+        <ul id="comment_area">
+        <% @comments.each do |comment| %>
+          <li><%= comment.content %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="player flex w-full justify-center fixed bottom-0 rounded-md pb-5 pt-5 bg-titleblue hidden">
+    <audio controls="controls" preload="none" autostart="false">
+        <source src="<%= @episode.recording.url %>" type="audio/mp3"></source>
+    </audio>
+  </div>
+</div>
+
+
+
+<%= render '/frontend/footer' %>
