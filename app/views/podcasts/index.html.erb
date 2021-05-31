@@ -1,63 +1,175 @@
-<header>
-  <div class="flex m-6 justify-center md:justify-start">
-    <%= link_to image_tag("new_logo_black", size: "280x280"), "/podcaster/podcasts" %>  </div>
-  <div class="flex justify-end m-3">
-    <div class="p-3">
-      <span class="p-1"><i class="far fa-user"></i></span>
-      <span><i class="fas fa-angle-down"></i></span>
-    </div>
-    <div class="p-3">
-      <span class="p-1"><i class="fas fa-globe"></i></span>
-      <span><i class="fas fa-angle-down"></i></span>
+<!-- 建立Podcast燈箱 -->
+<div class="create-podcast fixed w-full h-full bg-black bg-opacity-50 flex justify-end z-10 hidden">
+  <div class="create-podcast-content h-full bg-white flex justify-center relative">
+    <nav class="fixed top-0 shadow-md">
+      <div class="flex w-full justify-between">
+        <span class="py-4 px-6">
+          建立 Podcast
+        </span>
+        <span class="close-create-podcast cursor-pointer text-gray-400 hover:text-gray-500 py-4 px-6">
+          <i class="fas fa-times"></i>
+        </span>
       </div>
-    <div class="p-3">
-      <span><i class="fas fa-cog"></i></span>
+    </nav>
+    <!-- 表單內容 -->
+    <div class="my-16 overflow-y-auto">
+      <%= simple_form_for @podcast, url: podcasts_path do |f| %>
+      <section class="w-full py-2 flex">
+        <div class="podcast-cover w-56 h-80 pr-2 pt-2 rounded flex flex-col flex-shrink-0 items-end">
+          <div class="w-48 h-48 rounded-lg bg-gray-300"><%= image_tag(@podcast.cover.url) if @podcast.cover? %></div>
+          <%= f.input :cover, as: :file, input_html:{class: "w-36 border border-gray-300 my-2 mx-4 py-1 px-4 text-sm bg-white hover:text-blue-400 hover:border-blue-400 cursor-pointer transition duration-300 rounded" }, label: false %>
+        </div>
+        <div class="w-full text-sm pr-4">
+          <%= f.input :name, input_html:{class: "edit-form" }, label: "Podcast 節目名稱"%>
+          <%= f.input :artist, input_html:{class: "edit-form" }, label: "創作者名稱" %>
+          <%= f.input :email, input_html:{class: "edit-form" }, label: "Email" %>
+          <%= f.input :language, collection: ["繁體中文", "简体中文", "粵語", "English", "日本語", "한국어"], input_html:{class: "edit-form" }, label: "語言" %>
+        </div>
+      </section>
+      <section class="w-full px-6 text-sm">
+        <%= f.input :slug, input_html:{class: "edit-form" }, label: "好記短網址", hint: "必須為英文與數字，請勿使用特殊符號。" %>
+        <%= f.input :genres, collection: Podcast.genres.keys, input_html:{class: "edit-form" }, label: "類別" %>
+        <%= f.input :description, input_html:{class: "edit-form" }, label: "描述", placeholder: "描述這個 Podcast 所包含的內容。" %>
+        <%= f.input :subtitle, input_html:{class: "edit-form" }, label: "Subtitle" %>
+        <%= f.input :weblink, input_html:{class: "edit-form" }, label: "網站連結" %>
+        <%= f.input :copyright, input_html:{class: "edit-form" }, label: "版權宣告Copyright" %>
+        <%= f.input :explicit, input_html:{class: "m-2 p-2" }, label: "兒童不宜" %>
+      </section>
     </div>
+    <nav class="fixed bottom-0 border-t border-gray-200">
+      <div class="flex w-full justify-end p-3">
+        <span id="close-create-podcast" class="border border-gray-300 mx-2 py-2 px-4 text-sm bg-white hover:text-blue-400 hover:border-blue-400 cursor-pointer transition duration-300 rounded">
+          取消
+        </span>
+        <%= f.submit "儲存", class: "mx-2 text-white py-2 px-4 text-sm bg-blue-500 hover:bg-blue-400 cursor-pointer transition duration-300 rounded" %>
+      </div>
+    </nav>
+    <% end %>
   </div>
-</header>
-
-<div class="flex">
-  <p class="mx-2">Hi, <%= current_user.email %></p>
-  <p class="mx-2"><%= link_to "登出", destroy_user_session_path, method: "delete", class: "btn btn-success" %></p>
 </div>
 
-<h1 class="welcome">歡迎來到 SoundBar</h1>
+<!-- 新增單集燈箱 -->
+<div class="create-episode fixed w-full h-full bg-black bg-opacity-50 flex justify-end z-10 hidden">
+  <div class="create-episode-content h-full bg-white flex justify-center relative">
+    <nav class="fixed top-0 shadow-md">
+      <div class="flex w-full justify-between">
+        <span class="py-4 px-6">
+          建立單集
+        </span>
+        <span class="close-create-episode cursor-pointer text-gray-400 hover:text-gray-500 py-4 px-6">
+          <i class="fas fa-times"></i>
+        </span>
+      </div>
+    </nav>
+    <!-- 表單內容 -->
+    <div class="my-16 overflow-y-auto">
+      <%= simple_form_for @episode, url: podcasts_path do |f| %>
+      <div class="nav-tabs h-20 flex items-end border-b border-gray-100">
+        <ul class="inline-flex ml-4" id="createEpisodeFrom">
+          <li class="cursor-pointer hover:text-blue-400 font-medium mx-1 pt-3 pb-5 px-2 transition duration-200 text-blue-500 border-b-2 border-blue-400" id="mainEpisode">主要</li>
+          <li class="cursor-pointer hover:text-blue-400 font-medium mx-1 pt-3 pb-5 px-2 transition duration-200" id="moreEpisode">更多</li>
+        </ul>
+      </div>
+      <!-- 主要 -->
+      <section class="mainEpisode_content">
+        <section class="w-full p-2 pr-5 flex flex-col text-sm">
+          <%= f.input :recording, as: :file, input_html:{class: "flex-grow edit-form cursor-pointer" }, label: "完整檔案" %>
+          <%= f.input :title, input_html:{class: "edit-form" }, label: "標題" %>
+          <%= f.input :description, input_html:{class: "edit-form" }, label: "描述" %>
+          <%= f.input :keyword, input_html:{class: "edit-form" }, label: "關鍵字" %>
+          <div class="flex">
+            <%= f.input :episode, input_html:{class: "flex-grow edit-form" }, label: "集" %>
+            <%= f.input :season, input_html:{class: "flex-grow edit-form" }, label: "季" %>
+          </div>
+          <%= f.input :explicit, input_html:{class: "" }, label: "兒童不宜" %>
+        </section>
+      </section>
+      <!-- 更多 -->
+      <section class="moreEpisode_content hidden">
+        <section class="w-full py-2 flex">
+          <div class="w-full text-sm pr-5">
+            <%= f.input :audio, input_html:{class: "edit-form" }, label: "Subtitle"%>
+            <%= f.input :audio, input_html:{class: "edit-form" }, label: "作者名稱" %>
+          </div>
+          <div class="podcast-cover w-56 h-64 pr-2 pt-2 rounded flex flex-col flex-shrink-0 items-end">
+            <div class="w-48 h-48 rounded-lg bg-gray-300"><%= image_tag(@podcast.cover.url) if @podcast.cover? %></div>
+            <%= f.input :audio, as: :file, input_html:{class: "w-36 border border-gray-300 my-2 mx-4 py-1 px-4 text-sm bg-white hover:text-blue-400 hover:border-blue-400 cursor-pointer transition duration-300 rounded" }, label: false %>
+          </div>
+        </section>
+        <div class="p-2 pr-6">
+          <%= f.input :audio, as: :text, input_html:{class: "edit-form" }, label: "Summary"%>
+        </div>
+      </section>
+    </div>
+    <nav class="fixed bottom-0 border-t border-gray-200">
+      <div class="flex w-full justify-between p-3">
+        <span id="close-create-episode" class="border border-gray-300 mx-2 py-2 px-4 text-sm bg-white hover:text-blue-400 hover:border-blue-400 cursor-pointer transition duration-300 rounded">
+          取消
+        </span>
+        <div class="flex">
+          <span class="cursor-pointer border border-blue-500 text-blue-500 mx-2 py-2 px-4 text-sm bg-white hover:text-blue-400 hover:border-blue-400 cursor-pointer transition duration-300 rounded">
+            暫存草稿
+          </span>
+          <%= f.submit "儲存", class: "mx-2 text-white py-2 px-4 text-sm bg-blue-500 hover:bg-blue-400 cursor-pointer transition duration-300 rounded" %>
+        </div>
+      </div>
+    </nav>
+    <% end %>
+  </div>
+</div>
 
-<section class="bg-blue-50 h-full">
-  <div class="flex justify-between">
-    <form class="search-form border hover:border-blue-600 rounded flex my-auto ml-5">
-      <button class="search-btn focus:outline-none w-5 bg-white rounded-l text-gray-500 border-none p-2"><i class="fas fa-search"></i></button><input type="text" class="" placeholder="搜尋 Podcast">
-    </form>
-    <div>
-      <button class="ml-5 mt-5 mb-5 mr-5 rounded-lg p-2 text-lg text-white bg-blue-500 hover:shadow-inner duration-500 hover:bg-blue-400">
-        <%= link_to "建立 Podcast", new_podcast_path %>
-      </button>
+<div class="flex flex-col w-full relative bg-gray-100 min-h-screen">
+  <!-- NavBar -->
+  <div class="absolute top-0 w-full">
+    <%= render '/backend/navbar_index' %>
+  </div>
+  <!-- 上半框 -->
+  <div class="bg-white mt-20">
+    <div class="container container-donate w-2/3 mx-auto py-6 bg-white">
+      <h1 class="text-xl font-black">歡迎來到 SoundBar</h1>
     </div>
   </div>
-
-  <div class="flex items-center justify-center">
-    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 pb-5">
-      <% @podcasts.each do |podcast| %>
-        <div class="relative bg-white py-6 px-6 rounded-3xl w-80 my-4 shadow-xl transform hover:-translate-y-1 hover:scale-100">
-          <div class="flex">
-            <div class="p-3"><img src="https://picsum.photos/30/30/?random=1"></div>
-            <div>
-              <h3 class="font-black duration-500 hover:text-blue-500"><%= link_to podcast.name, podcast_path(podcast.random_url) %></h3>
-              <p class="font-light"><%= podcast.artist %></p>
+  <!-- 下半框 -->
+  <div class="bg-gray-100">
+    <section class="font-medium flex flex-wrap container w-2/3 mx-auto mt-6">
+      <!-- 搜尋框及建立Podcast -->
+      <div class="flex justify-between w-full">
+        <form class="search-form flex bg-white border border-gray-300 hover:border-blue-400 rounded transition duration-300">
+          <button class="mr-3 p-1 bg-transparent focus:outline-none text-gray-600">
+          <i class="fas fa-search"></i>
+          </button>
+          <input type="text" class="ml-3 p-1 bg-transparent focus:outline-none w-60" placeholder="搜尋單集">
+        </form>
+        <div class="create-podcast-btn py-1 px-4 text-sm text-white bg-blue-500 hover:bg-blue-400 cursor-pointer transition duration-300 rounded">
+          建立 Podcast
+        </div>
+      </div>
+      <!-- 節目列表 -->
+      <div class="grid grid-flow-row xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 xs:grid-cols-1 gap-x-8 w-full">
+        <% @podcasts.each do |podcast| %>
+          <div class="cursor-pointer relative bg-white mt-8 border border-gray-300 hover:border-gray-400 rounded ">
+            <div class="flex border-b border-gray-200">
+              <div class="w-14 h-14 p-10">
+                <%= image_tag(@podcast.cover.url, size: "30x30") if podcast.cover? %>
+              </div>
+              <div class="w-full">
+                <h3 class="font-semibold text-gray-800 pt-5"><%= link_to podcast.name, dashboard_podcast_path(podcast.random_url), class: "block" %></h3>
+                <%= link_to podcast.artist, dashboard_podcast_path(podcast.random_url), class: "block font-thin text-sm text-gray-600 pb-5" %>
+              </div>
+            </div>
+            <div class="flex justify-between">
+              <span class="create-episode-btn py-3 px-5 text-gray-400 hover:text-blue-400" data-random-url="<%= podcast.random_url %>"> ＋ 新增單集</span>
+              <%= link_to '<i class="far fa-caret-square-right"></i>'.html_safe, player_podcast_url(podcast.random_url, subdomain: "player"), class: "py-3 px-5 text-gray-400 hover:text-blue-400", target: "_blank" %>
             </div>
           </div>
-          <div class="border-t-2"></div>
-          <div class="flex justify-center">
-            <p class="pt-3 pr-3 hover:text-blue-700 duration-500"><%= link_to "編輯", info_podcast_path(podcast.random_url) %></p>
-            <p class="pt-3 hover:text-red-500 duration-500"><%= link_to "刪除", podcast_path(podcast.random_url), method: "delete", data: {confirm: "是否確認刪除？"} %></p>
-          </div>
-        </div>
-      <% end %>
+        <% end %>
       </div>
-    </div>
+    </section>
   </div>
-  <div>
-    <%= render '/layouts/footer' %>
+  <!-- Footer -->
+  <div class="absolute bottom-0 w-full">
+    <%= render '/backend/footer' %>
   </div>
-</section>
+</div>
+
 

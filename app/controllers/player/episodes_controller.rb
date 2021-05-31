@@ -7,7 +7,7 @@ class Player::EpisodesController < ApplicationController
     @comments = @episode.comments.order(id: :desc)
 
     rescue ActiveRecord::RecordNotFound
-      redirect_to browse_path, notice: "找不到節目"
+      redirect_to browse_path, notice: "找不到節目或單集"
 
   end
 end

@@ -3,7 +3,7 @@ zh-TW:
     "yes": '是'
     "no": '否'
     required:
-      text: '必填'
+      text: 'required'
       mark: '*'
       # You can uncomment the line below if you need to overwrite the whole required html.
       # When using html, text and mark won't be used.
@@ -49,6 +49,10 @@ zh-TW:
           attributes:
             content:
               blank: "必填"
+        donation:
+          attributes:
+            amount:
+              greater_than: "不得小於50元"
 
 
     # Examples

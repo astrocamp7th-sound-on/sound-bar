@@ -1,12 +1,9 @@
 class Player::DonationsController < ApplicationController
   # 為了接收綠界 POST 回來的參數，關閉此驗證才能收到
   skip_before_action :verify_authenticity_token, only: [:donate_outcome]
-
   before_action :find_podcast, only: [:new_donation, :donate!]
 
-  require 'erb'
   include ERB::Util
-  require 'digest'
 
   def new_donation
     @donation = @podcast.donations.new
@@ -50,20 +47,20 @@ class Player::DonationsController < ApplicationController
     @donation.update(tradeno: "#{trade_no}")
 
     # 將容易更改的參數設為變數，未來更改時比較彈性
-    clientbackurl = "http://player.localhost:3000/p/#{@podcast.id}"
-    returnurl = "https://e65a5d989913.ngrok.io/donate_outcome"
+    client_back_url = "http://player.#{ENV["DOMAIN"]}/p/#{@podcast.random_url}" # 返回節目
+    return_url = "https://#{ENV["NGROK_DOMAIN"]}/donate_outcome" # 接收綠界POST回來的參數用的URL
 
     # 綠界的加密規則，將參數前後增加固定的HashKey及HashIV，依照參數英文順序排列
-    hash_params = "HashKey=5294y06JbISpM5x9&ChoosePayment=Credit&ClientBackURL=#{clientbackurl}&EncryptType=1&ItemName=贊助節目：#{@podcast.name}&MerchantID=2000132&MerchantTradeDate=#{trade_date}&MerchantTradeNo=#{trade_no}&PaymentType=aio&ReturnURL=#{returnurl}&TotalAmount=#{@donation.amount}&TradeDesc=soundbar_donate&HashIV=v77hoKGq4kWxNNIS"
+    hash_params = "HashKey=#{ENV["EC_HASH_KEY"]}&ChoosePayment=Credit&ClientBackURL=#{client_back_url}&EncryptType=1&ItemName=贊助節目：#{@podcast.name}&MerchantID=#{ENV["MERCHANT_ID"]}&MerchantTradeDate=#{trade_date}&MerchantTradeNo=#{trade_no}&PaymentType=#{ENV["PAYMENT_TYPE"]}&ReturnURL=#{return_url}&TotalAmount=#{@donation.amount}&TradeDesc=soundbar_donate&HashIV=#{ENV["EC_HASH_IV"]}"
 
     # 根據綠界的加密規則，排列後要使用URLencode，之後轉成小寫，再將參數用SHA256加密並轉成大寫
     mac_value = (Digest::SHA256.hexdigest url_encode(hash_params).gsub("%20","+").downcase).upcase
 
     # 此網址為綠界測試網址
-    ec_url = "https://payment-stage.ecpay.com.tw/Cashier/AioCheckOut/V5"
+    ec_url = ENV["EC_URL"]
 
     # 這邊是要傳給綠界的參數 Hash
-    ec_params = { ChoosePayment: "Credit", ClientBackURL: "#{clientbackurl}", EncryptType: "1", ItemName: "贊助節目：#{@podcast.name}", MerchantID: "2000132", MerchantTradeDate: "#{trade_date}", MerchantTradeNo: "#{trade_no}", PaymentType: "aio", ReturnURL: "#{returnurl}", TotalAmount: "#{@donation.amount}", TradeDesc: "soundbar_donate", CheckMacValue: "#{mac_value}" }
+    ec_params = { ChoosePayment: "Credit", ClientBackURL: client_back_url, EncryptType: "1", ItemName: "贊助節目：#{@podcast.name}", MerchantID: ENV["MERCHANT_ID"], MerchantTradeDate: trade_date, MerchantTradeNo: trade_no, PaymentType: ENV["PAYMENT_TYPE"], ReturnURL: return_url, TotalAmount: "#{@donation.amount}", TradeDesc: "soundbar_donate", CheckMacValue: mac_value }
 
     # 將上面的參數(含加密後檢查碼) POST 到綠界
     repost(ec_url, params: ec_params)
@@ -77,16 +74,15 @@ class Player::DonationsController < ApplicationController
     @donation.update(ec_tradeno: "#{params["TradeNo"]}")
 
     # 綠界的加密規則，將參數前後增加固定的HashKey及HashIV，依照參數英文順序排列
-    hash_params = "HashKey=5294y06JbISpM5x9&CustomField1=#{params["CustomField1"]}&CustomField2=#{params["CustomField2"]}&CustomField3=#{params["CustomField3"]}&CustomField4=#{params["CustomField4"]}&MerchantID=2000132&MerchantTradeNo=#{@donation.tradeno}&PaymentDate=#{params["PaymentDate"]}&PaymentType=Credit_CreditCard&PaymentTypeChargeFee=#{params["PaymentTypeChargeFee"]}&RtnCode=1&RtnMsg=交易成功&SimulatePaid=0&StoreID=&TradeAmt=#{@donation.amount}&TradeDate=#{params["TradeDate"]}&TradeNo=#{params["TradeNo"]}&HashIV=v77hoKGq4kWxNNIS"
+    hash_params = "HashKey=#{ENV["EC_HASH_KEY"]}&CustomField1=#{params["CustomField1"]}&CustomField2=#{params["CustomField2"]}&CustomField3=#{params["CustomField3"]}&CustomField4=#{params["CustomField4"]}&MerchantID=#{ENV["MERCHANT_ID"]}&MerchantTradeNo=#{@donation.tradeno}&PaymentDate=#{params["PaymentDate"]}&PaymentType=Credit_CreditCard&PaymentTypeChargeFee=#{params["PaymentTypeChargeFee"]}&RtnCode=1&RtnMsg=交易成功&SimulatePaid=0&StoreID=&TradeAmt=#{@donation.amount}&TradeDate=#{params["TradeDate"]}&TradeNo=#{params["TradeNo"]}&HashIV=#{ENV["EC_HASH_IV"]}"
 
     # 根據綠界的加密規則，排列後要使用URLencode，之後轉成小寫，再將參數用SHA256加密並轉成大寫
     mac_value = (Digest::SHA256.hexdigest url_encode(hash_params).gsub("%20","+").downcase).upcase
 
     # 如果綠界傳來的參數裡，RtnMsg訊息是"交易成功"，且檢查碼吻合的話，就將贊助狀態改為paid
-    if mac_value == params["CheckMacValue"] && params["RtnMsg"] != "交易成功"
+    if mac_value == params["CheckMacValue"]
       @donation.pay!
       return "1|OK"
-    # 如果綠界傳來的參數裡，RtnMsg訊息是"交易成功"，但檢查碼不吻合，那可能是遭到駭客攻擊
     else
       @donation.fail!
       return "0|ERR"

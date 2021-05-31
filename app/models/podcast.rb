@@ -13,7 +13,7 @@ class Podcast < ApplicationRecord
   validates :genres, presence: true
 
   mount_uploader :cover, CoverUploader
-  before_create :generate_random_url
+  include Randomable
 
   enum genres: {
     Arts: "Arts",

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_23_100742) do
+ActiveRecord::Schema.define(version: 2021_05_29_061124) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,7 +19,6 @@ ActiveRecord::Schema.define(version: 2021_05_23_100742) do
     t.bigint "episode_id", null: false
     t.bigint "user_id", null: false
     t.string "content"
-    t.integer "star"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["episode_id"], name: "index_comments_on_episode_id"
@@ -39,15 +38,7 @@ ActiveRecord::Schema.define(version: 2021_05_23_100742) do
     t.index ["podcast_id"], name: "index_donations_on_podcast_id"
   end
 
-  create_table "episode_uploaders", force: :cascade do |t|
-    t.string "name"
-    t.string "attachment"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "episodes", force: :cascade do |t|
-    t.string "audio"
     t.string "title", null: false
     t.text "description", null: false
     t.string "keyword"
@@ -65,7 +56,6 @@ ActiveRecord::Schema.define(version: 2021_05_23_100742) do
   end
 
   create_table "podcasts", force: :cascade do |t|
-    t.string "avatar"
     t.string "name", null: false
     t.string "artist", null: false
     t.string "email", null: false
@@ -76,7 +66,6 @@ ActiveRecord::Schema.define(version: 2021_05_23_100742) do
     t.string "subtitle"
     t.string "weblink"
     t.string "copyright"
-    t.string "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "explicit"
@@ -98,7 +87,6 @@ ActiveRecord::Schema.define(version: 2021_05_23_100742) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "avatar"
     t.string "username"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

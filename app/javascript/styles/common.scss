@@ -3,19 +3,14 @@
 }
 
 .search-bar-ring {
-  @apply border-blue-600 ring-2 ring-blue-400;
+  @apply border-blue-400 ring ring-blue-100;
 }
 
 .welcome {
-  @apply text-2xl font-black ml-10 mt-5 mb-5;
+  @apply text-2xl font-black;
 }
-
-
 
 .podcast-info {
   @apply text-lg font-bold;
 }
 
-.create-episode {
-  @apply border rounded-md p-3 m-3 text-white bg-blue-500 hover:bg-blue-700 duration-300;
-}

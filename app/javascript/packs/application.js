@@ -9,12 +9,14 @@ import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 
 import "tailwind/application"
-import "fontawesome"
-import "styles"
-import "podcasts"
-import "player"
-import "browser"
 
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+import "fontawesome"
+import "styles"
+import "host"
+import "player"
+import "browser"
+

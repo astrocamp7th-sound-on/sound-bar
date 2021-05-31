@@ -6,25 +6,19 @@ Rails.application.routes.draw do
   get '/', to: 'pages#podcasters', constraints: { subdomain: 'podcasters'}
 
   constraints subdomain: 'host' do
-    resources :podcasts, except: [:edit] do
-      resources :episodes, except: [:show, :edit] do
-                                    # episodes#index #單集列表
-        collection do
-          get '/:id', to: 'episodes#edit', as: 'edit' #編輯單集
-        end
-      end
-
+    resources :podcasts, except: [:new, :edit, :show] do
       member do
-        get 'dashboard', to: 'podcasts#dashboard'     #數據總覽
-        get 'info', to: 'podcasts#edit'               #節目資訊
-        get 'resource/music', to: 'podcasts#music'    #創作資源-音效襯樂
-        get 'donate', to: 'podcasts#donate'           #創作營利
+        get :dashboard                           #數據總覽
+        get :info                                #節目資訊
+        get :donate                              #創作營利
+        get 'resource/music', action: 'music'    #創作資源-音效襯樂
       end
+      resources :episodes, except: [:new, :edit]
     end
 
   end
 
-  post '/donate_outcome', to: 'donations#donate_outcome'
+  post '/donate_outcome', to: 'player/donations#donate_outcome'
 
   #聽眾報到-web馬上收聽 參考:https://player.soundon.fm/browse
   constraints subdomain: 'player' do
@@ -32,7 +26,7 @@ Rails.application.routes.draw do
     get '/', to: redirect('/browse')
     get '/:whatever', to: redirect('/browse')
 
-    scope module: :player do                  # 參考 https://qiita.com/ryosuketter/items/9240d8c2561b5989f049
+    scope module: :player do
       resources :podcasts, path: '/p', as: "player_podcast", only: [:show] do
         member do
           post :subscriptions
@@ -40,7 +34,7 @@ Rails.application.routes.draw do
           post '/donate', to: 'donations#donate!'
         end
         resources :episodes, only: [:show], path: 'episodes' do
-          resources :comments, shallow: true, only: [:create]
+          resources :comments, only: [:create]
         end
       end
     end
