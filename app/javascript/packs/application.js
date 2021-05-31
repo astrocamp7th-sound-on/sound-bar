@@ -18,3 +18,5 @@ import "fontawesome"
 import "styles"
 import "host"
 import "player"
+import "browser"
+
