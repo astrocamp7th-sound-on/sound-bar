@@ -76,6 +76,8 @@ gem 'repost', '~> 0.3.8'
 gem 'aasm', '~> 5.2'
 # user login
 gem 'devise', '~> 4.2'
+# background process
+gem 'sidekiq'
 # third-party-login
 gem 'omniauth'
 gem 'omniauth-facebook'

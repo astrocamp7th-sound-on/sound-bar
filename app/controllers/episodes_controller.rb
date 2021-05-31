@@ -42,8 +42,10 @@ class EpisodesController < ApplicationController
   def send_mail
     @episode = @podcast.episodes.new(episode_params)
     if @episode.save
-      @users = @episode.podcast.subsscribers
-        SubscribeMailer.send_notification_to(@user).deliver_now
+      @users = @episode.podcast.subscribers
+      @users.each do |user|
+        user_id = user.id
+        HardWorker.perform_async(user_id)
       end
     end
   end
