@@ -3,15 +3,19 @@ class EpisodesController < ApplicationController
   before_action :find_episode, only: [:edit, :update, :show, :destroy]
 
   def index
-    @episodes = @podcast.episodes
+    @episodes = @podcast.episodes.order(id: :desc)
+    @episode = Episode.new
   end
 
   def create
+    cookies[:return_to_url] = request.referer
     @episode = @podcast.episodes.new(episode_params)
+
     if @episode.save
-      redirect_to podcast_path(@podcast.random_url), notice: "新增單集成功"
+      redirect_to podcast_episode_path(@podcast.random_url, @episode.random_url), notice: "新增單集成功"
     else
-      render :new
+      redirect_to cookies[:return_to_url], notice: "新增單集失敗"
+      cookies[:return_to_url] = nil
     end
   end
 
@@ -22,18 +26,18 @@ class EpisodesController < ApplicationController
     if @episode.update(episode_params)
       redirect_to podcast_episode_path(@podcast.random_url, @episode.random_url), notice: "編輯單集成功"
     else
-      render :edit
+      render :show
     end
   end
 
   def destroy
     @episode.delete
-    redirect_to podcast_path(@podcast.random_url), notice: "刪除單集成功"
+    redirect_to podcast_episodes_path(@podcast.random_url), notice: "刪除單集成功"
   end
 
   private
   def episode_params
-    params.require(:episode).permit(:audio, :title, :description, :keyword, :season, :episode, :explicit, :status, :recording)
+    params.require(:episode).permit(:title, :description, :keyword, :season, :episode, :explicit, :status, :recording, :cover, :artist)
   end
 
   def find_episode

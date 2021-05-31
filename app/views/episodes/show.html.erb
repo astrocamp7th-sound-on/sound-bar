@@ -1,3 +1,7 @@
+<!-- 關閉網頁播放器燈箱用 -->
+<div id="closeEpisodeBtn" class="w-screen h-screen cursor-auto fixed z-10 hidden">
+</div>
+
 <div class="flex">
   <div class="bg-blue-50 border-r border-gray-300 min-w-2xl sm:w-0 w-60"><%= render '/backend/sidebar' %></div>
   <div class="flex flex-col w-full relative bg-gray-100 min-h-screen">
@@ -6,14 +10,49 @@
       <%= render '/backend/navbar' %>
     </div>
     <!-- 上半框 -->
-    <div class="bg-white mt-20">
-      <div class="container container-donate w-2/3 mx-auto py-6 bg-white">
+    <div class="bg-white mt-13">
+      <div class="container container-show w-11/12 mx-auto py-6 bg-white">
         <h1 class="text-xl font-black"><%= @episode.title %></h1>
         <div class="flex justify-between mt-6">
           <p class="text-sm text-gray-500">發布於 <%= @episode.created_at.strftime('%Y年%m月%d日 %H:%M') %></p>
-          <span id="create-episode-btn" class="flex justify-between items-center border border-gray-300 py-1 px-4 text-sm bg-white hover:text-blue-500 hover:border-blue-500 cursor-pointer transition duration-300 rounded">
+          <span id="openEpisodeBtn" class="relative flex justify-between items-center border border-gray-300 py-1 px-4 text-sm bg-white hover:text-blue-500 hover:border-blue-500 cursor-pointer transition duration-300 rounded">
             <i class="far fa-caret-square-right"></i>
             <p class="ml-2">網頁播放器</p>
+            <!-- 網頁播放器燈箱 -->
+            <div id="episodeLink" class="w-72 bg-white shadow-xl border-t border-gray-100 rounded p-5 cursor-auto absolute top-12 -left-20 z-30 hidden">
+              <section class="h-20 border-b border-blue-50 flex flex-wrap justify-between">
+                <p class="text-gray-700 hover:text-gray-700">連結</p>
+                <div class="flex">
+                  <%= link_to "開啟連結", player_podcast_episode_url(@podcast.random_url, @episode.random_url, subdomain: "player"), class: "text-blue-500 hover:text-blue-400 mr-1", target: "_blank" %>
+                  <span id="copyEpisodeSpan" class="cursor-pointer text-blue-500 hover:text-blue-400 ml-1">
+                    複製連結
+                  </span>
+                </div>
+                <div class="flex-grow">
+                  <span class="flex justify-between border border-gray-200 mt-3 mb-10 py-1 bg-gray-100 rounded hover:border hover:border-blue-500 transition duration-300">
+                    <%= link_to '<i class="fas fa-link"></i>'.html_safe, player_podcast_episode_url(@podcast.random_url, @episode.random_url, subdomain: "player"), class: "text-blue-500 ml-2 hover:text-blue-400 transition duration-200", target: "_blank" %>
+                    <input type="text" id="playerEpisodeLinkInput" class="flex-grow mx-2 bg-gray-100 text-gray-400 cursor-not-allowed focus:outline-none" readonly value="<%= player_podcast_episode_url(@podcast.random_url, @episode.random_url) %>">
+                    <span class="copy-episode-link cursor-pointer text-gray-400 mr-2 hover:text-gray-300"><i class="far fa-copy"></i></span>
+                  </span>
+                </div>
+              </section>
+              <section class="h-20 mt-2 border-b border-blue-50 flex flex-wrap justify-between">
+                <p class="text-gray-700 hover:text-gray-700">好記短網址</p>
+                <div class="flex">
+                  <%= link_to "開啟連結", player_podcast_episode_url(@podcast.random_url, @episode.random_url, subdomain: "player"), class: "text-blue-500 hover:text-blue-400 mr-1", target: "_blank" %>
+                  <span id="copyEpisodeSlugSpan" class="cursor-pointer text-blue-500 hover:text-blue-400 ml-1">
+                    複製連結
+                  </span>
+                </div>
+                <div class="flex-grow">
+                  <span class="flex justify-between border border-gray-200 mt-3 mb-10 py-1 bg-gray-100 rounded hover:border hover:border-blue-500 transition duration-300">
+                    <%= link_to '<i class="fas fa-link"></i>'.html_safe, player_podcast_episode_url(@podcast.random_url, @episode.random_url, subdomain: "player"), class: "text-blue-500 ml-2 hover:text-blue-400 transition duration-200", target: "_blank" %>
+                    <input type="text" id="playerEpisodeSlugLinkInput" class="flex-grow mx-2 bg-gray-100 text-gray-400 cursor-not-allowed focus:outline-none" readonly value="<%= player_podcast_episode_url(@podcast.random_url, @episode.random_url) %>">
+                    <span class="copy-episode-slug-link cursor-pointer text-gray-400 mr-2 hover:text-gray-300"><i class="far fa-copy"></i></span>
+                  </span>
+                </div>
+              </section>
+            </div>
           </span>
         </div>
 
@@ -21,36 +60,63 @@
     </div>
      <!-- 下半框 -->
      <div class="bg-gray-100 mb-16">
-       <section class="container w-2/3 mx-auto mt-6">
-        <!-- 搜尋框及新增單集 -->
+      <section class="container container-show w-11/12 mx-auto mt-6">
+        <%= simple_form_for @episode, url: podcast_episode_path(@podcast.random_url, @episode.random_url) do |f| %>
         <div class="flex justify-between">
-          <span id="create-episode-btn" class="flex justify-between items-center border border-gray-300 pt-1 pb-2 px-4 text-sm bg-white hover:text-blue-400 hover:border-blue-400 cursor-pointer transition duration-300 rounded">
+          <span class="flex justify-between items-center border border-gray-300 pt-1 pb-2 px-4 text-sm bg-white hover:text-blue-400 hover:border-blue-400 cursor-pointer transition duration-300 rounded">
             重置
           </span>
           <div class="flex">
-            <div id="create-episode-btn" class="mx-1 text-blue-500 border border-blue-500 py-1 px-4 text-sm bg-white hover:text-blue-400 hover:border-blue-400 cursor-pointer transition duration-300 rounded">
+            <div class="mx-1 text-blue-500 border border-blue-500 py-1 px-4 text-sm bg-white hover:text-blue-400 hover:border-blue-400 cursor-pointer transition duration-300 rounded">
               暫存草稿
             </div>
-            <div id="create-episode-btn" class="mx-1 text-white py-1 px-4 text-sm bg-blue-500 hover:bg-blue-400 cursor-pointer transition duration-300 rounded">
-              儲存
-            </div>
+            <%= f.submit "儲存", class: "mx-2 text-white py-2 px-4 text-sm bg-blue-500 hover:bg-blue-400 cursor-pointer transition duration-300 rounded" %>
           </div>
         </div>
-        <!-- 編輯單集 -->
-        <div class="mt-6">
-          <%= simple_form_for @episode, url: podcast_episode_path(@podcast.random_url, @episode.random_url) do |f| %>
-          <%= f.input :title, input_html:{class: "fill-form" }, label: "標題" %>
-          <%= f.input :description, input_html:{class: "fill-form" }, label: "描述" %>
-          <%= f.input :keyword, input_html:{class: "fill-form" }, label: "關鍵字" %>
-          <%= f.input :season, input_html:{class: "fill-form" }, label: "季" %>
-          <%= f.input :episode, input_html:{class: "fill-form" }, label: "集" %>
+        <section class="w-full mt-6 p-4 bg-white rounded border border-gray-200 text-sm">
+          <div class="flex flex-wrap items-center">
+            <label class="w-full"><abbr title="required">*</abbr> 完整檔案</label>
+            <audio controls="controls" preload="none" autostart="false" class="flex-grow">
+              <source src="<%= @episode.recording.url %>" type="audio/mp3"></source>
+            </audio>
+            <label class="border rounded-md ml-4 mr-1 my-3 pt-1 px-4 hover:border-blue-400 focus:outline-none focus:border-blue-400 focus:ring focus:ring-blue-100 transition duration-300 hover:text-blue-400 cursor-pointer w-24">
+              置換檔案
+              <%= f.input :recording, as: :file, input_html:{class: "hidden" }, label: false %>
+            </label>
+          </div>
+        </section>
+        <section class="w-full mt-6 p-4 flex bg-white rounded border border-gray-200">
+          <div class="w-full text-sm pr-4">
+            <%= f.input :title, input_html:{class: "edit-form" }, label: "標題"%>
+            <%= f.input :artist, input_html:{class: "edit-form" }, label: "作者名稱" %>
+          </div>
+          <div class="w-56 h-56 pr-2 pt-2 rounded flex flex-col flex-shrink-0 items-center">
+            <div class="w-48 h-48 rounded-lg bg-gray-300"><%= image_tag(@episode.cover.url) if @episode.cover? %></div>
+            <label class="border border-gray-300 my-2 mx-4 pt-1 px-4 text-sm bg-white hover:text-blue-400 hover:border-blue-400 cursor-pointer transition duration-300 rounded">
+              上傳封面圖片
+              <%= f.input :cover, as: :file, input_html:{class: "hidden" }, label: false %>
+            </label>
+          </div>
+        </section>
+        <section class="w-full mt-6 p-4 bg-white rounded border border-gray-200 text-sm">
+          <%= f.input :description, input_html:{class: "edit-form" }, label: "描述" %>
+        </section>
+        <section class="w-full mt-6 p-4 bg-white rounded border border-gray-200 text-sm">
+          <div class="flex">
+            <%= f.input :season, input_html:{class: "flex-grow edit-form" }, label: "季" %>
+            <%= f.input :episode, input_html:{class: "flex-grow edit-form" }, label: "集" %>
+          </div>
+        </section>
+        <section class="w-full mt-6 p-4 bg-white rounded border border-gray-200 text-sm">
+          <%= f.input :keyword, input_html:{class: "edit-form" }, label: "關鍵字" %>
           <%= f.input :explicit, input_html:{class: "" }, label: "兒童不宜" %>
-          <%= f.input :status, collection: ["草稿", "發布"], input_html:{class: "fill-form" }, label: "狀態" %>
-          <%= f.input :recording, as: :file, input_html:{class: "flex" }, label: "更新音檔 MP3" %>
-          <%= f.button :submit, "更新單集", class: "btn-primary btn" %>
-        <% end %>
+        </section>
+        <div class="flex justify-between mt-6">
+          <%= link_to "刪除單集", podcast_episode_path(@podcast.random_url, @episode.random_url), method: :delete, data: {confirm: "是否確認刪除？"}, class: "mx-1 text-red-500 border border-red-500 py-2 px-4 text-sm bg-white hover:text-red-400 hover:border-red-400 cursor-pointer transition duration-300 rounded" %>
+          <%= f.submit "儲存", class: "mx-2 text-white py-2 px-4 text-sm bg-blue-500 hover:bg-blue-400 cursor-pointer transition duration-300 rounded" %>
         </div>
-       </section>
+        <% end %>
+      </section>
      </div>
     <!-- Footer -->
     <div class="absolute bottom-0 w-full">

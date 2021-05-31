@@ -1,4 +1,4 @@
-<div class="flex justify-end w-full bg-white h-20 p-4 text-gray-600">
+<div class="flex justify-end w-full bg-white h-16 py-4 text-gray-600">
   <ul class="navbar">
     <li>
       <ul>
@@ -7,9 +7,9 @@
     </li>
   </ul>
 
-  <ul class="navbar flex">
+  <ul class="navbar flex pt-2 pr-2">
     <!-- 登出 -->
-    <li class="relative mx-3 cursor-pointer">
+    <li class="relative mx-3 cursor-pointer text-sm">
       <i class="far fa-user"></i>
       <span><%= current_user.email %></span>
       <i class="fas fa-chevron-down"></i>
@@ -20,9 +20,9 @@
       </ul>
     </li>
     <!-- 語言 -->
-    <li class="relative mx-3 cursor-pointer">
+    <li class="relative mx-3 cursor-pointer text-sm">
       <i class="fas fa-globe"></i>
-      <span>語言</span>
+      <span >語言</span>
       <i class="fas fa-chevron-down"></i>
       <ul class="absolute shadow-xl w-full py-1 rounded border border-gray-100 border-opacity-70 hidden">
         <li class="text-sm p-2 hover:bg-gray-100 transition duration-200">中文</li>
@@ -30,7 +30,7 @@
       </ul>
     </li>
     <!-- 設定 -->
-    <span class="mx-3 cursor-pointer">
+    <span class="ml-1 mr-3 cursor-pointer text-sm">
       <i class="fas fa-cog"></i>
     </span>
   </ul>

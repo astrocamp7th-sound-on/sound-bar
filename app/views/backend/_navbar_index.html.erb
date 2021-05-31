@@ -1,12 +1,12 @@
-<div class="flex justify-between w-full bg-white h-20 p-4 text-gray-600">
+<div class="flex justify-between w-full bg-white h-16 py-4 text-gray-600">
 
   <div class="-mt-2">
     <%= link_to image_tag("new_logo_black", size: "180x180"), podcasts_path  %>
   </div>
 
-  <ul class="navbar flex">
+  <ul class="navbar flex pt-2 pr-2 ">
     <!-- 登出 -->
-    <li class="relative mx-3 cursor-pointer">
+    <li class="relative mx-3 cursor-pointer text-sm">
       <i class="far fa-user"></i>
       <span><%= current_user.email %></span>
       <i class="fas fa-chevron-down"></i>
@@ -17,7 +17,7 @@
       </ul>
     </li>
     <!-- 語言 -->
-    <li class="relative mx-3 cursor-pointer">
+    <li class="relative mx-3 cursor-pointer text-sm">
       <i class="fas fa-globe"></i>
       <span>語言</span>
       <i class="fas fa-chevron-down"></i>
@@ -27,7 +27,7 @@
       </ul>
     </li>
     <!-- 設定 -->
-    <span class="mx-3 cursor-pointer">
+    <span class="ml-1 mr-3 cursor-pointer text-sm">
       <i class="fas fa-cog"></i>
     </span>
   </ul>
