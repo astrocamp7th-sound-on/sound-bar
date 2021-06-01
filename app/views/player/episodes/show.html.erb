@@ -62,13 +62,13 @@
           <div class="pb-10 pl-10">
             <%= f.button :submit, "送出留言", class: "btn btn-primary" %>
           </div>
-          <ul id="comment_area">
-          <% @comments.each do |comment| %>
-            <li><%= comment.content %></li>
           <% end %>
-          </ul>
-            <% end %>
       </div>
+      <ul id="comment_area">
+      <% @comments.each do |comment| %>
+        <li><%= comment.content %></li>
+      <% end %>
+      </ul>
     </div>
   </div>
   <div class="player flex w-full justify-center fixed bottom-0 rounded-md pb-5 pt-5 bg-titleblue hidden">
