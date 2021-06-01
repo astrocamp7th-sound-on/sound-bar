@@ -2,8 +2,12 @@ abbr[title="required"] {
   color: #f00;
 }
 
+.field_with_errors {
+  @apply relative;
+}
+
 .error {
-  @apply text-red-600 font-bold;
+  @apply relative -top-4 text-red-600;
 }
 
 .fill-form {
@@ -23,5 +27,5 @@ abbr[title="required"] {
 }
 
 .edit-form {
-  @apply w-full border rounded-md mx-2 my-3 p-1 hover:border-blue-400 focus:outline-none focus:border-blue-400 focus:ring focus:ring-blue-100;
+  @apply w-full border rounded-md mx-2 my-3 p-1 hover:border-blue-400 focus:outline-none focus:border-blue-400 focus:ring focus:ring-blue-100 transition duration-300;
 }

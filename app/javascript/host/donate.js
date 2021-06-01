@@ -9,6 +9,7 @@ document.addEventListener("turbolinks:load", function () {
   let withdrawClose = document.querySelector('#withdraw-close')
   let copyDonateLink = document.querySelector('.copy-donate-link')
 
+  // 複製贊助連結
   if(copyDonateLink){
     copyDonateLink.addEventListener('click', function(){
       document.querySelector('#donateLinkInput').select()
@@ -18,23 +19,26 @@ document.addEventListener("turbolinks:load", function () {
         icon: 'success',
         title: '已複製！',
         showConfirmButton: false,
-        timer: 700
+        timer: 1000
       })
     })
   }
 
+  // 我要提領
   if (withdraw){
     withdraw.addEventListener('click', function(){
       document.querySelector('.withdraw-box').classList.remove('hidden')
     })
   }
 
+  // 關閉提領燈箱
   if (withdrawClose){
     withdrawClose.addEventListener('click', function(){
       document.querySelector('.withdraw-box').classList.add('hidden')
     })
   }
 
+  // 聽眾贊助 & 廣告贊助
   if (donateFrom){
     donateFrom.addEventListener('click', function(e){
       for(let i = 0; i < donateFrom.children.length; i++){
@@ -50,6 +54,7 @@ document.addEventListener("turbolinks:load", function () {
     })
   }
 
+  // 贊助連結 & 我的進帳 & 我的錢包
   if (donateTabs){
     donateTabs.addEventListener('click', function(e){
       for(let j = 0; j < donateTabs.children.length; j++){

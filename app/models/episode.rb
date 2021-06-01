@@ -2,7 +2,9 @@ class Episode < ApplicationRecord
   belongs_to :podcast
   has_many :comments
 
+  validates :title, presence: true
+
   mount_uploader :recording, RecordingUploader
-  before_create :generate_random_url
+  include Randomable
 
 end

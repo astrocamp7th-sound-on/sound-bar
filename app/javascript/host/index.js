@@ -1,8 +1,12 @@
 import "./donate"
+import "./info"
+import "./show"
+import "./podcasts_index"
+import "./episodes_index"
+import "./episodes_index"
 
-// 使用者登入後的節目列表搜尋框
 document.addEventListener("turbolinks:load", function () {
-
+// 使用者登入後的節目列表搜尋框
   let searchForm = document.querySelector('.search-form')
   let createPodcastBtn = document.querySelector('.create-podcast-btn')
   let closeCreatePodcast = document.querySelector('.close-create-podcast')
@@ -29,7 +33,7 @@ document.addEventListener("turbolinks:load", function () {
   // 建立 Episode 燈箱
   if (createEpisodeBtn){
     createEpisodeBtn.forEach(btn =>
-      btn.addEventListener('click', function(e){
+      btn.addEventListener('click', function(){
         document.querySelector('.create-episode').classList.remove('hidden')
       })
     )

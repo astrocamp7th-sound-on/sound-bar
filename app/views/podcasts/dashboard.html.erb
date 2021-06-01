@@ -6,14 +6,14 @@
       <%= render '/backend/navbar' %>
     </div>
     <!-- 上半框 -->
-    <div class="bg-white mt-20">
-      <div class="container container-donate w-2/3 mx-auto py-6 bg-white">
+    <div class="bg-white mt-16">
+      <div class="container container-dashboard w-11/12 mx-auto py-6 bg-white">
         <h1 class="text-xl font-black">數據總覽</h1>
       </div>
     </div>
     <!-- 下半框 -->
     <div class="bg-gray-100">
-      <section class="font-medium flex flex-wrap container w-2/3 mx-auto mt-6">
+      <section class="font-medium flex flex-wrap container container-dashboard w-11/12 mx-auto mt-6">
         <!-- 關鍵數據 -->
         <div class="key-data bg-white flex-grow w-full my-3">
           <div class="border-b border-gray-200 p-3">
@@ -21,14 +21,14 @@
           </div>
           <div class="p-3">
             <table>
-              <thead class="text-sm text-gray-400 font-thin">
+              <thead class="text-sm text-gray-500 font-thin">
                 <th class="px-3">累積不重複下載數</th>
                 <th class="px-3">平均單集不重複下載數</th>
                 <th class="px-3">近7天下載數</th>
                 <th class="px-3">近30天下載數</th>
                 <th class="px-3">已發佈集數</th>
               </thead>
-              <tbody>
+              <tbody class="text-xl font-bold">
                 <td class="px-4">8</td>
                 <td class="px-4">4</td>
                 <td class="px-4">1</td>
@@ -45,7 +45,11 @@
           </div>
           <div class="latest-episode flex p-3">
             <div class="w-32 h-32 mr-2">
-              <%= image_tag(@podcast.cover.url) if @podcast.cover? %>
+              <% if @podcast.episodes.last %>
+                <%= image_tag(@podcast.episodes.last.cover.url) if @podcast.episodes.last.cover? %>
+              <% else %>
+                <%= image_tag(@podcast.cover.url) if @podcast.cover? %>
+              <% end %>
             </div>
             <div class="episode-title ml-2">
               <label class="text-lg font-semibold text-gray-800"><%= @podcast.episodes.last.title if @podcast.episodes.last %></label>
@@ -77,16 +81,18 @@
           </div>
           <div class="p-3">
             <table class="w-full">
-              <thead class="text-sm text-gray-400 font-thin border-b border-gray-200 leading-8">
+              <thead class="text-sm text-gray-600 font-thin border-b border-gray-200 leading-8">
                 <th class="px-3 text-center w-1/12">#</th>
                 <th class="px-3 text-left w-7/12">單集標題</th>
                 <th class="px-3 text-right w-4/12">不重複下載數</th>
               </thead>
-              <tbody class="text-gray-700">
-                <% @podcast.episodes.each_with_index do |episode, index| %>
-                  <td class="px-3 text-center w-1/12"><%= index + 1 %></td>
-                  <td class="px-3 text-left w-7/12"><%= episode.title %></td>
-                  <td class="px-3 text-right w-4/12">4</td>
+              <tbody class="text-gray-700 text-sm font-thin">
+                <% @podcast.episodes.order(id: :desc).first(8).each_with_index do |episode, index| %>
+                  <tr>
+                    <td class="px-3 text-center w-1/12"><%= index + 1 %></td>
+                    <td class="px-3 text-left w-7/12"><%= episode.title %></td>
+                    <td class="px-3 text-right w-4/12">4</td>
+                  </tr>
                 <% end %>
               </tbody>
             </table>

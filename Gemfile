@@ -66,8 +66,6 @@ gem 'mini_magick'
 gem "fog-aws"
 # ENV variables
 gem 'figaro', '~> 1.2'
-# bootstrap for rails
-gem 'bootstrap-sass', '~> 3.4', '>= 3.4.1'
 # make form easy
 gem 'simple_form', '~> 5.1'
 # redirect_post to external website
@@ -82,5 +80,7 @@ gem 'sidekiq'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
-#解跨站請求問題
+# 解跨站請求問題
 gem 'omniauth-rails_csrf_protection'
+# 分頁功能
+gem 'kaminari', '~> 1.2', '>= 1.2.1'

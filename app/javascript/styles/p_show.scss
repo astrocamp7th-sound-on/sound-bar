@@ -5,14 +5,15 @@
   max-width: 200px;
 }
 .check-sign-up {
-  background-color: grey;
+  background-color: white;
+  border: 5px;
+  border-radius: 5px;
   overflow: hidden;
   max-height: 0;
   transition: (max-height 0.3s);
 }
 #subscription:checked ~ .check-sign-up {
   max-height: 300px;
-}
-.sign-up {
-  color: blue;
+  color: red;
+  text-align: center;
 }
