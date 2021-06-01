@@ -87,18 +87,13 @@
       <!-- 更多 -->
       <section class="moreEpisode_content hidden">
         <section class="w-full py-2 flex">
-          <div class="w-full text-sm pr-5">
-            <%= f.input :audio, input_html:{class: "edit-form" }, label: "Subtitle"%>
-            <%= f.input :audio, input_html:{class: "edit-form" }, label: "作者名稱" %>
-          </div>
+
           <div class="podcast-cover w-56 h-64 pr-2 pt-2 rounded flex flex-col flex-shrink-0 items-end">
             <div class="w-48 h-48 rounded-lg bg-gray-300"><%= image_tag(@podcast.cover.url) if @podcast.cover? %></div>
             <%= f.input :audio, as: :file, input_html:{class: "w-36 border border-gray-300 my-2 mx-4 py-1 px-4 text-sm bg-white hover:text-blue-400 hover:border-blue-400 cursor-pointer transition duration-300 rounded" }, label: false %>
           </div>
         </section>
-        <div class="p-2 pr-6">
-          <%= f.input :audio, as: :text, input_html:{class: "edit-form" }, label: "Summary"%>
-        </div>
+       
       </section>
     </div>
     <nav class="fixed bottom-0 border-t border-gray-200">
