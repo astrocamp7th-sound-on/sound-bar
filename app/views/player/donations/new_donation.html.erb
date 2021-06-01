@@ -9,19 +9,19 @@
     </div>
   </div>
   <div class="w-auto md:w-4/12">
-    <div class="w-full grid">
+    <div class="w-full h-full grid">
       <div class="">
         <%= simple_form_for @donation, url:  donate_player_podcast_path(@podcast.random_url)  do |f| %>
-        <div class="p-3"><%= f.input :amount, label: "一次性贊助", input_html: { class: "donate_form" } %></div>
-        <div class="p-3"><%= f.input :donator, label: "名稱", placeholder: "未填寫則顯示「匿名贊助者」", input_html: { class: "donate_form" } %></div>
-        <div class="p-3"><%= f.input :note, label: "留一段話鼓勵我吧！", input_html: { class: "donate_message" } %></div>
+        <div class="p-3 pr-5 pl-5"><%= f.input :amount, label: "一次性贊助", input_html: { class: "donate_form" } %></div>
+        <div class="p-3 pr-5 pl-5"><%= f.input :donator, label: "名稱", placeholder: "未填寫則顯示「匿名贊助者」", input_html: { class: "donate_form" } %></div>
+        <div class="p-3 pr-5 pl-5"><%= f.input :note, label: "留一段話鼓勵我吧！", input_html: { class: "donate_message" } %></div>
       </div>
-      <div class="relative bottom-0">
-        <div class="flex justify-center">
-          <div class=""><%= f.button :submit, "贊助", class: "btn-primary" %></div>
+      <div>
+        <div class="flex flex-col justify-center flex-grow md:pt-64 pt-5 pr-7 pl-7 pb-3">
+          <div><%= f.button :submit, "贊助", class: "btn-primary w-full" %></div>
         </div>
         <% end %>
-        <footer class="flex text-xs font-light justify-center pt-3">
+        <footer class="flex text-xs font-light justify-center pb-3">
           <span class="pr-1">Powered</span>
           <span class="pr-1">by</span>
           <span class="text-titleblue">SoundBar</span>
