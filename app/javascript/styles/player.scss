@@ -2,13 +2,12 @@
   @apply m-px transform hover:scale-110 transition duration-300;
 }
 
-
 .front_arrow {
-  @apply sticky left-0 z-10 bg-yellow-50 opacity-30 p-3 hover:opacity-50 duration-300;
+  @apply sticky h-16 my-auto left-0 z-10 bg-yellow-50 opacity-30 p-3 hover:opacity-50 duration-300;
 }
 
 .back_arrow {
-  @apply sticky right-0 z-10 bg-yellow-50 opacity-30 p-3 hover:opacity-50 duration-300;
+  @apply sticky h-16 my-auto right-0 z-10 bg-yellow-50 opacity-30 p-3 hover:opacity-50 duration-300;
 }
 
 .footerbg {
@@ -38,14 +37,12 @@
 .wrapper {
   display: flex;
   overflow-x: auto;
+  scroll-behavior: smooth; // 讓捲動 smooth 一點，不會瞬間跳過去
 }
 
 .covers {
   min-width: 150px;
   height: 150px;
-}
-
-.move_back {
 }
 
 .play_button {

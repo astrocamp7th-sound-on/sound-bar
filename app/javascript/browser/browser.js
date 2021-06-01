@@ -6,13 +6,13 @@ document.addEventListener("turbolinks:load", function () {
 
   if (backArrow) {
     backArrow.addEventListener('click', function(){
-      document.querySelector('.wrapper').scrollLeft += 80;
+      document.querySelector('.wrapper').scrollLeft += 200;
     })
   }
 
   if (frontArrow) {
     frontArrow.addEventListener('click', function(){
-      document.querySelector('.wrapper').scrollLeft -= 80;
+      document.querySelector('.wrapper').scrollLeft -= 200;
     })
   }
 
