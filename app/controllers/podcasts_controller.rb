@@ -2,7 +2,7 @@ class PodcastsController < ApplicationController
   before_action :find_podcast, only: [:info, :update, :destroy, :dashboard, :music, :donate]
 
   def index
-    @podcasts = Podcast.order(id: :desc)
+    @podcasts = Podcast.order(id: :desc).page(params[:page]).per(12)
     @podcast = Podcast.new
     @episode = Episode.new
   end
@@ -13,7 +13,7 @@ class PodcastsController < ApplicationController
     if @podcast.save
       redirect_to podcasts_path, notice: "新增節目成功"
     else
-      render :new
+      redirect_to podcasts_path, notice: "新增節目失敗"
     end
   end
 
@@ -27,7 +27,7 @@ class PodcastsController < ApplicationController
       redirect_to cookies[:return_to_url] || podcasts_path, notice: "編輯節目成功"
       cookies[:return_to_url] = nil
     else
-      render :edit
+      render :info
     end
   end
 

@@ -80,3 +80,5 @@ gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
 # 解跨站請求問題
 gem 'omniauth-rails_csrf_protection'
+# 分頁功能
+gem 'kaminari', '~> 1.2', '>= 1.2.1'

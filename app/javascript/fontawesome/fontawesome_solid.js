@@ -13,8 +13,16 @@ import {
   faUser,
   faLock,
   faLink,
+  faChevronRight,
+  faChevronLeft,
+  faEnvelopeSquare,
+  faGlobeAmericas,
+  faShare,
+  faPlayCircle,
   faChevronDown,
   faTimes,
+  faAngleLeft,
+  faAngleRight,
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
@@ -31,6 +39,14 @@ library.add(
   faLink,
   faChevronDown,
   faTimes,
+  faAngleLeft,
+  faAngleRight,
+  faChevronLeft,
+  faChevronRight,
+  faEnvelopeSquare,
+  faGlobeAmericas,
+  faShare,
+  faPlayCircle,
 )
 
 dom.watch()
