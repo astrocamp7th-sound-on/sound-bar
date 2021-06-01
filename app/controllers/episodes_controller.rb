@@ -13,10 +13,15 @@ class EpisodesController < ApplicationController
   def create
     @episode = @podcast.episodes.new(episode_params)
     if @episode.save
+      @users = @episode.podcast.subscribers
+      @users.each do |user|
+        user_id = user.id
+        MailWorker.perform_async(user_id)
+      end
       redirect_to podcast_path(@podcast.random_url), notice: "新增單集成功"
     else
       render :new
-    endx
+    end
   end
 
   def show
@@ -39,16 +44,6 @@ class EpisodesController < ApplicationController
   end
 
   private
-  def send_mail
-    @episode = @podcast.episodes.new(episode_params)
-    if @episode.save
-      @users = @episode.podcast.subscribers
-      @users.each do |user|
-        user_id = user.id
-        HardWorker.perform_async(user_id)
-      end
-    end
-  end
 
   def episode_params
     params.require(:episode).permit(:audio, :title, :description, :keyword, :season, :episode, :explicit, :status, :recording)
