@@ -26,8 +26,8 @@
         <div class="cover_line imgBox">
           <div class="">
             <div class="covers">
-              <img src="https://picsum.photos/200/200/?random=1">
-            </div>
+            <%= link_to image_tag("https://picsum.photos/200/200/?random=1"), player_podcast_path(podcast.random_url)  %>
+          </div>
           </div>
         </div>
         <% end %>
