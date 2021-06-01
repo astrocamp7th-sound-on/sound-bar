@@ -2,7 +2,7 @@
   <div class="my-auto md:w-8/12">
     <div class="donate_bg md:h-screen grid justify-center items-center">
       <div class="grid">
-        <span><%= image_tag(@podcast.cover.url, size: "250x250") if @podcast.cover? %></span>
+        <span class="donate_cover"><%= image_tag(@podcast.cover.url, size: "250x250") if @podcast.cover? %></span>
         <p class="donate_podcast"><%= @podcast.name %></p>
         <p class="donate_artist"><%= @podcast.artist %></p>
       </div>
