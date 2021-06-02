@@ -1,25 +1,39 @@
-<%= link_to "返回節目", podcast_path(@podcast) %>
-<br>
-<h1>贊助　<%= @podcast.name %></h1>
-
-<p>
-  <strong>Cover:</strong>
-  <%= image_tag(@podcast.cover.url) if @podcast.cover? %>
-</p>
-
-<ul>
-  <li>創作者：<%= @podcast.artist %></li>
-  <li>類別：<%= @podcast.genres %></li>
-  <li>語言：<%= @podcast.language %></li>
-  <li>描述：<%= @podcast.description %></li>
-</ul>
-
-<h1><%= @podcast.donate_title %></h1>
-
-<%= simple_form_for @donation, url:  donate_player_podcast_path(@podcast.random_url)  do |f| %>
-  <%= f.input :donator, label: "名稱", placeholder: "未填寫則顯示「匿名贊助者」" %>
-  <%= f.input :note, label: "留一段話鼓勵我吧！" %>
-  <%= f.input :amount, label: "贊助金額", hint: "不得小於50元" %>
-  <%= f.button :submit %>
-<% end %>
+<div class="grid md:flex">
+  <div class="my-auto md:w-8/12">
+    <div class="donate_bg md:h-screen grid justify-center items-center">
+      <div class="grid">
+        <span class="donate_cover"><%= image_tag(@podcast.cover.url, size: "250x250") if @podcast.cover? %></span>
+        <p class="donate_podcast"><%= @podcast.name %></p>
+        <p class="donate_artist"><%= @podcast.artist %></p>
+      </div>
+    </div>
+  </div>
+  <div class="w-auto md:w-4/12">
+    <div class="w-full h-full grid">
+      <div class="">
+        <%= simple_form_for @donation, url:  donate_player_podcast_path(@podcast.random_url)  do |f| %>
+        <div class="p-3 pr-5 pl-5">
+          <%= f.input :amount, label: "一次性贊助", input_html: { class: "donate_form" } %>
+        </div>
+        <div class="p-3 pr-5 pl-5">
+          <%= f.input :donator, label: "名稱", placeholder: "未填寫則顯示「匿名贊助者」", input_html: { class: "donate_form" } %>
+        </div>
+        <div class="p-3 pr-5 pl-5">
+          <%= f.input :note, label: "留一段話鼓勵我吧！", input_html: { class: "donate_message" } %>
+        </div>
+        <div class="flex flex-col justify-center flex-grow md:pt-64 pt-5 pr-7 pl-7 pb-3">
+          <div><%= f.button :submit, "贊助", class: "btn-primary w-full" %></div>
+        </div>
+        <% end %>
+      </div>
+      <div>
+        <footer class="flex text-xs font-light justify-center pb-3">
+          <span class="pr-1">Powered</span>
+          <span class="pr-1">by</span>
+          <span class="text-titleblue">SoundBar</span>
+        </footer>
+      </div>
+    </div>
+  </div>
+</div>
 
