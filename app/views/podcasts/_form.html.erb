@@ -1,7 +1,5 @@
 <div class="grid justify-center m-2">
   <%= simple_form_for podcast do |f| %>
-    <%= error_messages_for :podcast %>
-    <%= f.error_messages %>
     <%= f.input :cover, as: :file, input_html:{class: "m-2 p-2" }, label: "上傳封面圖片" %>
     <%= f.input :name, input_html:{class: "fill-form" }, label: "Podcast 節目名稱" %>
     <%= f.input :artist, input_html:{class: "fill-form" }, label: "創作者名稱" %>

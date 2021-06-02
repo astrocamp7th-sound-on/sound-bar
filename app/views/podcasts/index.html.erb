@@ -1,5 +1,9 @@
 <!-- 建立Podcast燈箱 -->
-<div class="create-podcast fixed w-full h-full bg-black bg-opacity-50 flex justify-end z-10 hidden">
+<% if @podcast.errors.any? %>
+  <div class="create-podcast fixed w-full h-full bg-black bg-opacity-50 flex justify-end z-10 ">
+<% else %>
+  <div class="create-podcast fixed w-full h-full bg-black bg-opacity-50 flex justify-end z-10 hidden">
+<% end %>
   <div class="create-podcast-content h-full bg-white flex justify-center relative">
     <nav class="fixed top-0 shadow-md">
       <div class="flex w-full justify-between">
@@ -23,7 +27,7 @@
           </label>
         </div>
         <div class="w-full text-sm pr-4">
-          <%= f.input :name, input_html:{class: "edit-form" }, label: "Podcast 節目名稱" ,error: "Username is mandatory, please specify on"%>
+          <%= f.input :name, input_html:{class: "edit-form" }, label: "Podcast 節目名稱"%>
           <%= f.input :artist, input_html:{class: "edit-form" }, label: "創作者名稱" %>
           <%= f.input :email, input_html:{class: "edit-form" }, label: "Email" %>
           <%= f.input :language, collection: ["繁體中文", "简体中文", "粵語", "English", "日本語", "한국어"], input_html:{class: "edit-form" }, label: "語言" %>
