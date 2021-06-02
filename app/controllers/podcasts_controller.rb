@@ -13,7 +13,11 @@ class PodcastsController < ApplicationController
     if @podcast.save
       redirect_to podcasts_path, notice: "新增節目成功"
     else
-      redirect_to podcasts_path, notice: "新增節目失敗"
+      # redirect_to podcasts_path, notice: "新增節目失敗"
+      @podcast.errors.full_messages
+      @podcast.errors.each do |error|
+        
+      end
     end
   end
 

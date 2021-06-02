@@ -7,6 +7,6 @@ class EmailValidator < ActiveModel::EachValidator
     rescue
       r = false
     end
-    record.errors[attribute] << (options[:message] || "is invalid") unless r
+    record.errors[attribute] << (options[:message] || "信箱格式不正確") unless r
   end
 end
