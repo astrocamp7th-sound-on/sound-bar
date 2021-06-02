@@ -9,7 +9,7 @@ class Player::CommentsController < ApplicationController
 
     if @comment.save
       # 執行 create.js.erb
-      # redirect_to player_podcast_episode_path(@podcast.random_url, @episode.random_url)
+      redirect_to player_podcast_episode_path(@podcast.random_url, @episode.random_url)
     else
       render 'player/episodes#show'
     end
@@ -17,6 +17,6 @@ class Player::CommentsController < ApplicationController
 
   private
   def comment_params
-    params.require(:comment).permit(:content)
+    params.require(:comment).permit(:content, :comments_id)
   end
 end
