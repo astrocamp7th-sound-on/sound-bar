@@ -9,6 +9,7 @@ import {
   faCaretSquareRight,
   faCalendarAlt,
   faClock,
+  faHeart
 } from '@fortawesome/free-regular-svg-icons'
 
 
@@ -20,6 +21,7 @@ library.add(
   faCaretSquareRight,
   faCalendarAlt,
   faClock,
+  faHeart
 )
 
 dom.watch()
