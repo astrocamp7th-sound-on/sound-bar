@@ -25,3 +25,7 @@
 .unlogin_btn {
   @apply border w-36 rounded-full p-3 m-3 text-xl text-white duration-300 hover:bg-red-500;
 }
+
+.replies {
+  width: calc(100% - 2.5rem);
+}
