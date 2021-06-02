@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_29_071843) do
+ActiveRecord::Schema.define(version: 2021_06_02_052937) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,8 @@ ActiveRecord::Schema.define(version: 2021_05_29_071843) do
     t.string "content"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "comments_id"
+    t.index ["comments_id"], name: "index_comments_on_comments_id"
     t.index ["episode_id"], name: "index_comments_on_episode_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
@@ -74,8 +76,10 @@ ActiveRecord::Schema.define(version: 2021_05_29_071843) do
     t.string "cover"
     t.string "random_url"
     t.string "donate_title"
+    t.bigint "user_id"
     t.index ["random_url"], name: "index_podcasts_on_random_url", unique: true
     t.index ["slug"], name: "index_podcasts_on_slug", unique: true
+    t.index ["user_id"], name: "index_podcasts_on_user_id"
   end
 
   create_table "subscriptions", force: :cascade do |t|
@@ -107,6 +111,7 @@ ActiveRecord::Schema.define(version: 2021_05_29_071843) do
   add_foreign_key "comments", "users", on_delete: :cascade
   add_foreign_key "donations", "podcasts", on_delete: :cascade
   add_foreign_key "episodes", "podcasts", on_delete: :cascade
+  add_foreign_key "podcasts", "users"
   add_foreign_key "subscriptions", "podcasts", on_delete: :cascade
   add_foreign_key "subscriptions", "users", on_delete: :cascade
 end

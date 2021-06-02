@@ -5,6 +5,8 @@ class Episode < ApplicationRecord
   validates :title, presence: true
 
   mount_uploader :recording, RecordingUploader
+  mount_uploader :cover, CoverUploader
+
   include Randomable
 
 end
