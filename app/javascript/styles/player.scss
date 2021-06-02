@@ -30,7 +30,7 @@
   @apply border-2 border-gray-500 rounded-full m-2 px-2 py-1 h-auto w-auto text-2xl hover:border-white hover:text-white duration-300;
 }
 
-.button {
+.plbutton {
   @apply border rounded-md p-3 m-3 text-white bg-green-500 hover:bg-green-700;
 }
 
@@ -47,4 +47,10 @@
 
 .play_button {
   @apply text-titleblue text-4xl;
+}
+
+.player {
+  background-image: url("../../assets/images/wave.gif");
+  background-position: center;
+  background-size: cover;
 }
