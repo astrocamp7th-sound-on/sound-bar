@@ -3,12 +3,17 @@
 </div>
 
 <!-- 新增單集燈箱 -->
-<div class="create-episode fixed w-full h-full bg-black bg-opacity-50 flex justify-end z-10 hidden">
+<% if @episode.errors.any? %>
+  <div class="create-episode fixed w-full h-full bg-black bg-opacity-50 flex justify-end z-10 ">
+<% else %>
+  <div class="create-episode fixed w-full h-full bg-black bg-opacity-50 flex justify-end z-10 hidden">
+<% end %>
+
   <div class="create-episode-content h-full bg-white flex justify-center relative">
     <nav class="fixed top-0 shadow-md">
       <div class="flex w-full justify-between">
         <span class="py-4 px-6">
-          建立單集
+          看我建立單集
         </span>
         <span class="close-create-episode cursor-pointer text-gray-400 hover:text-gray-500 py-4 px-6">
           <i class="fas fa-times"></i>
@@ -17,7 +22,7 @@
     </nav>
     <!-- 表單內容 -->
     <div class="my-16 overflow-y-auto">
-      <%= simple_form_for @episode, url: podcast_episodes_path(@podcast.random_url) do |f| %>
+      <%= simple_form_for @episode, url: podcast_episodes_path(@podcast.random_url, @episode.random_url) do |f| %>
       <div class="nav-tabs h-20 flex items-end border-b border-gray-100">
         <ul class="inline-flex ml-4" id="createEpisodeFrom">
           <li class="cursor-pointer hover:text-blue-400 font-medium mx-1 pt-3 pb-5 px-2 transition duration-200 text-blue-500 border-b-2 border-blue-400" id="mainEpisode">主要</li>
