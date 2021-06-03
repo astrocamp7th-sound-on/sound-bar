@@ -63,7 +63,7 @@ document.addEventListener("turbolinks:load", function () {
     })
     fPodcastSlug.addEventListener('blur', (e) => {
       validateInputPresence(e)
-      
+
     })
   }
 
