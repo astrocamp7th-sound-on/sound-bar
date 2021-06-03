@@ -12,17 +12,17 @@
       </div>
       <h2 class="text-white text-2xl mt-20 mb-6">新聲報到</h2>
       <div class="wrapper relative">
-        <button class="front_arrow">
+        <button id="frontArrow" class="front_arrow">
           <i class="fas fa-chevron-left"></i>
         </button>
         <% @podcasts.each do |podcast| %>
         <div class="cover_line imgBox">
           <div class="">
-          <div class="covers">
-          <%= link_to player_podcast_path(podcast.random_url) do  %>
-            <%= image_tag(podcast.cover.url, size: "150x150") if podcast.cover? %>
-          <% end %>
-          </div>
+            <div class="covers">
+              <%= link_to player_podcast_path(podcast.random_url) do  %>
+              <%= image_tag(podcast.cover.url, size: "150x150") if podcast.cover? %>
+              <% end %>
+            </div>
           </div>
         </div>
         <% end %>
