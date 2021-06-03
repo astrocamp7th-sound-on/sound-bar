@@ -23,6 +23,7 @@ import {
   faTimes,
   faAngleLeft,
   faAngleRight,
+  faDonate
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
@@ -47,6 +48,7 @@ library.add(
   faGlobeAmericas,
   faShare,
   faPlayCircle,
+  faDonate
 )
 
 dom.watch()
