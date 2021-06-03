@@ -1,10 +1,66 @@
+import Rails from "@rails/ujs"
+
+
 document.addEventListener("turbolinks:load", function () {
+
+  // 使用者登入後的節目列表搜尋框
   let searchForm = document.querySelector('.search-form')
   let createPodcastBtn = document.querySelector('.create-podcast-btn')
   let closeCreatePodcast = document.querySelector('.close-create-podcast')
   let createEpisodeBtn = document.querySelectorAll('.create-episode-btn')
   let closeCreateEpisode = document.querySelector('.close-create-episode')
   let createEpisodeForm = document.querySelector('#createEpisodeFrom')
+  let searchPodcastInput = document.querySelector('#searchPodcastInput')
+
+  // 搜尋功能
+  if (searchPodcastInput){
+    let timeout = null
+    searchPodcastInput.addEventListener('keyup', function(e){
+      let searchValue = e.target.value
+      clearTimeout(timeout);
+      timeout = setTimeout(function () {
+        Rails.ajax({
+          url: '/api/v1/podcasts',
+          type: 'get',
+          success: function(res){
+            let result = res.filter(function(podcast){
+              return podcast.name.indexOf(searchValue) > -1
+            })
+            let content = result.map(function(podcast){
+              return `
+              <div class="cursor-pointer relative bg-white mt-8 border border-gray-300 hover:border-gray-400 rounded ">
+                <div class="flex border-b border-gray-200 items-center">
+                  <div class="m-3">
+                    <img src="${podcast.cover.url}" width="80" height="80">
+                  </div>
+                  <div class="w-full">
+                    <h3 class="font-semibold text-gray-800 pt-5">
+                      <a class="block" href="/podcasts/${podcast.random_url}/dashboard">${podcast.name}</a>
+                    </h3>
+                    <a class="block font-thin text-sm text-gray-600 pb-5" href="/podcasts/${podcast.random_url}/dashboard">${podcast.artist}</a>
+                  </div>
+                </div>
+                <div class="flex justify-between">
+                  <span class="create-episode-btn py-3 px-5 text-gray-400 hover:text-blue-400" data-random-url="${podcast.random_url}"> ＋ 新增單集</span>
+                  <a class="py-3 px-5 text-gray-400 hover:text-blue-400" target="_blank" href="http://player.localhost:3000/p/${podcast.random_url}"><i class="far fa-caret-square-right"></i></a>
+                </div>
+              </div>
+              `
+            })
+            document.querySelector('#podcastsContent').innerHTML = content.join('')
+            document.querySelectorAll('.create-episode-btn').forEach(btn =>
+              btn.addEventListener('click', function(){
+                document.querySelector('.create-episode').classList.remove('hidden')
+              })
+            )
+          },
+          failure: function(result){
+            console.log(result)
+          }
+        })
+      }, 1000);
+    })
+  }
 
   // Episode 燈箱內容切換(主要/更多)
   if (createEpisodeForm){
