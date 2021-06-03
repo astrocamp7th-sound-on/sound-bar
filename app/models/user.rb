@@ -9,6 +9,8 @@ class User < ApplicationRecord
   has_many :favorite_podcasts, through: :subscriptions, source: :podcast
   has_many :podcasts
   has_many :comments
+  validates :email, presence: true, email: true
+  validates :password, presence: true
 
 
 

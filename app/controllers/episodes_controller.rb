@@ -10,7 +10,7 @@ class EpisodesController < ApplicationController
 
   def create
     @episodes = @podcast.episodes.order(id: :desc).page(params[:page]).per(10)
-    @episode = @podcast.episodes.new
+    @episode = @podcast.episodes.new(episode_params)
 
     if @episode.save
       redirect_to podcast_episodes_path(@podcast.random_url, @episode.random_url), notice: "新增單集成功"
@@ -37,7 +37,7 @@ class EpisodesController < ApplicationController
 
   private
   def episode_params
-    params.require(:episode).permit(:title, :description, :keyword, :season, :episode, :explicit, :status, :recording, :cover, :artist).merge({user: current_user})
+    params.require(:episode).permit(:title, :description, :keyword, :season, :episode, :explicit, :status, :recording, :cover, :artist)
   end
 
   def find_episode
