@@ -1,5 +1,5 @@
 class Podcast < ApplicationRecord
-  # belongs_to :user
+  belongs_to :user
   has_many :episodes
   has_many :subscriptions
   has_many :subscribers, through: :subscriptions

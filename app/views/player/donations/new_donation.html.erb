@@ -21,12 +21,12 @@
         <div class="pt-3 pr-5 pl-5">
           <%= f.input :note, label: "留一段話鼓勵我吧！", input_html: { class: "donate_message" } %>
         </div>
-      </div>
-      <div>
-        <div class="flex flex-col justify-center pt-5 pr-7 pl-7 pb-2">
-          <%= f.button :submit, "贊助", class: "btn-primary" %>
+        <div class="flex flex-col justify-center flex-grow pt-5 pr-7 pl-7 pb-3">
+          <%= f.button :submit, "贊助", class: "btn-primary w-full cursor-pointer" %>
         </div>
         <% end %>
+      </div>
+      <div>
         <footer class="flex text-xs font-light justify-center pb-2">
           <span class="pr-1">Powered</span>
           <span class="pr-1">by</span>

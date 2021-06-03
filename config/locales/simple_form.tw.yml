@@ -53,6 +53,8 @@ zh-TW:
           attributes:
             amount:
               greater_than: "不得小於50元"
+              not_a_number: "請輸入數字"
+
 
 
     # Examples
