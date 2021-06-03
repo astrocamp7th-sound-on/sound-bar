@@ -16,9 +16,9 @@ document.addEventListener("turbolinks:load", function () {
           } else {
             btn.classList.remove("bg-red-400")
           }
-          error: (res) => {
-            console.log(res)
-          }
+        },
+        error: (res) => {
+          console.log(res)
         },
       })
     })
