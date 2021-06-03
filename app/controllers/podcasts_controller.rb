@@ -1,5 +1,6 @@
 class PodcastsController < ApplicationController
   before_action :find_podcast, only: [:info, :update, :destroy, :dashboard, :music, :donate]
+  before_action :authenticate_user!
 
   def index
     @podcasts = Podcast.order(id: :desc).page(params[:page]).per(12)
@@ -48,7 +49,7 @@ class PodcastsController < ApplicationController
 
   private
   def podcast_params
-    params.require(:podcast).permit(:avatar, :name, :artist, :email, :language, :slug, :genres, :description, :subtitle, :weblink, :copyright, :explicit, :status, :cover, :donate_title)
+    params.require(:podcast).permit(:avatar, :name, :artist, :email, :language, :slug, :genres, :description, :subtitle, :weblink, :copyright, :explicit, :status, :cover, :donate_title).merge({user: current_user})
   end
 
   def find_podcast

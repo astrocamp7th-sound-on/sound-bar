@@ -55,7 +55,7 @@
     <div class="max-w-screen-lg mx-auto">
       <div class="border rounded-md bg-titleblue m-10">
         <h2 class="text-2xl m-10">留言區</h2>
-        <%= simple_form_for @comment, url: player_podcast_episode_comments_path(@podcast.random_url, @episode.random_url), remote: true do |f| %>
+        <%= simple_form_for @comment, url: player_podcast_episode_comments_path(@podcast.random_url, @episode.random_url) do |f| %>
           <div class="m-10">
             <%= f.input :content, label: "留言內容", input_html:{ class:"fill-form "} %></div>
           </div>

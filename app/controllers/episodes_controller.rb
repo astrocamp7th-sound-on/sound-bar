@@ -1,6 +1,7 @@
 class EpisodesController < ApplicationController
   before_action :find_podcast
   before_action :find_episode, only: [:edit, :update, :show, :destroy]
+  before_action :authenticate_user!
 
   def index
     @episodes = @podcast.episodes.order(id: :desc).page(params[:page]).per(10)
@@ -9,8 +10,8 @@ class EpisodesController < ApplicationController
 
   def create
     @episodes = @podcast.episodes.order(id: :desc).page(params[:page]).per(10)
-    @episode = @podcast.episodes.new
-    
+    @episode = @podcast.episodes.new(episode_params)
+
     if @episode.save
       redirect_to podcast_episodes_path(@podcast.random_url, @episode.random_url), notice: "新增單集成功"
     else

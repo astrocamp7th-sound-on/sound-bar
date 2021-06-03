@@ -3,7 +3,7 @@ class EmailValidator < ActiveModel::EachValidator
   def validate_each(record,attribute,value)
     begin
       mail = Mail::Address.new(value)
-      validation = m.domain.present? && m.domain.match('\.') && m.address == value
+      validation = mail.domain.present? && mail.domain.match('\.') && mail.address == value
     rescue
       validation = false
     end
