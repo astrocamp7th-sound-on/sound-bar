@@ -3,7 +3,7 @@ import "./info"
 import "./show"
 import "./podcasts_index"
 import "./episodes_index"
-import "./episodes_index"
+import "./navbar"
 
 document.addEventListener("turbolinks:load", function () {
 // 使用者登入後的節目列表搜尋框
