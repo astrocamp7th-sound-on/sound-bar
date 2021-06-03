@@ -4,7 +4,7 @@ class Player::EpisodesController < ApplicationController
     @podcast = Podcast.find_by!(slug: params[:player_podcast_id]) if @podcast.nil?
     @episode = Episode.find_by!(random_url: params[:id])
     @comment = @episode.comments.new
-    @comments = @episode.comments.order(id: :desc)
+    @comments = @episode.comments.order(id: :desc).includes(:user)
 
     rescue ActiveRecord::RecordNotFound
       redirect_to browse_path, notice: "找不到節目或單集"
