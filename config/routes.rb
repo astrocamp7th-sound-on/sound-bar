@@ -8,7 +8,9 @@ Rails.application.routes.draw do
   constraints subdomain: 'host' do
     namespace :api, default: { format: :json} do
       namespace :v1 do
-        resources :podcasts, only: [:index]
+        resources :podcasts, only: [:index] do
+          resources :episodes, only: [:index]
+        end
       end
     end
     resources :podcasts, except: [:new, :edit, :show] do
