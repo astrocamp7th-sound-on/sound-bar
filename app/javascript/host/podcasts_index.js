@@ -54,8 +54,8 @@ document.addEventListener("turbolinks:load", function () {
               })
             )
           },
-          failure: function(result){
-            console.log(result)
+          failure: function(res){
+            console.log(res)
           }
         })
       }, 1000);

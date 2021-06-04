@@ -27,8 +27,8 @@ document.addEventListener("turbolinks:load", function () {
             })
             document.querySelector('#podcastNameUl').innerHTML = content.join('')
           },
-          failure: function(result){
-            console.log(result)
+          failure: function(res){
+            console.log(res)
           }
         })
       }, 1000);
