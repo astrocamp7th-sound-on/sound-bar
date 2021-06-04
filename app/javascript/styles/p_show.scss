@@ -7,7 +7,7 @@
 .check-sign-up {
   background-color: white;
   border: 5px;
-  border-radius: 5px;
+  border-radius: 30px;
   overflow: hidden;
   max-height: 0;
   transition: (max-height 0.3s);
@@ -16,4 +16,16 @@
   max-height: 300px;
   color: red;
   text-align: center;
+}
+
+.subscribed-btn {
+  @apply border w-36 rounded-full p-3 m-3 text-xl text-white duration-300 hover:bg-red-500;
+}
+
+.unlogin_btn {
+  @apply border w-36 rounded-full p-3 m-3 text-xl text-white duration-300 hover:bg-red-500;
+}
+
+.replies {
+  width: calc(100% - 2.5rem);
 }

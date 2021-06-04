@@ -10,3 +10,35 @@
 #donateLinkInput::selection{
   @apply bg-gray-100 text-gray-400;
 }
+
+.donate_bg {
+  background: linear-gradient(rgb(62, 111, 139), rgb(31, 52, 71));
+}
+
+.donate_podcast {
+  @apply text-white text-3xl mx-auto m-2 pt-5 font-bold;
+}
+
+.donate_artist {
+  @apply text-white text-xl mx-auto m-2 font-light;
+}
+
+.donate_form {
+  @apply w-full border p-3 rounded duration-500 hover:border-titleblue;
+}
+
+.donate_message {
+  @apply w-full border p-5 rounded duration-500 hover:border-titleblue;
+}
+
+.donate_cover {
+  @apply sm:w-60 sm:h-60;
+}
+
+.donate_button {
+  @apply border w-36 rounded-full p-3 m-3 text-white text-xl bg-blue-500 duration-300 hover:bg-blue-700;
+}
+
+#new_donation {
+  @apply grid justify-evenly;
+}

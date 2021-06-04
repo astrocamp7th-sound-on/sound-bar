@@ -1,5 +1,5 @@
 <!-- 建立Podcast燈箱 -->
-<div class="create-podcast fixed w-full h-full bg-black bg-opacity-50 flex justify-end z-10 hidden">
+<div class="create-podcast fixed w-full h-full bg-black bg-opacity-50 flex justify-end z-10 <%= ' hidden' unless @podcast.errors.any? %>">
   <div class="create-podcast-content h-full bg-white flex justify-center relative">
     <nav class="fixed top-0 shadow-md">
       <div class="flex w-full justify-between">
@@ -157,9 +157,9 @@
       <div class="grid grid-flow-row xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 xs:grid-cols-1 gap-x-8 w-full">
         <% @podcasts.each do |podcast| %>
           <div class="cursor-pointer relative bg-white mt-8 border border-gray-300 hover:border-gray-400 rounded ">
-            <div class="flex border-b border-gray-200">
-              <div class="w-14 h-14 p-10">
-                <%= image_tag(podcast.cover.url, size: "30x30") if podcast.cover? %>
+            <div class="flex border-b border-gray-200 items-center">
+              <div class="m-3">
+                <%= image_tag(podcast.cover.url, size: "80x80") if podcast.cover? %>
               </div>
               <div class="w-full">
                 <h3 class="font-semibold text-gray-800 pt-5"><%= link_to podcast.name, dashboard_podcast_path(podcast.random_url), class: "block" %></h3>

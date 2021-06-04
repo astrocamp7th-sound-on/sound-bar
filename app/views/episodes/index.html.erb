@@ -3,7 +3,12 @@
 </div>
 
 <!-- 新增單集燈箱 -->
-<div class="create-episode fixed w-full h-full bg-black bg-opacity-50 flex justify-end z-10 hidden">
+<% if @episode.errors.any? %>
+  <% @episode.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+  <% end %>
+<% end %>
+<div class="create-episode fixed w-full h-full bg-black bg-opacity-50 flex justify-end z-10 <%=' hidden' unless @episode.errors.any? %>">
   <div class="create-episode-content h-full bg-white flex justify-center relative">
     <nav class="fixed top-0 shadow-md">
       <div class="flex w-full justify-between">
@@ -98,7 +103,7 @@
       </div>
     </div>
      <!-- 下半框 -->
-     <div class="bg-gray-100">
+     <div class="bg-gray-100 mb-16">
        <section class="container container-index w-11/12 mx-auto mt-6">
         <!-- 搜尋框及新增單集 -->
         <div class="flex justify-between">

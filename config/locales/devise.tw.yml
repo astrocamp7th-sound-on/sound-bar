@@ -65,6 +65,8 @@ zh-TW:
       unlocked: "您的帳號已被解鎖，現在已經登入。"
   errors:
     messages:
+      invalid: "信箱無效"
+      confirmation: "確認密碼錯誤"
       already_confirmed: "已經驗證，請直接登入。"
       confirmation_period_expired: "必須在 %{period} 內驗證，請重新申請。"
       expired: "已經過期，請重新申請。"
@@ -73,5 +75,4 @@ zh-TW:
       not_saved:
         one: "有錯誤導致 %{resource} 不能被儲存："
         other: "有 %{count} 個錯誤導致 %{resource} 不能被儲存："
-
-
+      blank: "上傳檔案"

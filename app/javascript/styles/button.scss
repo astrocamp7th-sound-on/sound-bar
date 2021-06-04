@@ -1,13 +1,9 @@
 .btn {
-  @apply rounded-lg font-medium px-4 py-2 shadow-xl hover:shadow-inner focus:outline-none transition duration-500 ease-in-out transform hover:-translate-x-0 hover:scale-105;
+  @apply rounded font-medium px-4 py-2 shadow-xl hover:shadow-inner focus:outline-none transition duration-500 ease-in-out transform hover:-translate-x-0 hover:scale-105;
 }
 
 .btn-primary {
   @apply bg-blue-500 text-white;
-}
-
-.btn-success {
-  @apply bg-green-500 hover:bg-green-700;
 }
 
 .btn-success {

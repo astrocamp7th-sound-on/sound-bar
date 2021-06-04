@@ -1,7 +1,7 @@
 <div class="h-full min-h-screen bg-blue-50">
   <div class="flex flex-col items-center mt-3">
     <%= link_to image_tag("logo", size: "160x160"), podcasts_path %>
-    <div class="w-24 h-24 pt-3 bg-red-300">
+    <div class="mt-3">
       <%= image_tag(@podcast.cover.url, size: "160x160") if @podcast.cover.present? %>
     </div>
   </div>
