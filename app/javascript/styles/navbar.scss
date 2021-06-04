@@ -1,3 +1,7 @@
-.navbar li:hover > ul{
+.navbar li:hover > ul {
+  @apply block;
+}
+
+#podcastNameInput:focus + ul {
   @apply block;
 }
