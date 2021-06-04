@@ -104,7 +104,7 @@
         <div class="flex justify-between">
           <form class="search-form flex bg-white border border-gray-300 hover:border-blue-400 rounded transition duration-300">
             <input type="text" class="ml-3 p-1 bg-transparent focus:outline-none w-96" placeholder="搜尋單集">
-            <button class="mr-3 p-1 bg-transparent focus:outline-none text-gray-600">
+            <button class="mr-3 p-1 bg-transparent focus:outline-none text-gray-400">
               <i class="fas fa-search"></i>
             </button>
           </form>
@@ -125,7 +125,9 @@
             <tbody class="bg-white">
               <% @episodes.each do |episode, index| %>
                 <tr>
-                  <td class="p-2 w-24"><%= image_tag(episode.cover.url) if episode.cover? %></td>
+                  <td class="p-2 w-24">
+                    <%= episode.cover? ? image_tag(episode.cover.url) : @podcast.cover? ? image_tag(@podcast.cover.url) : image_tag("https://picsum.photos/300/300/?random=1") %>
+                  </td>
                   <td class="w-10"><%= link_to "S#{episode.season}E#{episode.episode}", podcast_episode_path(@podcast.random_url, episode.random_url), class: "block py-4 px-2" %></td>
                   <td class="text-left"><%= link_to episode.title, podcast_episode_path(@podcast.random_url, episode.random_url), class: "block py-4 px-2" %></td>
                   <td class="w-40 text-right text-sm">
