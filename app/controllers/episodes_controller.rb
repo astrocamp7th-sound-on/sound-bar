@@ -14,12 +14,15 @@ class EpisodesController < ApplicationController
 
     if @episode.save
 
-      @users = @episode.podcast.subscribers
-      @users.each do |user|
-        user_id = user.id
-        MailWorker.perform_async(user_id)
-      end
-      
+      @users_id = @episode.podcast.users.ids
+
+      data = JSON.generate({ 'users_id' => @users_id,
+      'episode_title' => @episode.title,
+      'podcast_name' => @podcast.name
+     })
+
+        MailWorker.perform_async(data)
+
       redirect_to podcast_episode_path(@podcast.random_url, @episode.random_url), notice: "新增單集成功"
     else
       render :index
