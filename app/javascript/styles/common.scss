@@ -25,3 +25,9 @@
 .page.current {
   @apply cursor-pointer border-blue-500 text-blue-500 hover:border-blue-400 hover:text-blue-400;
 }
+
+.textOverflow {
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  white-space: nowrap;
+}

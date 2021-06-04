@@ -9,7 +9,6 @@ class EpisodesController < ApplicationController
   end
 
   def create
-    @episodes = @podcast.episodes.order(id: :desc).page(params[:page]).per(10)
     @episode = @podcast.episodes.new(episode_params)
 
     if @episode.save
