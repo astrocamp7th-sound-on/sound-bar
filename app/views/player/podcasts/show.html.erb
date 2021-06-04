@@ -11,7 +11,9 @@
         <div class="md:w-2/3">
           <ul>
             <li class="p-1 text-blue-300 text-xl"><%= @podcast.subtitle %></li>
-            <li class="p-1 text-white text-4xl"><%= @podcast.name %></li>
+          <% if current_user.favorite?(@podcast) %>
+            <li class="p-1 text-white text-4xl"><%= @podcast.name %> <span class="my_fav"><i class="far fa-star"></i></span></li>
+          <% else %>
             <li class="p-1 text-white"><%= @podcast.description %></li>
             <li class="p-1 text-white"><a href="<%= @podcast.weblink %>" target="_blank" class="pr-3"><i class="fas fa-globe-americas"></i> <%= @podcast.weblink %></a></li>
             <li class="flex p-1 pt-8 text-gray-500">
