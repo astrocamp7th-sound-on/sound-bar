@@ -13,8 +13,10 @@ document.addEventListener("turbolinks:load", function () {
         success: (res) => {
           if (res.status === "added") {
             btn.classList.add("bg-red-400")
+            btn.innerHTML = '已訂閱 <i class="far fa-grin-hearts"></i>'
           } else {
-            btn.classList.remove("bg-red-400")
+            btn.classList.add("bg-gray-400")
+            btn.innerHTML = '未訂閱 <i class="far fa-sad-cry"></i>'
           }
           error: (res) => {
             console.log(res)
