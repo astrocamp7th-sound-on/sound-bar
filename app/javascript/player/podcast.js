@@ -16,7 +16,7 @@ document.addEventListener("turbolinks:load", function () {
             btn.innerHTML = '已訂閱 <i class="far fa-grin-hearts"></i>'
           } else {
             btn.classList.add("bg-gray-400")
-            btn.innerHTML = '未訂閱 <i class="far fa-sad-cry"></i>'
+            btn.innerHTML = '訂閱 <i class="far fa-heart"></i>'
           }
           error: (res) => {
             console.log(res)
