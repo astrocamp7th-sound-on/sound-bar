@@ -6,6 +6,9 @@ class Api::V1::PodcastsController < Api::ApiController
     # @podcasts = current_user.podcasts
   end
 
+  def slug
+    @podcasts = Podcast.all
+  end
 
 
 

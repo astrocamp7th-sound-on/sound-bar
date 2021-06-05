@@ -63,7 +63,30 @@ document.addEventListener("turbolinks:load", function () {
     })
     fPodcastSlug.addEventListener('blur', (e) => {
       validateInputPresence(e)
-      
+      let fSlugErrorSpan = document.createElement('SPAN')
+      fSlugErrorSpan.classList.add('error')
+      fSlugErrorSpan.textContent = '這組短網址已被使用了，請改用其它字串'
+      if (e.target.value != ''){
+        Rails.ajax({
+          url: '/api/v1/podcasts/slug',
+          type: 'get',
+          success: function(res){
+            let result = res.findIndex(function(podcast){
+              return podcast.slug == e.target.value
+            })
+            if (result > -1 && e.target.classList.toString().indexOf('border-red-400') == -1){
+              e.target.classList.add('border-red-400')
+              e.target.parentElement.appendChild(fSlugErrorSpan)
+            } else if (result == -1 && e.target.classList.contains('border-red-400')){
+              e.target.classList.remove('border-red-400')
+              e.target.parentElement.removeChild(e.target.parentElement.lastElementChild)
+            }
+          },
+          failure: function(res){
+            console.log(res)
+          }
+        })
+      }
     })
   }
 
