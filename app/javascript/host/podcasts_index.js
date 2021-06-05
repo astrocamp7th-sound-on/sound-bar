@@ -3,7 +3,6 @@ import Rails from "@rails/ujs"
 
 document.addEventListener("turbolinks:load", function () {
 
-  // 使用者登入後的節目列表搜尋框
   let searchForm = document.querySelector('.search-form')
   let createPodcastBtn = document.querySelector('.create-podcast-btn')
   let closeCreatePodcast = document.querySelector('.close-create-podcast')
@@ -11,6 +10,45 @@ document.addEventListener("turbolinks:load", function () {
   let closeCreateEpisode = document.querySelector('.close-create-episode')
   let createEpisodeForm = document.querySelector('#createEpisodeFrom')
   let searchPodcastInput = document.querySelector('#searchPodcastInput')
+  let newPodcastForm = document.querySelector('#new_podcast')
+  let fPodcastName = document.querySelector('#podcast_name')
+  let fPodcastArtist = document.querySelector('#podcast_artist')
+  let fPodcastEmail = document.querySelector('#podcast_email')
+  let fPodcastLanguage = document.querySelector('#podcast_language')
+  let fPodcastSlug = document.querySelector('#podcast_slug')
+  let fPodcastGenres = document.querySelector('#podcast_genres')
+  let fPodcastDescription = document.querySelector('#podcast_description')
+  let fPodcastCopyright = document.querySelector('#podcast_copyright')
+
+  // 建立 Podcast 表單驗證
+  if (newPodcastForm){
+
+    function validateInputPresence (e) {
+      let fErrorSpan = document.createElement('SPAN')
+      fErrorSpan.classList.add('error')
+      fErrorSpan.textContent = '必填'
+      if (e.target.value == '' && e.target.classList.toString().indexOf('border-red-400') == -1){
+        e.target.classList.add('border-red-400')
+        e.target.parentElement.appendChild(fErrorSpan)
+      } else if (e.target.value != '' && e.target.classList.contains('border-red-400')) {
+        e.target.classList.remove('border-red-400')
+        e.target.parentElement.removeChild(e.target.parentElement.lastElementChild)
+      }
+    }
+
+    fPodcastName.addEventListener('blur', (e) => validateInputPresence(e))
+    fPodcastArtist.addEventListener('blur', (e) => validateInputPresence(e))
+    fPodcastLanguage.addEventListener('blur', (e) => validateInputPresence(e))
+    fPodcastGenres.addEventListener('blur', (e) => validateInputPresence(e))
+    fPodcastDescription.addEventListener('blur', (e) => validateInputPresence(e))
+    fPodcastCopyright.addEventListener('blur', (e) => validateInputPresence(e))
+    fPodcastEmail.addEventListener('blur', function(e){
+      validateInputPresence(e)
+      console.log(e.target.value)
+    })
+
+
+  }
 
   // 搜尋功能
   if (searchPodcastInput){
