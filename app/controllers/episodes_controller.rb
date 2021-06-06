@@ -14,9 +14,10 @@ class EpisodesController < ApplicationController
 
     if @episode.save
 
-      @users_id = @episode.podcast.users.ids
+      @users_id = @episode.podcast.subscribers.ids
 
-      data = JSON.generate({ 'users_id' => @users_id,
+      data = JSON.generate({
+      'users_id' => @users_id,
       'episode_title' => @episode.title,
       'podcast_name' => @podcast.name
      })

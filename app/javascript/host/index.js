@@ -1,4 +1,3 @@
-import "./donate"
 import "./info"
 import "./show"
 import "./podcasts_index"
