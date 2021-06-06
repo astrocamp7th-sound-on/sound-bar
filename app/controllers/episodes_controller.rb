@@ -9,13 +9,20 @@ class EpisodesController < ApplicationController
   end
 
   def create
-    @episodes = @podcast.episodes.order(id: :desc).page(params[:page]).per(10)
-    @episode = @podcast.episodes.new(episode_params)
+    #User.last.podcasts.include? Podcast.last
+    check
+    
+    if current_user.podcasts.include? @podcast
+      @episodes = @podcast.episodes.order(id: :desc).page(params[:page]).per(10)
+      @episode = @podcast.episodes.new(episode_params)
 
-    if @episode.save
-      redirect_to podcast_episodes_path(@podcast.random_url, @episode.random_url), notice: "新增單集成功"
+      if @episode.save
+        redirect_to podcast_episodes_path(@podcast.random_url, @episode.random_url), notice: "新增單集成功"
+      else
+        render :index
+      end
     else
-      render :index
+      redirect_to podcasts_path, notice: "no"
     end
   end
 
