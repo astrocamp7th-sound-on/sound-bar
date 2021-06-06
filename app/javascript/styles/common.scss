@@ -1,0 +1,27 @@
+.bg-color {
+  @apply bg-blue-50 h-screen;
+}
+
+.search-bar-ring {
+  @apply border-blue-400 ring ring-blue-100;
+}
+
+.welcome {
+  @apply text-2xl font-black;
+}
+
+.podcast-info {
+  @apply text-lg font-bold;
+}
+
+.h-13 {
+  height: 3.25rem;
+}
+
+.mt-13 {
+  margin-top: 3.25rem;
+}
+
+.page.current {
+  @apply cursor-pointer border-blue-500 text-blue-500 hover:border-blue-400 hover:text-blue-400;
+}

@@ -1,0 +1,38 @@
+<%= render '/frontend/header' %>
+
+<div class="bg-indigo">
+  <div class="max-w-screen-lg mx-auto h-screen">
+    <div class="ml-5 mr-5">
+      <h1 class="text-4xl text-titleblue">隨時隨地, 找到頻率最對的聲音</h1>
+      <div class="text-white mt-3">
+        <p>經典並非老派</p>
+        <p>SoundOn 以音頻為基礎, 結合創新科技應用</p>
+        <p>收藏你所愛, 毋須擔心過時的問題</p>
+        <p>人性化的設計讓您隨時擁有溫度的聲音</p>
+      </div>
+      <h2 class="text-white text-2xl mt-20 mb-6">新聲報到</h2>
+      <div class="wrapper relative">
+        <button id="frontArrow" class="front_arrow">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <% @podcasts.each do |podcast| %>
+        <div class="cover_line imgBox">
+          <div class="">
+            <div class="covers">
+              <%= link_to player_podcast_path(podcast.random_url) do  %>
+              <%= image_tag(podcast.cover.url, size: "150x150") if podcast.cover? %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <% end %>
+        <button id="backArrow" class="back_arrow">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+  <div>
+    <%= render '/frontend/footer' %>
+  </div>

@@ -1,0 +1,98 @@
+<%= render '/frontend/header' %>
+
+<div class="bg-indigo">
+  <div class="max-w-screen-lg mx-auto pt-10">
+    <div class="">
+      <span class="bg-genresbg m-10 py-1 px-5 text-white rounded-xl"><%= @podcast.genres %></span>
+      <div class="m-10 md:flex">
+        <div class="pr-5 md:w-1/3">
+          <%= image_tag(@podcast.cover.url, size: "300x300") if @podcast.cover? %>
+        </div>
+        <div class="md:w-2/3">
+          <ul>
+            <li class="p-1 text-blue-300 text-xl"><%= @podcast.subtitle %></li>
+            <li class="p-1 text-white text-4xl"><%= @podcast.name %></li>
+            <li class="p-1 text-white"><%= @podcast.description %></li>
+            <li class="p-1 text-white"><a href="<%= @podcast.weblink %>" target="_blank" class="pr-3"><i class="fas fa-globe-americas"></i> <%= @podcast.weblink %></a></li>
+            <li class="flex p-1 pt-8 text-gray-500">
+              <a href="" class="fb_icon"><i class="fab fa-facebook-f"></i></a>
+              <a href="" class="share_icon"><i class="fas fa-share"></i></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="flex flex-grid justify-center p-5">
+        <div>
+          <button class="donate_button">
+            <%= link_to "贊助" , donate_player_podcast_path(@podcast.random_url)  %>
+            <i class="fas fa-donate"></i>
+          </button>
+        </div>
+        <% if user_signed_in? %>
+          <% if current_user.subscribe?(@podcast) %>
+            <button class="subscribed-btn bg-red-400" data-id="<%= @podcast.id %>">已訂閱 <i class="far fa-grin-hearts"></i></button>
+          <% else %>
+            <button class="subscribed-btn bg-red-400" data-id="<%= @podcast.id %>">訂閱 <i class="far fa-heart"></i></button>
+          <% end %>
+        <% else %>
+          <div class="subscribe">
+            <button class="unlogin_btn m-2">
+              <label for="subscription">訂閱  <i class="far fa-heart"></i></label>
+            </button>
+            <input type="checkbox" id="subscription">
+            <div class="check-sign-up">
+              <span>訂閱前請先登入</span> </br>
+              <div class="sign-up">
+              <%= link_to "點我去註冊" , new_user_registration_path %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="bg-gray-200">
+  <div class="max-w-screen-lg mx-auto pt-10">
+    <div class="m-1">
+      <div class="grid justify-around">
+        <div class="gird jusfity-between pt-5 pb-5">
+          <% @episodes.order(id: :desc).each do |episode| %>
+          <div class="flex justify-between rounded-lg p-5 bg-white m-3">
+            <div class="podcast_cover pt-5 pb-5">
+              <%= image_tag(@podcast.cover.url, size: "180x180") if @podcast.cover? %>
+            </div>
+            <div class="pt-5 pl-5 pr-52">
+              <p class="text-2xl"><%= episode.title %></p>
+              <p class="font-extralight"><%= episode.description %></p>
+                <div class="flex pt-20">
+                  <p class="align-bottom pr-5">
+                    <span class="pr-2"><i class="far fa-clock"></i></span>12:10
+                  </p>
+                  <p class="">
+                    <span class="pr-2"><i class="far fa-calendar-alt"></i></span>
+                    <span><%= episode.created_at.strftime('%Y-%m-%d') %></span>
+                  </p>
+                </div>
+            </div>
+            <div class="play_button my-auto">
+              <%= link_to player_podcast_episode_path(@podcast.random_url, episode.random_url) do %>
+                <%= fa_icon "play-circle" %>
+              <% end %>
+            </div>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="flex justify-center pb-8">
+    <button class="border rounded-md p-3 m-3 text-white bg-blue-500 hover:bg-blue-700">
+      <%= link_to "返回 Podcast 節目列表" , podcasts_path %>
+    </button>
+  </div>
+</div>
+
+<%= render '/frontend/footer' %>

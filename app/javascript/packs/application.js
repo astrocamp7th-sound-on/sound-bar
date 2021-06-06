@@ -13,3 +13,9 @@ import "tailwind/application"
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+import "fontawesome"
+import "styles"
+import "host"
+import "player"
+import "browser"

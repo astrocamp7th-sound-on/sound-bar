@@ -1,0 +1,35 @@
+abbr[title="required"] {
+  color: #f00;
+}
+
+.field_with_errors {
+  @apply relative;
+}
+
+.error {
+  @apply relative -top-4 text-red-600;
+}
+
+.fill-form {
+  @apply flex w-full border-2 rounded-md m-2 p-2 hover:border-blue-500;
+}
+
+.fill-form-status {
+  @apply border-2 rounded-md m-2 p-2 hover:border-blue-500;
+}
+
+.input {
+  @apply m-2;
+}
+
+.sign_form {
+  @apply mt-1 pl-5 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0;
+}
+
+.edit-form {
+  @apply w-full border rounded-md mx-2 my-3 p-1 hover:border-blue-400 focus:outline-none focus:border-blue-400 focus:ring focus:ring-blue-100 transition duration-300;
+}
+
+.input.string.required.comment_content{
+  @apply w-full;
+}

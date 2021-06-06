@@ -1,0 +1,49 @@
+<%= flash[:notice] %>
+<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <div class="font-sans">
+    <div class="relative min-h-screen flex flex-col sm:justify-center items-center bg-gray-100 ">
+      <div class="relative sm:max-w-sm w-full">
+        <div class="relative w-full rounded-3xl  px-6 py-4 bg-gray-100 shadow-md">
+          <label for="" class="flex justify-center mt-3 text-lg">
+            <span>登入｜</span><span><%= link_to image_tag("new_logo_black", size: "125x125") %></span>
+            <span>for Podcasters</span>
+          </label>
+          <form method="#" action="#" class="mt-10">
+            <i class="fas fa-user"></i>
+          <div class="field">
+            <%= f.input :email, autofocus: true, autocomplete: "email", input_html:{ class:"sign_form", placeholder: "Email" } %>
+          </div>
+
+          <div class="field">
+            <i class="fas fa-lock"></i>
+            <%= f.input :password, autocomplete: "current-password", input_html:{ class:"sign_form", placeholder: "密碼" } %>
+          </div>
+
+          <% if devise_mapping.rememberable? %>
+            <div class="field m-6">
+              <%= f.check_box :remember_me %>
+              <%= f.label :在這台電腦上記住登入資訊 %>
+            </div>
+          <% end %>
+
+          <div class="actions">
+            <%= f.button :submit, "登入", class: "btn-primary" %>
+            <% end %>
+          </div>
+          <div class="flex mt-7 justify-between w-full">
+            <div class="text-blue-500 duration-400 hover:text-blue-400">
+              <a href="/users/password/new">忘記密碼</a>
+            </div>
+            <div class="text-blue-500 duration-400 hover:text-blue-400">
+              <a href="/users/sign_up">註冊帳號</a>
+            </div>
+          </div>
+          <div class="mt-7">
+            <div class="">
+              <p class="pl-1">© 2021 SoundBar, Inc.</p>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
