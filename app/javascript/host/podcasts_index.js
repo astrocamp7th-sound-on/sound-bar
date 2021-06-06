@@ -3,6 +3,7 @@ import Rails from "@rails/ujs"
 
 document.addEventListener("turbolinks:load", function () {
 
+  // 使用者登入後的節目列表搜尋框
   let searchForm = document.querySelector('.search-form')
   let createPodcastBtn = document.querySelector('.create-podcast-btn')
   let closeCreatePodcast = document.querySelector('.close-create-podcast')
@@ -101,7 +102,7 @@ document.addEventListener("turbolinks:load", function () {
       }
     })
   }
-
+  
   // 搜尋功能
   if (searchPodcastInput){
     let timeout = null
