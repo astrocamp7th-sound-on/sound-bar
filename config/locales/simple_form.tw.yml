@@ -34,9 +34,14 @@ zh-TW:
               blank: "必填"
             slug:
               blank: "必填"
-              taken: "這組 slug 已被使用了，請改用其它字串"
+              taken: "這組短網址已被使用了，請改用其它字串"
             genres:
               blank: "必填"
+            description:
+              blank: "必填"
+            copyright:
+              blank: "必填"
+
         episode:
           attributes:
             audio:

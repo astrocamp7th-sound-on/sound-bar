@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     namespace :api, default: { format: :json} do
       namespace :v1 do
         resources :podcasts, only: [:index] do
+          get :slug, on: :collection
           resources :episodes, only: [:index]
         end
       end
