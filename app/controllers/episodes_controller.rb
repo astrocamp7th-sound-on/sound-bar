@@ -14,10 +14,10 @@ class EpisodesController < ApplicationController
 
     if @episode.save
 
-      @users_id = @episode.podcast.subscribers.ids
+      @subscribers_emails = @episode.podcast.subscribers.pluck(:email)
 
       data = JSON.generate({
-      'users_id' => @users_id,
+      'subscribers_emails' => @subscribers_emails,
       'episode_title' => @episode.title,
       'podcast_name' => @podcast.name
      })
