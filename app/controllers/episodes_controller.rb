@@ -2,7 +2,7 @@ class EpisodesController < ApplicationController
   before_action :find_podcast
   before_action :find_episode, only: [:edit, :update, :show, :destroy]
   before_action :authenticate_user!
-  before_action :podcasts_from_current_user?, only: [:update, :create]
+  before_action :is_current_user_podcast?, only: [:index, :create, :update, :destroy]
 
   def index
     @episodes = @podcast.episodes.order(id: :desc).page(params[:page]).per(10)
@@ -52,10 +52,7 @@ class EpisodesController < ApplicationController
       redirect_to podcasts_path, notice: "找不到節目"
   end
 
-  def podcasts_from_current_user?
-    if current_user.podcasts.include? @podcast
-    else
-      redirect_to podcasts_path, notice: "這不是您的Podcast !"
-    end
+  def is_current_user_podcast?
+    redirect_to podcasts_path, notice: "這不是您的Podcast !" unless current_user.podcasts.include? @podcast
   end
 end

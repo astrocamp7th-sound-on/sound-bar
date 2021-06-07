@@ -1,4 +1,8 @@
 class ApplicationController < ActionController::Base
+  include ::Pundit
+
+  # include ApplicationController::Pundit
+  # include Pundit
 
   # 搬到users去
   def after_sign_in_path_for(resource)

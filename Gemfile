@@ -82,3 +82,5 @@ gem 'omniauth-google-oauth2'
 gem 'omniauth-rails_csrf_protection'
 # 分頁功能
 gem 'kaminari', '~> 1.2', '>= 1.2.1'
+# 權限管理
+gem "pundit"
