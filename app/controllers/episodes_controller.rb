@@ -12,7 +12,7 @@ class EpisodesController < ApplicationController
     @episode = @podcast.episodes.new(episode_params)
 
     if @episode.save
-      redirect_to podcast_episodes_path(@podcast.random_url, @episode.random_url), notice: "新增單集成功"
+      redirect_to podcast_episode_path(@podcast.random_url, @episode.random_url), notice: "新增單集成功"
     else
       render :index
     end
@@ -50,4 +50,5 @@ class EpisodesController < ApplicationController
     rescue ActiveRecord::RecordNotFound
       redirect_to podcasts_path, notice: "找不到節目"
   end
+
 end
