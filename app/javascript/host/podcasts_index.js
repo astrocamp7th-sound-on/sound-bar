@@ -25,7 +25,6 @@ document.addEventListener("turbolinks:load", function () {
   let editEpisodeForm = document.querySelector('[id^="edit_episode"]')
   let fEpisodeTitle = document.querySelector('#episode_title')
   let fEpisodeDescription = document.querySelector('#episode_description')
-  let createEpisodeSpan = document.querySelector('#createEpisodeSpan')
 
   // 驗證表單 必填
   function validateInputPresence (e) {
