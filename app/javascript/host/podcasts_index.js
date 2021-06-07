@@ -25,6 +25,7 @@ document.addEventListener("turbolinks:load", function () {
   let editEpisodeForm = document.querySelector('[id^="edit_episode"]')
   let fEpisodeTitle = document.querySelector('#episode_title')
   let fEpisodeDescription = document.querySelector('#episode_description')
+  let createEpisodeSpan = document.querySelector('#createEpisodeSpan')
 
   // 驗證表單 必填
   function validateInputPresence (e) {
@@ -39,7 +40,7 @@ document.addEventListener("turbolinks:load", function () {
       e.target.parentElement.removeChild(e.target.parentElement.lastElementChild)
     }
   }
-  
+
   // 驗證表單 Email 格式
   function validateInputEmail (e) {
     let emailReg = new RegExp(/(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/)
@@ -102,7 +103,7 @@ document.addEventListener("turbolinks:load", function () {
       }
     })
   }
-  
+
   // 搜尋功能
   if (searchPodcastInput){
     let timeout = null
@@ -172,8 +173,9 @@ document.addEventListener("turbolinks:load", function () {
   // 建立 Episode 燈箱
   if (createEpisodeBtn){
     createEpisodeBtn.forEach(btn =>
-      btn.addEventListener('click', function(){
+      btn.addEventListener('click', function(e){
         document.querySelector('.create-episode').classList.remove('hidden')
+        document.querySelector('#new_episode').setAttribute("action", `/podcasts/${e.target.dataset.randomUrl}/episodes`)
       })
     )
   }
