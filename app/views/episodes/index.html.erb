@@ -3,7 +3,7 @@
 </div>
 
 <!-- 新增單集燈箱 -->
-<div class="create-episode fixed w-full h-full bg-black bg-opacity-50 flex justify-end z-10 <%=' hidden' unless @episode.errors.any? %>">
+<div class="create-episode fixed w-full h-full bg-black bg-opacity-50 flex justify-end z-10 hidden">
   <div class="create-episode-content h-full bg-white flex justify-center relative">
     <nav class="fixed top-0 shadow-md">
       <div class="flex w-full justify-between">
@@ -28,7 +28,11 @@
       <section class="mainEpisode_content">
         <section class="w-full p-2 pr-5 flex flex-col text-sm">
           <label class="w-full border border-dashed rounded-md mx-2 my-3 py-4 px-6 focus:outline-none focus:border-blue-400 focus:ring focus:ring-blue-100 transition duration-300 cursor-pointer">
-            選擇要上傳的 mp3 音檔 <span class="mx-2 text-white pt-1 pb-2 px-4 text-sm bg-blue-500 hover:bg-blue-400 cursor-pointer transition duration-300 rounded">瀏覽</span>
+            <abbr title="required">*</abbr>
+            選擇要上傳的 mp3 音檔
+            <span class="mx-2 text-white pt-1 pb-2 px-4 text-sm bg-blue-500 hover:bg-blue-400 cursor-pointer transition duration-300 rounded">
+              瀏覽
+            </span>
             <%= f.input :recording, as: :file, input_html:{class: "hidden" }, label: false %>
           </label>
           <%= f.input :title, input_html:{class: "edit-form" }, label: "標題" %>
