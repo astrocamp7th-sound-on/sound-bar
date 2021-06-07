@@ -5,7 +5,7 @@ class SubscribeMailer <  ApplicationMailer
     @podcast_name = podcast_name
     @subscribers_emails.each do |subscriber_email|
       @subscriber_email = subscriber_email
-      mail to: @subscriber_email, subject:"你訂閱的頻道《#{@podcast_name}》新增單集《#{@title} 》囉！"
+      mail to: subscriber_email, subject:"你訂閱的頻道《#{@podcast_name}》新增單集《#{@title} 》囉！"
     end
   end
 end
