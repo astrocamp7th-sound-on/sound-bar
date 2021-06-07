@@ -22,13 +22,13 @@ document.addEventListener("turbolinks:load", function () {
             btn.classList.add("bg-red-400")
             btn.innerHTML = '訂閱 <i class="far fa-heart"></i>'
           }
-          error: (res) => {
-            console.log(res)
-          }
+        },
+        error: (res) => {
+          console.log(res)
         },
       })
     })
-    
+
   }
 
 // localstorage 我的最愛

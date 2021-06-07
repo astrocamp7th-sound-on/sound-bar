@@ -6,6 +6,14 @@ Rails.application.routes.draw do
   get '/', to: 'pages#podcasters', constraints: { subdomain: 'podcasters'}
 
   constraints subdomain: 'host' do
+    namespace :api, default: { format: :json} do
+      namespace :v1 do
+        resources :podcasts, only: [:index] do
+          get :slug, on: :collection
+          resources :episodes, only: [:index]
+        end
+      end
+    end
     resources :podcasts, except: [:new, :edit, :show] do
       member do
         get :dashboard                           #數據總覽
