@@ -9,5 +9,6 @@ class Episode < ApplicationRecord
   mount_uploader :recording, RecordingUploader
   mount_uploader :cover, CoverUploader
 
+  before_create :set_artist
   include Randomable
 end

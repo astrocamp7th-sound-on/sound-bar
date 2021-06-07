@@ -10,7 +10,6 @@ class EpisodesController < ApplicationController
   end
 
   def create
-    @episodes = @podcast.episodes.order(id: :desc).page(params[:page]).per(10)
     @episode = @podcast.episodes.new(episode_params)
     if @episode.save
       redirect_to podcast_episodes_path(@podcast.random_url, @episode.random_url), notice: "新增單集成功"

@@ -54,7 +54,7 @@ class PodcastsController < ApplicationController
   end
 
   def find_podcast
-    @podcast = Podcast.find_by(random_url: params[:id])
+    @podcast = Podcast.includes(:episodes).find_by(random_url: params[:id])
     rescue ActiveRecord::RecordNotFound
       redirect_to podcasts_path, notice: "找不到節目"
   end
