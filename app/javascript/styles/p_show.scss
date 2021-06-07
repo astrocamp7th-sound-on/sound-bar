@@ -29,3 +29,7 @@
 .replies {
   width: calc(100% - 2.5rem);
 }
+
+.my_fav {
+  @apply hover:text-yellow-300;
+}
