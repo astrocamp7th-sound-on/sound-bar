@@ -2,6 +2,7 @@ class EpisodesController < ApplicationController
   before_action :find_podcast
   before_action :find_episode, only: [:edit, :update, :show, :destroy]
   before_action :authenticate_user!
+  before_action :podcasts_from_current_user?, only: [:update, :create]
 
   def index
     @episodes = @podcast.episodes.order(id: :desc).page(params[:page]).per(10)
@@ -10,7 +11,6 @@ class EpisodesController < ApplicationController
 
   def create
     @episode = @podcast.episodes.new(episode_params)
-
     if @episode.save
       redirect_to podcast_episodes_path(@podcast.random_url, @episode.random_url), notice: "新增單集成功"
     else
@@ -49,5 +49,12 @@ class EpisodesController < ApplicationController
     @podcast = Podcast.find_by!(random_url: params[:podcast_id])
     rescue ActiveRecord::RecordNotFound
       redirect_to podcasts_path, notice: "找不到節目"
+  end
+
+  def podcasts_from_current_user?
+    if current_user.podcasts.include? @podcast
+    else
+      redirect_to podcasts_path, notice: "這不是您的Podcast !"
+    end
   end
 end

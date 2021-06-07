@@ -11,10 +11,4 @@ class Episode < ApplicationRecord
 
   before_create :set_artist
   include Randomable
-
-  private
-  def set_artist
-    self.artist = self.podcast.artist if self.artist == ""
-  end
-
 end
