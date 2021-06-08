@@ -2,7 +2,8 @@ class EpisodesController < ApplicationController
   before_action :find_podcast
   before_action :find_episode, only: [:edit, :update, :show, :destroy]
   before_action :authenticate_user!
-  before_action :is_current_user_podcast?, only: [:index, :create, :update, :destroy]
+
+  rescue_from Pundit::NotAuthorizedError, with: :handle_pundit_error
 
   def index
     @episodes = @podcast.episodes.order(id: :desc).page(params[:page]).per(10)
@@ -10,7 +11,6 @@ class EpisodesController < ApplicationController
   end
 
   def create
-    @episodes = @podcast.episodes.order(id: :desc).page(params[:page]).per(10)
     @episode = @podcast.episodes.new(episode_params)
     if @episode.save
       redirect_to podcast_episodes_path(@podcast.random_url, @episode.random_url), notice: "新增單集成功"
@@ -42,17 +42,20 @@ class EpisodesController < ApplicationController
 
   def find_episode
     @episode = Episode.find_by!(random_url: params[:id])
+    authorize @episode
+
     rescue ActiveRecord::RecordNotFound
       redirect_to podcasts_path, notice: "找不到單集"
   end
 
   def find_podcast
     @podcast = Podcast.find_by!(random_url: params[:podcast_id])
+
     rescue ActiveRecord::RecordNotFound
       redirect_to podcasts_path, notice: "找不到節目"
   end
 
-  def is_current_user_podcast?
-    redirect_to podcasts_path, notice: "這不是您的Podcast !" unless current_user.podcasts.include? @podcast
+  def handle_pundit_error
+    redirect_to podcasts_path, notice: "這不是您的Podcast !"
   end
 end
