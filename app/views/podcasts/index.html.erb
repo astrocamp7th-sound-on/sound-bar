@@ -95,7 +95,7 @@
         <section class="w-full py-2 flex">
           <div class="w-full text-sm pr-5">
             <%= f.input :keyword, input_html:{class: "edit-form" }, label: "Subtitle"%>
-            <%= f.input :keyword, input_html:{class: "edit-form" }, label: "作者名稱" %>
+            <%= f.input :artist, input_html:{class: "edit-form" }, label: "作者名稱" %>
           </div>
           <div class="w-56 h-64 pr-2 pt-2 rounded flex flex-col flex-shrink-0 items-center">
             <div class="w-48 h-48 rounded-lg bg-gray-300"></div>
@@ -144,26 +144,26 @@
       <!-- 搜尋框及建立Podcast -->
       <div class="flex justify-between w-full">
         <form class="search-form flex bg-white border border-gray-300 hover:border-blue-400 rounded transition duration-300">
-          <button class="mr-3 p-1 bg-transparent focus:outline-none text-gray-600">
+          <span class="ml-2 p-1 bg-transparent focus:outline-none text-gray-400">
           <i class="fas fa-search"></i>
-          </button>
-          <input type="text" class="ml-3 p-1 bg-transparent focus:outline-none w-60" placeholder="搜尋單集">
+          </span>
+          <input id="searchPodcastInput" type="text" class="ml-3 p-1 bg-transparent focus:outline-none w-60" placeholder="搜尋單集">
         </form>
         <div class="create-podcast-btn py-1 px-4 text-sm text-white bg-blue-500 hover:bg-blue-400 cursor-pointer transition duration-300 rounded">
           建立 Podcast
         </div>
       </div>
       <!-- 節目列表 -->
-      <div class="grid grid-flow-row xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 xs:grid-cols-1 gap-x-8 w-full">
+      <div id="podcastsContent" class="grid grid-flow-row xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 xs:grid-cols-1 gap-x-8 w-full">
         <% @podcasts.each do |podcast| %>
           <div class="cursor-pointer relative bg-white mt-8 border border-gray-300 hover:border-gray-400 rounded ">
             <div class="flex border-b border-gray-200 items-center">
-              <div class="m-3">
+              <div class="m-3 w-20">
                 <%= image_tag(podcast.cover.url, size: "80x80") if podcast.cover? %>
               </div>
-              <div class="w-full">
-                <h3 class="font-semibold text-gray-800 pt-5"><%= link_to podcast.name, dashboard_podcast_path(podcast.random_url), class: "block" %></h3>
-                <%= link_to podcast.artist, dashboard_podcast_path(podcast.random_url), class: "block font-thin text-sm text-gray-600 pb-5" %>
+              <div class="w-full overflow-hidden">
+                <h3 class="font-semibold text-gray-800 pt-5 overflow-hidden"><%= link_to podcast.name, dashboard_podcast_path(podcast.random_url), class: "block textOverflow overflow-hidden pr-5" %></h3>
+                <%= link_to podcast.artist, dashboard_podcast_path(podcast.random_url), class: "block font-thin text-sm text-gray-400 pb-5 textOverflow overflow-hidden pr-5" %>
               </div>
             </div>
             <div class="flex justify-between">
