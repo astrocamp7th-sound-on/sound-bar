@@ -1,10 +1,16 @@
-<h1>Pages#index</h1>
-<p>Find me in app/views/pages/index.html.erb</p>
-
-<div class="flex">
-
-  參考 <%= link_to "Soundon官網首頁", 'https://www.soundon.fm/', class: "btn bg-red-400 hover:bg-red-600", target: "_blank" %>
-  <%= link_to "創作者", root_url(subdomain: "podcasters"), class: "btn btn-primary" %>
-  <%= link_to "收聽", browse_url(subdomain: "player"), class: "btn btn-primary" %>
-
+<div class="relative h-screen flex flex-col justify-between items-center">
+  <div class="relative flex flex-col h-full justify-center items-center w-full">
+    <div class="">
+      <%= link_to image_tag("logo", size: "600x600"), "/#" %>
+    </div>
+    <div class="flex m-2 p-2">
+      <div class="p-2"><%= link_to "創作者", root_url(subdomain: "podcasters"), class: "homepage_btn" %></div>
+      <div class="p-2"><%= link_to "Podcast 大廳", browse_url(subdomain: "player"), class: "homepage_btn" %></div>
+    </div>
+  </div>
+  <div class="footer_copyright w-full">
+    <p class="p-1">©</p>
+    <p class="p-1">2021</p>
+    <p class="p-1">SoundBar</p>
+  </div>
 </div>

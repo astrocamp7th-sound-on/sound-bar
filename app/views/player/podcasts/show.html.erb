@@ -11,7 +11,8 @@
         <div class="md:w-2/3">
           <ul>
             <li class="p-1 text-blue-300 text-xl"><%= @podcast.subtitle %></li>
-            <li class="p-1 text-white text-4xl"><%= @podcast.name %></li>
+            <li class="p-1 text-white text-4xl"><%= @podcast.name %>
+              <span class="my_fav"><i class="far fa-star"></i></span></li>
             <li class="p-1 text-white"><%= @podcast.description %></li>
             <li class="p-1 text-white"><a href="<%= @podcast.weblink %>" target="_blank" class="pr-3"><i class="fas fa-globe-americas"></i> <%= @podcast.weblink %></a></li>
             <li class="flex p-1 pt-8 text-gray-500">
@@ -32,7 +33,7 @@
           <% if current_user.subscribe?(@podcast) %>
             <button class="subscribed-btn bg-red-400" data-id="<%= @podcast.id %>">已訂閱 <i class="far fa-grin-hearts"></i></button>
           <% else %>
-            <button class="subscribed-btn bg-gray-500" data-id="<%= @podcast.id %>">訂閱 <i class="far fa-heart"></i></button>
+            <button class="subscribed-btn bg-red-400" data-id="<%= @podcast.id %>">訂閱 <i class="far fa-heart"></i></button>
           <% end %>
         <% else %>
           <div class="subscribe">
@@ -88,7 +89,7 @@
       </div>
     </div>
   </div>
-  <div class="flex justify-center">
+  <div class="flex justify-center pb-8">
     <button class="border rounded-md p-3 m-3 text-white bg-blue-500 hover:bg-blue-700">
       <%= link_to "返回 Podcast 節目列表" , podcasts_path %>
     </button>
