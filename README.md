@@ -1,5 +1,4 @@
-![soundbar-06](https://user-images.githubusercontent.com/79676142/121282156-9f567a00-c90b-11eb-9a8f-49519985abbf.png)
-
+![截圖 2021-06-09 上午10 20 59](https://user-images.githubusercontent.com/79676142/121282645-74b8f100-c90c-11eb-997a-51b1a914c661.png)
 
 # 專案 [SoundBar](https://sound-bar.tk/)
 ### 復刻 Podcast 平台 [SoundOn](https://www.soundon.fm)
