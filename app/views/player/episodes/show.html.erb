@@ -28,7 +28,9 @@
         <%= image_tag(@podcast.cover.url, size: "230x230") if @podcast.cover? %>
       </div>
       <div class="mt-10">
-        <div class="text-white text-4xl"><%= @episode.title %></div>
+        <div class="text-white text-4xl"><%= @episode.title %>
+          <span class="my_fav" data-id=<%= @episode.id %>><i class="far fa-star"></i></span>
+        </div>
         <div class="mt-8 text-gray-400">
           <span class="pr-2"><i class="far fa-calendar-alt"></i></span>
           <span class=""><%= @episode.created_at.strftime('%Y-%m-%d') %></div></span>
