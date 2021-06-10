@@ -19,7 +19,14 @@
           <div class="w-48 h-48 rounded-lg bg-gray-300"><%= image_tag(@podcast.cover.url) if @podcast.cover? %></div>
           <label class="border border-gray-300 my-2 mx-4 pt-1 px-4 text-sm bg-white hover:text-blue-400 hover:border-blue-400 cursor-pointer transition duration-300 rounded">
           上傳封面圖片
+          <div>
+            <img src="" id="image">
+          </div>
           <%= f.input :cover, as: :file, input_html:{class: "hidden" }, label: false %>
+          <%= f.hidden_field :x, id:"dataX"%>
+          <%= f.hidden_field :y, id:"dataY"%>
+          <%= f.hidden_field :width, id:"dataWidth"%>
+          <%= f.hidden_field :height, id:"dataHeight"%>
           </label>
         </div>
         <div class="w-full text-sm pr-4">
@@ -101,7 +108,7 @@
             <div class="w-48 h-48 rounded-lg bg-gray-300"></div>
             <label class="border border-gray-300 my-2 mx-4 pt-1 px-4 text-sm bg-white hover:text-blue-400 hover:border-blue-400 cursor-pointer transition duration-300 rounded">
               上傳封面圖片
-              <%= f.input :cover, as: :file, input_html:{class: "hidden" }, label: false %>
+              <div id="image"><%= f.input :cover, as: :file, input_html:{class: "hidden" }, label: false %></div>
             </label>
           </div>
         </section>

@@ -14,7 +14,7 @@ class EpisodesController < ApplicationController
     if @episode.save
       redirect_to podcast_episodes_path(@podcast.random_url, @episode.random_url), notice: "新增單集成功"
     else
-      render :index
+      redirect_to podcast_episodes_path(@podcast.random_url, @episode.random_url), notice: "新增單集失敗"
     end
   end
 

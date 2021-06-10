@@ -4,6 +4,8 @@ class Podcast < ApplicationRecord
   has_many :subscriptions
   has_many :subscribers, through: :subscriptions
   has_many :donations
+  attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
+  has_one_attached :cover
 
   validates :name, presence: true
   validates :artist, presence: true

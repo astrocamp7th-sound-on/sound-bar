@@ -7,7 +7,8 @@ import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
-
+import "jquery"
+import "cropperjs"
 import "tailwind/application"
 
 Rails.start()
@@ -19,3 +20,8 @@ import "styles"
 import "host"
 import "player"
 import "browser"
+
+// = require jquery
+// = require jquery_ujs
+// = require cropper.min.js
+// = require jquery-cropper.min.js
