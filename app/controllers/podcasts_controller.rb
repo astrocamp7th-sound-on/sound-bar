@@ -52,6 +52,8 @@ class PodcastsController < ApplicationController
     params.require(:podcast).permit(:avatar, :name, :artist, :email, :language, :slug, :genres, :description, :subtitle, :weblink, :copyright, :explicit, :status, :cover, :donate_title).merge({user: current_user})
   end
 
+
+
   def find_podcast
     @podcast = Podcast.includes(:episodes).find_by(random_url: params[:id])
     rescue ActiveRecord::RecordNotFound

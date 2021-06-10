@@ -12,6 +12,19 @@ class EpisodesController < ApplicationController
     @episode = @podcast.episodes.new(episode_params)
 
     if @episode.save
+
+
+      @subscribers_emails = @episode.podcast.subscribers.pluck(:email)
+
+      data = JSON.generate({
+      'subscribers_emails' => @subscribers_emails,
+      'episode_title' => @episode.title,
+      'podcast_name' => @podcast.name
+     })
+
+        MailWorker.perform_async(data)
+
+
       redirect_to podcast_episode_path(@podcast.random_url, @episode.random_url), notice: "新增單集成功"
     else
       redirect_to podcast_episodes_path(@podcast.random_url, @episode.random_url), notice: "新增單集失敗"
@@ -35,6 +48,7 @@ class EpisodesController < ApplicationController
   end
 
   private
+
   def episode_params
     params.require(:episode).permit(:title, :description, :keyword, :season, :episode, :explicit, :status, :recording, :cover, :artist)
   end
