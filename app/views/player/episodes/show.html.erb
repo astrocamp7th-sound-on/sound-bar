@@ -29,7 +29,7 @@
       </div>
       <div class="mt-10">
         <div class="text-white text-4xl"><%= @episode.title %>
-          <span class="my_fav" data-random_url=<%= @episode.id %>><i class="far fa-star"></i></span>
+          <span class="my_fav" data-random_url="<%= @episode.random_url %>" data-artist="<%= @episode.artist %>" data-url="<%= player_podcast_episode_url(@podcast.random_url, @episode.random_url) %>" data-title="<%= @episode.title %>"><i class="far fa-star"></i></span>
         </div>
         <div class="mt-8 text-gray-400">
           <span class="pr-2"><i class="far fa-calendar-alt"></i></span>
