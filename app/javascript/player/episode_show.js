@@ -1,43 +1,31 @@
-import Swal from 'sweetalert2'
-
 document.addEventListener("turbolinks:load", function () {
 
-  let favbtn = document.querySelector(".my_fav")
-
 // localstorage 我的最愛
-
   const storageFav = JSON.parse(localStorage.getItem('favor_episode'))
 
-  document.querySelectorAll(".my_fav").forEach(e => {
-    e.addEventListener("click", (e) => {
+  document.querySelectorAll(".my_fav").forEach(star => {
       let data = storageFav || []
-      let id = e.target.dataset.id
+
+      if (data.indexOf(star.dataset.id) >= 0) {
+        star.innerHTML = '<i class="fas fa-star"></i>'
+        star.classList.add("text-yellow-300")
+      }
+
+    star.addEventListener("click", (e) => {
+      let id = e.currentTarget.dataset.id
 
       if (data.indexOf(id) < 0) {
         data.push(id)
         localStorage.setItem('favor_episode', JSON.stringify(data))
+        star.innerHTML = '<i class="fas fa-star"></i>'
+        star.classList.add("text-yellow-300")
       }
       else {
         data.splice(data.indexOf(id), 1)
         localStorage.setItem("favor_episode", JSON.stringify(data))
+        star.innerHTML = '<i class="far fa-star"></i>'
+        star.classList.remove("text-yellow-300")
       }
-      console.log(storageFav)
     })
   })
-
-
-
-  if (favbtn) {
-    favbtn.addEventListener("click", function (){
-      favbtn.innerHTML = '<i class="fas fa-star"></i>'
-      favbtn.classList.add("text-yellow-300")
-
-        Swal.fire({
-        icon: 'success',
-        title: '已加到我的最愛！',
-        showConfirmButton: false,
-        timer: 1500
-      })
-    })
-  }
 })
