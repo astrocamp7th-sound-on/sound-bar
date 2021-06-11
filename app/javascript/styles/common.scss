@@ -2,7 +2,9 @@
   @apply bg-blue-50 h-screen;
 }
 
-
+.search-bar-ring {
+  @apply border-blue-400 ring ring-blue-100;
+}
 
 .welcome {
   @apply text-2xl font-black;
