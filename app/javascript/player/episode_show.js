@@ -2,10 +2,10 @@ document.addEventListener("turbolinks:load", function () {
 
 // localstorage 我的最愛
   const storageFav = JSON.parse(localStorage.getItem('favor_episode'))
+  let data = storageFav || []
+  let star = document.querySelector(".my_fav")
 
-  document.querySelectorAll(".my_fav").forEach(star => {
-      let data = storageFav || []
-
+  if (star) {
       if (data.indexOf(star.dataset.random_url) >= 0) {
         star.innerHTML = '<i class="fas fa-star"></i>'
         star.classList.add("text-yellow-300")
@@ -27,5 +27,5 @@ document.addEventListener("turbolinks:load", function () {
         star.classList.remove("text-yellow-300")
       }
     })
-  })
+  }
 })
