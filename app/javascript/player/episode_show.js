@@ -6,13 +6,13 @@ document.addEventListener("turbolinks:load", function () {
   document.querySelectorAll(".my_fav").forEach(star => {
       let data = storageFav || []
 
-      if (data.indexOf(star.dataset.id) >= 0) {
+      if (data.indexOf(star.dataset.random_url) >= 0) {
         star.innerHTML = '<i class="fas fa-star"></i>'
         star.classList.add("text-yellow-300")
       }
 
     star.addEventListener("click", (e) => {
-      let id = e.currentTarget.dataset.id
+      let id = e.currentTarget.dataset.random_url
 
       if (data.indexOf(id) < 0) {
         data.push(id)

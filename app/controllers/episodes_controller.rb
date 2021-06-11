@@ -20,7 +20,6 @@ class EpisodesController < ApplicationController
   end
 
   def show
-    @episode = Episode.find(params[:id])
   end
 
   def update
