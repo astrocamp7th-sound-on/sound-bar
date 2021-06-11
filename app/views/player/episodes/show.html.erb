@@ -66,7 +66,7 @@
           </div>
         <% end %>
         <ul id="comment_area">
-        <% @comments.where(comments_id: nil).each do |comment| %>
+        <% @comments.each do |comment| %>
         <div>
           <li class="w-full p-2 border border-gray-300 my-2 flex justify-between bg-white items-end">
             <div class="w-full flex flex-wrap justify-between items-center">
@@ -86,7 +86,7 @@
             <% end %>
           </div>
           <!-- 回覆replies -->
-          <span id="repliesBtn" class="text-blue-600 cursor-pointer">查看<%= comment.replies.count %>條回覆</span>
+          <span id="repliesBtn" class="text-blue-600 cursor-pointer">查看<%= comment.replies.size %>條回覆</span>
           <div class="hidden">
             <% comment.replies.each do |reply| %>
             <li class="replies p-2 border border-dashed border-blue-300 my-2 ml-10 bg-gray-50 flex justify-between">
