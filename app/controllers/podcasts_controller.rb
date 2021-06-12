@@ -10,12 +10,10 @@ class PodcastsController < ApplicationController
 
   def create
     @podcast = Podcast.new(podcast_params)
-    @episode = Episode.new
-    @podcasts = Podcast.order(id: :desc).page(params[:page]).per(12)
     if @podcast.save
       redirect_to podcasts_path, notice: "新增節目成功"
     else
-      render :index
+      redirect_to podcasts_path, notice: "新增節目失敗"
     end
   end
 

@@ -13,17 +13,13 @@ class EpisodesController < ApplicationController
 
     if @episode.save
 
-
       @subscribers_emails = @episode.podcast.subscribers.pluck(:email)
-
       data = JSON.generate({
-      'subscribers_emails' => @subscribers_emails,
-      'episode_title' => @episode.title,
-      'podcast_name' => @podcast.name
-     })
-
-        MailWorker.perform_async(data)
-
+        'subscribers_emails' => @subscribers_emails,
+        'episode_title' => @episode.title,
+        'podcast_name' => @podcast.name
+      })
+      MailWorker.perform_async(data)
 
       redirect_to podcast_episode_path(@podcast.random_url, @episode.random_url), notice: "新增單集成功"
     else

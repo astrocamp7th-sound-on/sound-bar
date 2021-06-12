@@ -33,13 +33,13 @@ Rails.application.configure do
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :local
 
-  
-  config.action_mailer.default_url_options = { :host => 'localhost' }
+
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     address:              'smtp.mailgun.org',
     port:                 587,
-    domain:               'localhost',
+    domain:               'sound-bar.tk',
     user_name:            ENV["MAILER_USER_NAME"],
     password:             ENV["MAILER_PASSWORD"],
     authentication:       'plain',
