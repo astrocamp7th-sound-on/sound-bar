@@ -13,6 +13,11 @@ class PodcastsController < ApplicationController
     @episode = Episode.new
     @podcasts = Podcast.order(id: :desc).page(params[:page]).per(12)
     if @podcast.save
+      session[:crop_x] = podcast_params[:x]
+      session[:crop_y] = podcast_params[:y]
+      session[:crop_width] = podcast_params[:width]
+      session[:crop_height] = podcast_params[:height]
+
       redirect_to podcasts_path, notice: "新增節目成功"
     else
       render :index
@@ -49,7 +54,7 @@ class PodcastsController < ApplicationController
 
   private
   def podcast_params
-    params.require(:podcast).permit(:avatar, :name, :artist, :email, :language, :slug, :genres, :description, :subtitle, :weblink, :copyright, :explicit, :status, :cover, :crop_x, :crop_y, :crop_w, :crop_h, :donate_title).merge({user: current_user})
+    params.require(:podcast).permit(:avatar, :name, :artist, :email, :language, :slug, :genres, :description, :subtitle, :weblink, :copyright, :explicit, :status, :cover, :x, :y, :width, :height, :donate_title).merge({user: current_user})
   end
 
   def find_podcast
