@@ -15,6 +15,8 @@ document.addEventListener("turbolinks:load", function () {
   let playerEpisodeLinkInputAll = document.querySelectorAll('#playerEpisodeLinkInputAll')
   let playerEpisodeSlugLinkInputAll = document.querySelectorAll('#playerEpisodeSlugLinkInputAll')
   let searchEpisodeInput = document.querySelector('#searchEpisodeInput')
+  let episodeCreateEpisodeBtn = document.querySelectorAll('.episode-create-episode-btn')
+
 
   // 搜尋功能
   if(searchEpisodeInput){
@@ -251,7 +253,24 @@ document.addEventListener("turbolinks:load", function () {
     }
   }
 
+  // 建立 Episode 燈箱
+  if (episodeCreateEpisodeBtn){
+    episodeCreateEpisodeBtn.forEach(btn =>
+      btn.addEventListener('click', function(e){
+        document.querySelector('.create-episode').classList.remove('hidden')
+      })
+    )
+  }
 
+  // 關閉 Episode 燈箱
+  if (closeCreateEpisode){
+    closeCreateEpisode.addEventListener('click', function(){
+      document.querySelector('.create-episode').classList.add('hidden')
+    })
+    document.querySelector('#close-create-episode').addEventListener('click', function(){
+      document.querySelector('.create-episode').classList.add('hidden')
+    })
+  }
 
 
 
