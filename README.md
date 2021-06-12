@@ -12,7 +12,7 @@
 - `yarn install`
 - `rails db:migrate`
 - `foreman s -f ppf`
-
+- `bundle exec sidekiq`
 ## 環境變數設定
 - 複製 `/config/application.sample.yml` 中的內容
 - 手動新增 `application.yml` 
