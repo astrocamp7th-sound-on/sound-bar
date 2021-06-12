@@ -7,7 +7,7 @@ document.addEventListener("turbolinks:load", function () {
   let searchForm = document.querySelector('.search-form')
   let createPodcastBtn = document.querySelector('.create-podcast-btn')
   let closeCreatePodcast = document.querySelector('.close-create-podcast')
-  let createEpisodeBtn = document.querySelectorAll('.create-episode-btn')
+  let podcastCreateEpisodeBtn = document.querySelectorAll('.podcast-create-episode-btn')
   let closeCreateEpisode = document.querySelector('.close-create-episode')
   let createEpisodeForm = document.querySelector('#createEpisodeFrom')
   let searchPodcastInput = document.querySelector('#searchPodcastInput')
@@ -132,14 +132,14 @@ document.addEventListener("turbolinks:load", function () {
                   </div>
                 </div>
                 <div class="flex justify-between">
-                  <span class="create-episode-btn py-3 px-5 text-gray-400 hover:text-blue-400" data-random-url="${podcast.random_url}"> ＋ 新增單集</span>
+                  <span class="podcast-create-episode-btn py-3 px-5 text-gray-400 hover:text-blue-400" data-random-url="${podcast.random_url}"> ＋ 新增單集</span>
                   <a class="py-3 px-5 text-gray-400 hover:text-blue-400" target="_blank" href="http://player.localhost:3000/p/${podcast.random_url}"><i class="far fa-caret-square-right"></i></a>
                 </div>
               </div>
               `
             })
             document.querySelector('#podcastsContent').innerHTML = content.join('')
-            document.querySelectorAll('.create-episode-btn').forEach(btn =>
+            document.querySelectorAll('.podcast-create-episode-btn').forEach(btn =>
               btn.addEventListener('click', function(){
                 document.querySelector('.create-episode').classList.remove('hidden')
               })
@@ -170,8 +170,8 @@ document.addEventListener("turbolinks:load", function () {
   }
 
   // 建立 Episode 燈箱
-  if (createEpisodeBtn){
-    createEpisodeBtn.forEach(btn =>
+  if (podcastCreateEpisodeBtn){
+    podcastCreateEpisodeBtn.forEach(btn =>
       btn.addEventListener('click', function(e){
         document.querySelector('.create-episode').classList.remove('hidden')
         document.querySelector('#new_episode').setAttribute("action", `/podcasts/${e.target.dataset.randomUrl}/episodes`)
