@@ -10,12 +10,10 @@ class PodcastsController < ApplicationController
 
   def create
     @podcast = Podcast.new(podcast_params)
-    @episode = Episode.new
-    @podcasts = Podcast.order(id: :desc).page(params[:page]).per(12)
     if @podcast.save
       redirect_to podcasts_path, notice: "新增節目成功"
     else
-      render :index
+      redirect_to podcasts_path, notice: "新增節目失敗"
     end
   end
 
@@ -52,8 +50,10 @@ class PodcastsController < ApplicationController
     params.require(:podcast).permit(:avatar, :name, :artist, :email, :language, :slug, :genres, :description, :subtitle, :weblink, :copyright, :explicit, :status, :cover, :donate_title).merge({user: current_user})
   end
 
+
+
   def find_podcast
-    @podcast = Podcast.find_by(random_url: params[:id])
+    @podcast = Podcast.includes(:episodes).find_by(random_url: params[:id])
     rescue ActiveRecord::RecordNotFound
       redirect_to podcasts_path, notice: "找不到節目"
   end

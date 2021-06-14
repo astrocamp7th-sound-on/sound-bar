@@ -5,26 +5,26 @@
     <div>
       <div class="flex">
         <div>
-          <div class="text-white text-2xl pt-5 pl-10">
+          <div class="text-white text-xl sm:text-2xl pt-5 pl-10">
             <i class="fas fa-chevron-left"></i>
             <%= link_to "返回", player_podcast_path(@podcast.random_url) %>
           </div>
         </div>
         <div class="my-auto pl-5 pr-5"><%= image_tag(@podcast.cover.url, size: "70x70") if @podcast.cover? %></div>
         <div class="grid">
-          <p class="p-1 text-white text-3xl"><%= @podcast.name %></p>
+          <p class="p-1 text-white text-xl sm:text-3xl"><%= @podcast.name %></p>
           <p class="p-1 text-blue-300 text-xl"><%= @podcast.subtitle %></p>
         </div>
       </div>
     </div>
     <div>
-      <li class="flex justify-end pt-1 pr-7 text-gray-400">
+      <li class="flex justify-center sm:justify-end pt-1 pr-7 text-gray-400">
         <a href="" class="fb_icon"><i class="fab fa-facebook-f"></i></a>
         <a href="" class="share_icon"><i class="fas fa-share"></i></a>
       </li>
     </div>
     <div class="grid grid-cols-3 gap-3 rounded-lg bg-genresbg m-10">
-      <div class="m-10">
+      <div class="m-5 md:m-10">
         <%= image_tag(@podcast.cover.url, size: "230x230") if @podcast.cover? %>
       </div>
       <div class="mt-10">
@@ -36,7 +36,7 @@
           <span class=""><%= @episode.created_at.strftime('%Y-%m-%d') %></div></span>
         </div>
         <div class="flex justify-end pr-5">
-          <button id="playerBtn" class="justify-center"><%= image_tag("play", size: "130x130")%></button>
+          <button id="playerBtn" class="justify-center"><%= image_tag("play", size: "120x120")%></button>
         </div>
       </div>
     </div>
@@ -47,7 +47,7 @@
 
 <div class="bg-gray-100">
   <div class="max-w-screen-lg mx-auto">
-    <div>
+    <div class="p-10">
       <p class="text-2xl pt-20 pb-5 pl-10">單輯描述</p>
       <div class="border rounded-md bg-white">
         <p class="p-10"><%= @episode.description %></p>
@@ -55,10 +55,10 @@
     </div>
 
     <div class="max-w-screen-lg mx-auto">
-      <div class="border rounded-md bg-titleblue m-10">
+      <div class="border rounded-md bg-gray-300 m-10">
         <h2 class="text-2xl m-10">留言區</h2>
         <%= simple_form_for @comment, url: player_podcast_episode_comments_path(@podcast.random_url, @episode.random_url) do |f| %>
-          <div class="m-10">
+          <div class="m-10 pr-10">
             <%= f.input :content, label: "留言內容", input_html:{ class:"fill-form "} %></div>
           </div>
           <div class="pb-10 pl-10">
@@ -66,13 +66,13 @@
           </div>
         <% end %>
         <ul id="comment_area">
-        <% @comments.where(comments_id: nil).each do |comment| %>
-        <div>
-          <li class="w-full p-2 border border-gray-300 my-2 flex justify-between bg-white items-end">
+        <% @comments.each do |comment| %>
+        <div class="p-10">
+          <li class="w-full p-2 border border-gray-300 rounded-lg my-2 flex justify-between bg-white items-end">
             <div class="w-full flex flex-wrap justify-between items-center">
               <span class="w-full"><%= comment.user.email[/^\w+/] %>：</span>
               <span class="ml-10"><%= comment.content %></span>
-              <span><%= comment.created_at.strftime('%Y/%m/%d %H:%M:%S') %></span>
+              <span class="pr-2"><%= comment.created_at.strftime('%Y/%m/%d %H:%M:%S') %></span>
             </div>
             <span id="replyComment" class="rounded px-2 py-1 text-white cursor-pointer bg-green-500 hover:bg-green-700">Reply</span>
           </li>
@@ -86,7 +86,7 @@
             <% end %>
           </div>
           <!-- 回覆replies -->
-          <span id="repliesBtn" class="text-blue-600 cursor-pointer">查看<%= comment.replies.count %>條回覆</span>
+          <span id="repliesBtn" class="text-blue-600 cursor-pointer">查看 <%= comment.replies.size %> 條回覆</span>
           <div class="hidden">
             <% comment.replies.each do |reply| %>
             <li class="replies p-2 border border-dashed border-blue-300 my-2 ml-10 bg-gray-50 flex justify-between">

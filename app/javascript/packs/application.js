@@ -19,3 +19,19 @@ import "styles"
 import "host"
 import "player"
 import "browser"
+
+
+
+document.addEventListener('turbolinks:load', function(){
+
+  let notice = document.querySelector('#notice')
+
+  // 3秒後消除notice
+  if (notice){
+    let timeout = null
+    clearTimeout(timeout);
+    timeout = setTimeout(() => {
+      notice.classList.add('hidden')
+    }, 3000);
+  }
+})
