@@ -1,5 +1,13 @@
-img {
+#canvas {
   display: block;
   max-width: 100%;
   height: auto;
+}
+
+.cropper-container{
+  max-height: 500px;
+}
+#btn-save{
+  margin-top: 1em;
+  margin-left: 80%;
 }
