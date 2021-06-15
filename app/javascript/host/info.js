@@ -1,5 +1,5 @@
 import Swal from 'sweetalert2'
-
+import "./cropper"
 document.addEventListener("turbolinks:load", function () {
 
   let openPodcastBtn = document.querySelector('#openPodcastBtn')
