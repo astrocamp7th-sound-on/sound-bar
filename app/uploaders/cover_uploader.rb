@@ -19,18 +19,15 @@ class CoverUploader  < CarrierWave::Uploader::Base
 
   def crop
     manipulate! do |img|
-      # cover = JSON.parse(model.cover.to_s)
-      x = 80
-      y = 2
-      width = 134
-      height = 134
-      # x = model.x
-      # y = model.y
-      # width = model.width
-      # height = model.height
-      img.crop("#{width}x#{height}+#{x}+#{y}")
+        x = model.x
+        y = model.y
+        width = model.width
+        height = model.height
+        img.crop("#{width}x#{height}+#{x}+#{y}")
     end
   end
+
+
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url(*args)
   #   # For Rails 3.1+ asset pipeline compatibility:

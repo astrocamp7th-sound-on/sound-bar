@@ -4,8 +4,9 @@ class Podcast < ApplicationRecord
   has_many :subscriptions
   has_many :subscribers, through: :subscriptions, source: :user
   has_many :donations
-  attr_accessor :x, :y, :width, :height
   has_one_attached :cover
+
+
 
   validates :name, presence: true
   validates :artist, presence: true
@@ -15,6 +16,9 @@ class Podcast < ApplicationRecord
   validates :genres, presence: true
   validates :description, presence: true
   validates :copyright, presence: true
+
+
+
   mount_uploader :cover, CoverUploader
   include Randomable
 
