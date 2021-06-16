@@ -15,7 +15,6 @@ class Podcast < ApplicationRecord
   validates :genres, presence: true
   validates :description, presence: true
   validates :copyright, presence: true
-
   mount_uploader :cover, CoverUploader
   include Randomable
 

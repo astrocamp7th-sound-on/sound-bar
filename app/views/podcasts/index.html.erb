@@ -23,10 +23,10 @@
         <label class="border border-gray-300 my-2 mx-4 pt-1 px-4 text-sm bg-white hover:text-blue-400 hover:border-blue-400 cursor-pointer transition duration-300 rounded">
           <abbr title="required">*</abbr>上傳封面圖片
           <%= f.input :cover, as: :file, input_html:{class: "hidden", id:"podcast_cover"}, label: false %>
-          <%= f.hidden_field :x %>
-          <%= f.hidden_field :y %>
-          <%= f.hidden_field :width %>
-          <%= f.hidden_field :height %>
+          <%= f.input :x, as: :hidden %>
+          <%= f.input :y, as: :hidden %>
+          <%= f.input :width, as: :hidden %>
+          <%= f.input :height, as: :hidden %>
           <%= f.submit "button", id:"btnUpload", class: 'hidden'%>
         </label>
       </div>

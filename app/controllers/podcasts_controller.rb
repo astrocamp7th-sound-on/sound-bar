@@ -12,12 +12,8 @@ class PodcastsController < ApplicationController
     @podcast = Podcast.new(podcast_params)
     @episode = Episode.new
     @podcasts = Podcast.order(id: :desc).page(params[:page]).per(12)
+    @podcast.save
     if @podcast.save
-      session[:crop_x] = podcast_params[:x]
-      session[:crop_y] = podcast_params[:y]
-      session[:crop_width] = podcast_params[:width]
-      session[:crop_height] = podcast_params[:height]
-
       redirect_to podcasts_path, notice: "新增節目成功"
     else
       render :index
@@ -29,7 +25,6 @@ class PodcastsController < ApplicationController
 
   def update
     cookies[:return_to_url] = request.referer
-
     if @podcast.update(podcast_params)
       redirect_to cookies[:return_to_url] || podcasts_path, notice: "編輯節目成功"
       cookies[:return_to_url] = nil
