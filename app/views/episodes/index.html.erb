@@ -3,7 +3,7 @@
 </div>
 
 <!-- 新增單集燈箱 -->
-<div class="create-episode fixed w-full h-full bg-black bg-opacity-50 flex justify-end z-10 <%=' hidden' unless @episode.errors.any? %>">
+<div class="create-episode fixed w-full h-full bg-black bg-opacity-50 flex justify-end z-10 hidden">
   <div class="create-episode-content h-full bg-white flex justify-center relative">
     <nav class="fixed top-0 shadow-md">
       <div class="flex w-full justify-between">
@@ -18,69 +18,73 @@
     <!-- 表單內容 -->
     <div class="my-16 overflow-y-auto">
       <%= simple_form_for @episode, url: podcast_episodes_path(@podcast.random_url) do |f| %>
-      <div class="nav-tabs h-20 flex items-end border-b border-gray-100">
-        <ul class="inline-flex ml-4" id="createEpisodeFrom">
-          <li class="cursor-pointer hover:text-blue-400 font-medium mx-1 pt-3 pb-5 px-2 transition duration-200 text-blue-500 border-b-2 border-blue-400" id="mainEpisode">主要</li>
-          <li class="cursor-pointer hover:text-blue-400 font-medium mx-1 pt-3 pb-5 px-2 transition duration-200" id="moreEpisode">更多</li>
-        </ul>
-      </div>
-      <!-- 主要 -->
-      <section class="mainEpisode_content">
-        <section class="w-full p-2 pr-5 flex flex-col text-sm">
-          <label class="w-full border border-dashed rounded-md mx-2 my-3 py-4 px-6 focus:outline-none focus:border-blue-400 focus:ring focus:ring-blue-100 transition duration-300 cursor-pointer">
-            選擇要上傳的 mp3 音檔 <span class="mx-2 text-white pt-1 pb-2 px-4 text-sm bg-blue-500 hover:bg-blue-400 cursor-pointer transition duration-300 rounded">瀏覽</span>
-            <%= f.input :recording, as: :file, input_html:{class: "hidden" }, label: false %>
-          </label>
-          <%= f.input :title, input_html:{class: "edit-form" }, label: "標題" %>
-          <%= f.input :description, input_html:{class: "edit-form" }, label: "描述" %>
-          <%= f.input :keyword, input_html:{class: "edit-form" }, label: "關鍵字" %>
-          <div class="flex">
-            <%= f.input :episode, input_html:{class: "flex-grow edit-form" }, label: "集" %>
-            <%= f.input :season, input_html:{class: "flex-grow edit-form" }, label: "季" %>
-          </div>
-          <%= f.input :explicit, input_html:{class: "" }, label: "兒童不宜" %>
-        </section>
-      </section>
-      <!-- 更多 -->
-      <section class="moreEpisode_content hidden">
-        <section class="w-full py-2 flex">
-          <div class="w-full text-sm pr-5">
-            <%= f.input :keyword, input_html:{class: "edit-form" }, label: "Subtitle"%>
-            <%= f.input :artist, input_html:{class: "edit-form" }, label: "作者名稱" %>
-          </div>
-          <div class="w-56 h-64 pr-2 pt-2 rounded flex flex-col flex-shrink-0 items-center">
-            <div class="w-48 h-48 rounded-lg bg-gray-300">
-              <% if @episode.cover %>
-                <%= image_tag(@episode.cover.url) if @episode.cover? %>
-              <% else %>
-                <%= image_tag(@podcast.cover.url) if @podcast.cover? %>
-              <% end %>
-            </div>
-            <label class="border border-gray-300 my-2 mx-4 pt-1 px-4 text-sm bg-white hover:text-blue-400 hover:border-blue-400 cursor-pointer transition duration-300 rounded">
-              上傳封面圖片
-              <%= f.input :cover, as: :file, input_html:{class: "hidden" }, label: false %>
+        <div class="nav-tabs h-20 flex items-end border-b border-gray-100">
+          <ul class="inline-flex ml-4" id="createEpisodeFrom">
+            <li class="cursor-pointer hover:text-blue-400 font-medium mx-1 pt-3 pb-5 px-2 transition duration-200 text-blue-500 border-b-2 border-blue-400" id="mainEpisode">主要</li>
+            <li class="cursor-pointer hover:text-blue-400 font-medium mx-1 pt-3 pb-5 px-2 transition duration-200" id="moreEpisode">更多</li>
+          </ul>
+        </div>
+        <!-- 主要 -->
+        <section class="mainEpisode_content">
+          <section class="w-full p-2 pr-5 flex flex-col text-sm">
+            <label class="w-full border border-dashed rounded-md mx-2 my-3 py-4 px-6 focus:outline-none focus:border-blue-400 focus:ring focus:ring-blue-100 transition duration-300 cursor-pointer">
+              <abbr title="required">*</abbr>
+              選擇要上傳的 mp3 音檔
+              <span class="mx-2 text-white pt-1 pb-2 px-4 text-sm bg-blue-500 hover:bg-blue-400 cursor-pointer transition duration-300 rounded">
+                瀏覽
+              </span>
+              <%= f.input :recording, as: :file, input_html:{class: "hidden" }, label: false %>
             </label>
+            <%= f.input :title, input_html:{class: "edit-form" }, label: "標題" %>
+            <%= f.input :description, input_html:{class: "edit-form" }, label: "描述" %>
+            <%= f.input :keyword, input_html:{class: "edit-form" }, label: "關鍵字" %>
+            <div class="flex">
+              <%= f.input :episode, input_html:{class: "flex-grow edit-form" }, label: "集" %>
+              <%= f.input :season, input_html:{class: "flex-grow edit-form" }, label: "季" %>
+            </div>
+            <%= f.input :explicit, input_html:{class: "" }, label: "兒童不宜" %>
+          </section>
+        </section>
+        <!-- 更多 -->
+        <section class="moreEpisode_content hidden">
+          <section class="w-full py-2 flex">
+            <div class="w-full text-sm pr-5">
+              <%= f.input :keyword, input_html:{class: "edit-form" }, label: "Subtitle"%>
+              <%= f.input :artist, input_html:{class: "edit-form" }, label: "作者名稱" %>
+            </div>
+            <div class="w-56 h-64 pr-2 pt-2 rounded flex flex-col flex-shrink-0 items-center">
+              <div class="w-48 h-48 rounded-lg bg-gray-300">
+                <% if @episode.cover %>
+                  <%= image_tag(@episode.cover.url) if @episode.cover? %>
+                <% else %>
+                  <%= image_tag(@podcast.cover.url) if @podcast.cover? %>
+                <% end %>
+              </div>
+              <label class="border border-gray-300 my-2 mx-4 pt-1 px-4 text-sm bg-white hover:text-blue-400 hover:border-blue-400 cursor-pointer transition duration-300 rounded">
+                上傳封面圖片
+                <%= f.input :cover, as: :file, input_html:{class: "hidden" }, label: false %>
+              </label>
+            </div>
+          </section>
+          <div class="p-2 pr-6">
+            <%= f.input :keyword, as: :text, input_html:{class: "edit-form" }, label: "Summary"%>
           </div>
         </section>
-        <div class="p-2 pr-6">
-          <%= f.input :keyword, as: :text, input_html:{class: "edit-form" }, label: "Summary"%>
-        </div>
-      </section>
+        <nav class="fixed bottom-0 border-t border-gray-200 create-episode-content">
+          <div class="flex w-full justify-between p-3">
+            <span id="close-create-episode" class="border border-gray-300 mx-2 py-2 px-4 text-sm bg-white hover:text-blue-400 hover:border-blue-400 cursor-pointer transition duration-300 rounded">
+              取消
+            </span>
+            <div class="flex">
+              <span class="cursor-pointer border border-blue-500 text-blue-500 mx-2 py-2 px-4 text-sm bg-white hover:text-blue-400 hover:border-blue-400 cursor-pointer transition duration-300 rounded">
+                暫存草稿
+              </span>
+              <%= f.submit "儲存", class: "mx-2 text-white py-2 px-4 text-sm bg-blue-500 hover:bg-blue-400 cursor-pointer transition duration-300 rounded" %>
+            </div>
+          </div>
+        </nav>
+      <% end %>
     </div>
-    <nav class="fixed bottom-0 border-t border-gray-200">
-      <div class="flex w-full justify-between p-3">
-        <span id="close-create-episode" class="border border-gray-300 mx-2 py-2 px-4 text-sm bg-white hover:text-blue-400 hover:border-blue-400 cursor-pointer transition duration-300 rounded">
-          取消
-        </span>
-        <div class="flex">
-          <span class="cursor-pointer border border-blue-500 text-blue-500 mx-2 py-2 px-4 text-sm bg-white hover:text-blue-400 hover:border-blue-400 cursor-pointer transition duration-300 rounded">
-            暫存草稿
-          </span>
-          <%= f.submit "儲存", class: "mx-2 text-white py-2 px-4 text-sm bg-blue-500 hover:bg-blue-400 cursor-pointer transition duration-300 rounded" %>
-        </div>
-      </div>
-    </nav>
-    <% end %>
   </div>
 </div>
 
@@ -108,7 +112,7 @@
               <i class="fas fa-search"></i>
             </span>
           </form>
-          <div class="create-episode-btn border border-gray-300 py-1 px-4 text-sm bg-white hover:text-blue-500 hover:border-blue-500 cursor-pointer transition duration-300 rounded">
+          <div class="episode-create-episode-btn border border-gray-300 py-1 px-4 text-sm bg-white hover:text-blue-500 hover:border-blue-500 cursor-pointer transition duration-300 rounded">
             ＋ 新增單集
           </div>
         </div>

@@ -15,6 +15,8 @@ document.addEventListener("turbolinks:load", function () {
   let playerEpisodeLinkInputAll = document.querySelectorAll('#playerEpisodeLinkInputAll')
   let playerEpisodeSlugLinkInputAll = document.querySelectorAll('#playerEpisodeSlugLinkInputAll')
   let searchEpisodeInput = document.querySelector('#searchEpisodeInput')
+  let episodeCreateEpisodeBtn = document.querySelectorAll('.episode-create-episode-btn')
+
 
   // 搜尋功能
   if(searchEpisodeInput){
@@ -54,15 +56,15 @@ document.addEventListener("turbolinks:load", function () {
                       <section class="h-20 border-b border-blue-50 flex flex-wrap justify-between">
                         <p class="text-gray-700 hover:text-gray-700">連結</p>
                         <div class="flex">
-                          <a class="text-blue-500 hover:text-blue-400 mr-1" target="_blank" href="http://player.localhost:3000/p/${podcastUrl}/episodes/${episode.random_url}">開啟連結</a>
+                          <a class="text-blue-500 hover:text-blue-400 mr-1" target="_blank" href="http://player.sound-bar.tk/p/${podcastUrl}/episodes/${episode.random_url}">開啟連結</a>
                           <span id="copyEpisodeSpanAll" class="cursor-pointer text-blue-500 hover:text-blue-400 ml-1">
                             複製連結
                           </span>
                         </div>
                         <div class="flex-grow">
                           <span class="flex justify-between border border-gray-200 mt-3 mb-10 py-1 bg-gray-100 rounded hover:border hover:border-blue-500 transition duration-300">
-                            <a class="text-blue-500 ml-2 hover:text-blue-400 transition duration-200" target="_blank" href="http://player.localhost:3000/p/${podcastUrl}/episodes/${episode.random_url}"><i class="fas fa-link"></i></a>
-                            <input type="text" id="playerEpisodeLinkInputAll" class="flex-grow mx-2 bg-gray-100 text-gray-400 cursor-not-allowed focus:outline-none" readonly value="http://player.localhost:3000/p/${podcastUrl}/episodes/${episode.random_url}">
+                            <a class="text-blue-500 ml-2 hover:text-blue-400 transition duration-200" target="_blank" href="http://player.sound-bar.tk/p/${podcastUrl}/episodes/${episode.random_url}"><i class="fas fa-link"></i></a>
+                            <input type="text" id="playerEpisodeLinkInputAll" class="flex-grow mx-2 bg-gray-100 text-gray-400 cursor-not-allowed focus:outline-none" readonly value="http://player.sound-bar.tk/p/${podcastUrl}/episodes/${episode.random_url}">
                             <span class="copy-episode-link-all cursor-pointer text-gray-400 mr-2 hover:text-gray-300"><i class="far fa-copy"></i></span>
                           </span>
                         </div>
@@ -70,15 +72,15 @@ document.addEventListener("turbolinks:load", function () {
                       <section class="h-20 mt-2 border-b border-blue-50 flex flex-wrap justify-between">
                         <p class="text-gray-700 hover:text-gray-700">好記短網址</p>
                         <div class="flex">
-                          <a class="text-blue-500 hover:text-blue-400 mr-1" target="_blank" href="http://player.localhost:3000/p/${podcastUrl}/episodes/${episode.random_url}">開啟連結</a>
+                          <a class="text-blue-500 hover:text-blue-400 mr-1" target="_blank" href="http://player.sound-bar.tk/p/${podcastUrl}/episodes/${episode.random_url}">開啟連結</a>
                           <span id="copyEpisodeSlugSpanAll" class="cursor-pointer text-blue-500 hover:text-blue-400 ml-1">
                             複製連結
                           </span>
                         </div>
                         <div class="flex-grow">
                           <span class="flex justify-between border border-gray-200 mt-3 mb-10 py-1 bg-gray-100 rounded hover:border hover:border-blue-500 transition duration-300">
-                            <a class="text-blue-500 ml-2 hover:text-blue-400 transition duration-200" target="_blank" href="http://player.localhost:3000/p/${podcastUrl}/episodes/${episode.random_url}"><i class="fas fa-link"></i></a>
-                            <input type="text" id="playerEpisodeSlugLinkInputAll" class="flex-grow mx-2 bg-gray-100 text-gray-400 cursor-not-allowed focus:outline-none" readonly value="http://player.localhost:3000/p/${podcastUrl}/episodes/${episode.random_url}">
+                            <a class="text-blue-500 ml-2 hover:text-blue-400 transition duration-200" target="_blank" href="http://player.sound-bar.tk/p/${podcastUrl}/episodes/${episode.random_url}"><i class="fas fa-link"></i></a>
+                            <input type="text" id="playerEpisodeSlugLinkInputAll" class="flex-grow mx-2 bg-gray-100 text-gray-400 cursor-not-allowed focus:outline-none" readonly value="http://player.sound-bar.tk/p/${podcastUrl}/episodes/${episode.random_url}">
                             <span class="copy-episode-slug-link-all cursor-pointer text-gray-400 mr-2 hover:text-gray-300"><i class="far fa-copy"></i></span>
                           </span>
                         </div>
@@ -251,7 +253,24 @@ document.addEventListener("turbolinks:load", function () {
     }
   }
 
+  // 建立 Episode 燈箱
+  if (episodeCreateEpisodeBtn){
+    episodeCreateEpisodeBtn.forEach(btn =>
+      btn.addEventListener('click', function(e){
+        document.querySelector('.create-episode').classList.remove('hidden')
+      })
+    )
+  }
 
+  // 關閉 Episode 燈箱
+  if (closeCreateEpisode){
+    closeCreateEpisode.addEventListener('click', function(){
+      document.querySelector('.create-episode').classList.add('hidden')
+    })
+    document.querySelector('#close-create-episode').addEventListener('click', function(){
+      document.querySelector('.create-episode').classList.add('hidden')
+    })
+  }
 
 
 

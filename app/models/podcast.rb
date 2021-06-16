@@ -2,7 +2,7 @@ class Podcast < ApplicationRecord
   belongs_to :user
   has_many :episodes
   has_many :subscriptions
-  has_many :subscribers, through: :subscriptions
+  has_many :subscribers, through: :subscriptions, source: :user
   has_many :donations
   attr_accessor :x, :y, :width, :height
   has_one_attached :cover
