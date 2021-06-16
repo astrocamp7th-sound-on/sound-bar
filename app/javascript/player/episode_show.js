@@ -5,13 +5,6 @@ document.addEventListener("turbolinks:load", function () {
   let data = storageFav || []
   let star = document.querySelector(".my_fav")
 
-  storageFav.forEach((episode) => {
-    console.log(episode.randomUrl)
-    console.log(episode.artist)
-    console.log(episode.title)
-    console.log(episode.url)
-  })
-
   if (star){
     let array = data.filter((episode) => episode.randomUrl.indexOf(star.dataset.random_url) >= 0)
 

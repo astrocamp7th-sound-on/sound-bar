@@ -6,6 +6,10 @@
   width: 44rem;
 }
 
+.open-fav, .open-fav-content, .open-fav-content > nav, .open-fav-content > div {
+  width: 44rem;
+}
+
 #podcast_slug {
   @apply relative
 }

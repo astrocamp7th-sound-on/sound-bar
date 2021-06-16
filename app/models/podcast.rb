@@ -2,15 +2,17 @@ class Podcast < ApplicationRecord
   belongs_to :user
   has_many :episodes
   has_many :subscriptions
-  has_many :subscribers, through: :subscriptions
+  has_many :subscribers, through: :subscriptions, source: :user
   has_many :donations
 
   validates :name, presence: true
   validates :artist, presence: true
-  validates :email, presence: true
+  validates :email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :language, presence: true
   validates :slug, presence: true, uniqueness: true
   validates :genres, presence: true
+  validates :description, presence: true
+  validates :copyright, presence: true
 
   mount_uploader :cover, CoverUploader
   include Randomable
