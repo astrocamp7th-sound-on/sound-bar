@@ -1,6 +1,7 @@
 class PodcastsController < ApplicationController
   before_action :find_podcast, only: [:info, :update, :destroy, :dashboard, :music, :donate]
   before_action :authenticate_user!
+  
 
   def index
     @podcasts = Podcast.order(id: :desc).page(params[:page]).per(12)
@@ -10,6 +11,10 @@ class PodcastsController < ApplicationController
 
   def create
     @podcast = Podcast.new(podcast_params)
+    @podcast.x = podcast_params["x"]
+    @podcast.y = podcast_params["y"]
+    @podcast.width = podcast_params["width"]
+    @podcast.height = podcast_params["height"]
     if @podcast.save
       redirect_to podcasts_path, notice: "新增節目成功"
     else
@@ -22,7 +27,10 @@ class PodcastsController < ApplicationController
 
   def update
     cookies[:return_to_url] = request.referer
-
+    @podcast.x = podcast_params["x"]
+    @podcast.y = podcast_params["y"]
+    @podcast.width = podcast_params["width"]
+    @podcast.height = podcast_params["height"]
     if @podcast.update(podcast_params)
       redirect_to cookies[:return_to_url] || podcasts_path, notice: "編輯節目成功"
       cookies[:return_to_url] = nil
@@ -47,7 +55,7 @@ class PodcastsController < ApplicationController
 
   private
   def podcast_params
-    params.require(:podcast).permit(:avatar, :name, :artist, :email, :language, :slug, :genres, :description, :subtitle, :weblink, :copyright, :explicit, :status, :cover, :donate_title).merge({user: current_user})
+    params.require(:podcast).permit(:avatar, :name, :artist, :email, :language, :slug, :genres, :description, :subtitle, :weblink, :copyright, :explicit, :status, :cover, :x, :y, :width, :height, :donate_title).merge({user: current_user})
   end
 
 
@@ -57,4 +65,5 @@ class PodcastsController < ApplicationController
     rescue ActiveRecord::RecordNotFound
       redirect_to podcasts_path, notice: "找不到節目"
   end
+
 end

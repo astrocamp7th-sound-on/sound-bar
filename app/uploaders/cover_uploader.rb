@@ -1,8 +1,7 @@
-class CoverUploader < CarrierWave::Uploader::Base
+class CoverUploader  < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   include CarrierWave::MiniMagick
-
   # Choose what kind of storage to use for this uploader:
   # storage :file
 
@@ -15,6 +14,19 @@ class CoverUploader < CarrierWave::Uploader::Base
   end
 
   process resize_to_fill: [200, 200]
+
+  process :crop
+
+  def crop
+    manipulate! do |img|
+        x = model.x
+        y = model.y
+        width = model.width
+        height = model.height
+        img.crop("#{width}x#{height}+#{x}+#{y}")
+    end
+  end
+
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url(*args)

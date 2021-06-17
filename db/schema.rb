@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_02_052937) do
+ActiveRecord::Schema.define(version: 2021_06_16_040256) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,6 +77,10 @@ ActiveRecord::Schema.define(version: 2021_06_02_052937) do
     t.string "random_url"
     t.string "donate_title"
     t.bigint "user_id"
+    t.string "x"
+    t.string "y"
+    t.string "width"
+    t.string "height"
     t.index ["random_url"], name: "index_podcasts_on_random_url", unique: true
     t.index ["slug"], name: "index_podcasts_on_slug", unique: true
     t.index ["user_id"], name: "index_podcasts_on_user_id"
