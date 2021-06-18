@@ -24,18 +24,18 @@
       </li>
     </div>
     <div class="grid grid-cols-3 gap-3 rounded-lg bg-genresbg m-10">
-      <div class="my-auto pl-5 md:m-10">
+      <div class="my-auto pl-5 m-5 sm:m-5 md:m-10">
         <%= image_tag(@podcast.cover.url, size: "230x230") if @podcast.cover? %>
       </div>
       <div class="m-5 md:mt-10">
         <div class="text-white text-xl md:text-3xl"><%= @episode.title %>
-          <span class="my_fav" data-random_url=<%= @episode.random_url %>><i class="far fa-star"></i></span>
+          <span class="my_fav" data-random_url="<%= @episode.random_url %>" data-artist="<%= @episode.artist %>" data-url="<%= player_podcast_episode_url(@podcast.random_url, @episode.random_url) %>" data-title="<%= @episode.title %>"><i class="far fa-star"></i></span>
         </div>
         <div class="mt-8 text-gray-400 hidden md:block">
           <span class="pr-2"><i class="far fa-calendar-alt"></i></span>
           <span class=""><%= @episode.created_at.strftime('%Y-%m-%d') %></div></span>
         </div>
-        <div class="flex justify-end pr-5">
+        <div class="flex justify-end pr-5 m-5">
           <button id="playerBtn" class="justify-center"><%= image_tag("play", size: "120x120")%></button>
         </div>
       </div>

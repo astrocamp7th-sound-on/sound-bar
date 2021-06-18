@@ -1,27 +1,32 @@
 document.addEventListener("turbolinks:load", function () {
 
-// localstorage 我的最愛
+  // localstorage 我的最愛
   const storageFav = JSON.parse(localStorage.getItem('favor_episode'))
   let data = storageFav || []
   let star = document.querySelector(".my_fav")
 
-  if (star) {
-      if (data.indexOf(star.dataset.random_url) >= 0) {
-        star.innerHTML = '<i class="fas fa-star"></i>'
-        star.classList.add("text-yellow-300")
-      }
+  if (star){
+    let array = data.filter((episode) => episode.randomUrl.indexOf(star.dataset.random_url) >= 0)
+
+    if (array.length == 1) {
+      star.innerHTML = '<i class="fas fa-star"></i>'
+      star.classList.add("text-yellow-300")
+    }
 
     star.addEventListener("click", (e) => {
-      let id = e.currentTarget.dataset.random_url
+      let randomUrl = e.currentTarget.dataset.random_url
+      let artist = e.currentTarget.dataset.artist
+      let title = e.currentTarget.dataset.title
+      let url = e.currentTarget.dataset.url
 
-      if (data.indexOf(id) < 0) {
-        data.push(id)
+      if (array.length == 0) {
+        data.push({randomUrl, artist, title, url})
         localStorage.setItem('favor_episode', JSON.stringify(data))
         star.innerHTML = '<i class="fas fa-star"></i>'
         star.classList.add("text-yellow-300")
       }
-      else {
-        data.splice(data.indexOf(id), 1)
+      else if (array.length == 1) {
+        data.splice(data.indexOf(array[0]), 1)
         localStorage.setItem("favor_episode", JSON.stringify(data))
         star.innerHTML = '<i class="far fa-star"></i>'
         star.classList.remove("text-yellow-300")

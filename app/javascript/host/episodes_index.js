@@ -16,6 +16,8 @@ document.addEventListener("turbolinks:load", function () {
   let playerEpisodeSlugLinkInputAll = document.querySelectorAll('#playerEpisodeSlugLinkInputAll')
   let searchEpisodeInput = document.querySelector('#searchEpisodeInput')
   let episodeCreateEpisodeBtn = document.querySelectorAll('.episode-create-episode-btn')
+  let closeCreateEpisode = document.querySelector('.close-create-episode')
+
 
 
   // 搜尋功能
